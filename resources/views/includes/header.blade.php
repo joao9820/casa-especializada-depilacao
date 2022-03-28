@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+        {{-- Fonts Google --}}
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Roboto&display=swap" rel="stylesheet">
+
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+
+        <title>
+            @yield('style')
+        </title>
+
+        @hasSection('style')
+		    @yield('style')
+	    @endif
+
+    </head>
+    <body>
+        <div id="contactInfo" class="text-muted">
+            <p>casaespecializadadeplicacao@gmail.com</p>
+            <p>@casaespecializadadeplicao</p>
+        </div>

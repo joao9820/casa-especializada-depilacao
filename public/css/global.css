@@ -1,0 +1,19 @@
+html, body {
+    min-height: 100vh;
+}
+
+p {
+    margin-bottom: 0;
+}
+
+#contactInfo{
+    height: 36px;
+    font-family: 'Archivo';
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#contactInfo p ~ p {
+    margin-left: .75rem
+}
