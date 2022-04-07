@@ -1,14 +1,20 @@
-html, body {
-    min-height: 100vh;
+:root {
+    --color-primary-blue: #1F1745;
+    --color-secondary-orange: #EF8A2C;
 }
 
-p {
-    margin-bottom: 0;
+html, body {
+    height: 100vh;
+    font-family: 'Archivo';
+}
+
+* {
+    padding: 0;
+    margin: 0;
 }
 
 #contactInfo{
     height: 36px;
-    font-family: 'Archivo';
     display: flex;
     align-items: center;
     justify-content: center;

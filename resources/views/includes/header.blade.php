@@ -10,6 +10,9 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Roboto&display=swap" rel="stylesheet">
 
+        {{-- FontAwesome --}}
+        <script src="https://kit.fontawesome.com/d35376beee.js" crossorigin="anonymous"></script>
+
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
         <title>
@@ -23,6 +26,6 @@
     </head>
     <body>
         <div id="contactInfo" class="text-muted">
-            <p>casaespecializadadeplicacao@gmail.com</p>
+            <p><i class="fas fa-envelope"></i>casaespecializadadeplicacao@gmail.com</p>
             <p>@casaespecializadadeplicao</p>
         </div>
