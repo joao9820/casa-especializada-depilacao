@@ -25,7 +25,10 @@
 
     </head>
     <body>
-        <div id="contactInfo" class="text-muted">
-            <p><i class="fas fa-envelope"></i>casaespecializadadeplicacao@gmail.com</p>
-            <p>@casaespecializadadeplicao</p>
-        </div>
+        <div class="container">
+            <div id="contactInfo" class="text-muted">
+                <i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com
+                <i class="fab fa-instagram ml-4 mr-2"></i>@casaespecializadadeplicao
+            </div>
+
+            @include('includes.navbar')

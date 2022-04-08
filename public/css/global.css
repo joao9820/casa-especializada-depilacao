@@ -8,7 +8,7 @@ html, body {
     font-family: 'Archivo';
 }
 
-* {
+*, p {
     padding: 0;
     margin: 0;
 }
@@ -22,4 +22,13 @@ html, body {
 
 #contactInfo p ~ p {
     margin-left: .75rem
+}
+
+#contactInfo .fa-instagram {
+    font-size: 1.2rem;
+}
+
+.navbar #logomarca {
+    height: 82px;
+    width: auto;
 }
