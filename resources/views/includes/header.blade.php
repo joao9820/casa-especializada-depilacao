@@ -26,7 +26,7 @@
     </head>
     <body>
         <div class="container">
-            <div id="contactInfo" class="text-muted">
+            <div id="contactInfo">
                 <i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com
                 <i class="fab fa-instagram ml-4 mr-2"></i>@casaespecializadadeplicao
             </div>
