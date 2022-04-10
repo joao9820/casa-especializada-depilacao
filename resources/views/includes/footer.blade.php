@@ -22,11 +22,19 @@
                         </div>
                     </div>
                 </div>
-                <div class="info-items info-menu">
+                <div class="info-menu">
                     <p class="subtitle">Menu</p>
-                    <div class="info-items"></div>
+                    <div class="info-items">
+                        <ul>
+                            <li class="active"><a href="#"><i class="fas fa-caret-right"></i>Home</a></li>
+                            <li><a href="#"><i class="fas fa-caret-right"></i>Ofertas e Serviços</a></li>
+                            <li><a href="#"><i class="fas fa-caret-right"></i>Nossa História</a></li>
+                            <li><a href="#"><i class="fas fa-caret-right"></i>Portfólio</a></li>
+                            <li><a href="#"><i class="fas fa-caret-right"></i>Contato</a></li>
+                        </ul>
+                    </div>
                 </div>
-                <div class="info-items info-social">
+                <div class="info-social">
                     <p class="subtitle">Social</p>
                     <div class="info-items"></div>
                 </div>
