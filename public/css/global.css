@@ -1,6 +1,7 @@
 :root {
     --color-primary-blue: #1F1745;
     --color-secondary-orange: #EF8A2C;
+    --color-background-light-orange: #f5cca7;
     --color-background-light: #FDFAF9;
     --color-text-light: #6A7682;
     --color-text-muted: #9AA3AC;
@@ -95,4 +96,53 @@ body {
 
 .navbar .navbar-nav .nav-item .nav-link {
     padding: 0;
+}
+
+footer {
+    height: 455px;
+    background-color: var(--color-primary-blue);
+    border-top: 14px solid var(--color-background-light-orange);
+}
+
+footer .container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+
+footer #footerLogo {
+    height: 50px;
+    width: 250px;
+    color: #F9F9F9 !important;
+    font-weight: 700;
+    font-size: 22px;
+}
+
+footer #footerInfo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 3rem;
+}
+
+footer #footerInfo .subtitle {
+    font-weight: 700;
+    font-size: 18px;
+}
+
+footer #footerInfo .info-items {
+    margin-top: 4rem;
+}
+
+footer #footerInfo .info-items p, footer #footerInfo .info-items p i {
+    color: #F9F9F9;
+}
+
+
+
+footer #footerInfo .info-adress p i {
+    margin-right: .5rem;
+}
+
+footer #footerInfo .info-adress p i.fa-map-marker-alt {
+    color: var(--color-secondary-orange);
+    margin-right: 1rem;
 }
