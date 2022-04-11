@@ -139,7 +139,7 @@ footer #footerInfo .subtitle {
 }
 
 footer #footerInfo .info-items {
-    margin-top: 4rem;
+    margin-top: 2rem;
 }
 
 footer #footerInfo .info-items p, footer #footerInfo .info-items p i
@@ -205,14 +205,20 @@ footer #footerInfo .info-menu .info-items ul li:hover li.active i
 {
     opacity: 1;
 }
-/* footer #footerInfo .info-menu .info-items ul li.active a {
-    color: var(--color-secondary-orange) !important;
+
+footer #footerInfo .info-social .info-items div {
+    display: flex;
+    align-items: center;
 }
 
-footer #footerInfo .info-menu .info-items ul li.active a i,
-footer #footerInfo .info-menu .info-items ul:hover a i {
-    opacity: 1 !important;
+footer #footerInfo .info-social .info-items div ~ div {
+    margin-top: .5rem;
 }
- */
+
+footer #footerInfo .info-social .info-items div p {
+    font-size: 14px;
+    margin-left: .25rem;
+}
+
 
 

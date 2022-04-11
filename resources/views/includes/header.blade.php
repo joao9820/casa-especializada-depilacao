@@ -3,6 +3,8 @@
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
         {{-- Fonts Google --}}
@@ -16,7 +18,7 @@
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
 
         <title>
-            @yield('style')
+            @yield('title')
         </title>
 
         @hasSection('style')
