@@ -1,3 +1,5 @@
 @include('includes/header')
-    @yield('content')
+    <main>
+        @yield('content')
+    </main>
 @include('includes/footer')

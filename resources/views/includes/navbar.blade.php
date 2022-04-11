@@ -2,7 +2,7 @@
     <img id="logomarca" src="{{asset('assets/images/logo.png')}}" alt="Logo Marca" />
     <div class="ml-auto">
         <ul class="navbar-nav">
-            <li class="nav-item active">
+            <li class="nav-item {{isset($current) && $current == 'home' ? 'active' : '' }}">
                 <a href="#" class="nav-link">Home</a>
             </li>
             <li class="nav-item">

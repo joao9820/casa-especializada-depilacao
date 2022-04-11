@@ -1,5 +1,4 @@
 
-    </div>
 
     <footer>
         <div class="container">
@@ -38,7 +37,7 @@
                     <p class="subtitle">Social</p>
                     <div class="info-items">
                         <div>
-                            <img src="{{asset('assets/icons/instagram.png')}}"><p>@casaespecializadadedepilacao</p>
+                            <img src="{{asset('assets/icons/instagram.png')}}"><p>@casaespecializadaemdepilacao</p>
                         </div>
                         <div>
                             <img src="{{asset('assets/icons/facebook.png')}}"><p>Casa de Depilação</p>
