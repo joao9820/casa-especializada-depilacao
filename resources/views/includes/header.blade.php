@@ -16,6 +16,7 @@
         <script src="https://kit.fontawesome.com/d35376beee.js" crossorigin="anonymous"></script>
 
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components.css') }}">
 
         <title>
             @yield('title')

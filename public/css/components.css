@@ -1,0 +1,50 @@
+.card-offers {
+    height: 320px;
+    max-width: 256px;
+    border-radius: 16px;
+    border-color: transparent;
+}
+
+/* .card-offers .card-body {
+    padding: 0;
+} */
+
+.card-body .card-title {
+    margin-bottom: 1rem;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.card-body p {
+    font-weight: 400;
+    line-height: 1rem;
+    font-size: 14px;
+    color: var(--color-text-light) !important;
+}
+
+.card-offers .card-img img {
+    height: 140px;
+    width: 100%;
+    object-fit: cover;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+    object-position: top center;
+    border-bottom: 3px solid var(--color-primary-blue);
+}
+
+.card-offers .card-title, .card-offers .card-body p {
+    color: var(--color-primary-blue);
+}
+
+.card-offers .card-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: unset;
+    border-top: none;
+    /* color: var(--color-secondary-orange) !important; */
+}
+
+.card-offers .card-footer p {
+    color: var(--color-secondary-orange) !important;;
+}
