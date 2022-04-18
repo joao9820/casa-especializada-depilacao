@@ -46,5 +46,35 @@
 }
 
 .card-offers .card-footer p {
-    color: var(--color-secondary-orange) !important;;
+    color: var(--color-secondary-orange) !important;
+}
+
+/* Component Picture */
+.picture-area {
+    position: relative;
+}
+
+.picture-bg {
+    background: var(--color-secondary-orange);
+    opacity: 0.2;
+}
+
+.picture-area .picture-bg, .picture-area img.picture-img {
+    position: absolute;
+    width: 630px;
+    height: 385px;
+    border-radius: 16px;
+}
+
+.picture-area img.picture-img {
+    top: 30px;
+    left: 50px;
+    object-fit: cover;
+    object-position: top center;
+}
+
+.picture-area img.picture-vectors {
+    position: absolute;
+    top: 0;
+    left: 0;
 }

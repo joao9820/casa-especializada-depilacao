@@ -70,8 +70,13 @@
             display: inline-block;
             color: var(--color-primary-blue);
             font-weight: 500;
-            font-size: 2.5rem;
+            font-size: 2.25rem;
             margin-bottom: 2.5rem;
+        }
+
+        h3.title-section span {
+            display: block;
+            color: var(--color-secondary-orange);
         }
 
         h3.title-section::after {
@@ -88,7 +93,7 @@
         }
 
         #featuredOffers {
-            margin-bottom: 3rem;
+            margin-bottom: 4rem;
         }
 
         #featuredOffers #featuredOffersBadge {
@@ -100,12 +105,136 @@
             display: contents;
         }
 
+        #featuredOffers .card-deck a .card-offers {
+            transition: all .5s;
+        }
+
         #featuredOffers .card-deck a:hover .card-offers {
+            transform: scale(1.1);
             border: 1px solid var(--color-secondary-orange) !important;
         }
 
         #featuredOffers .card-deck a:hover .card-offers img {
             border-bottom-color: var(--color-secondary-orange);
+        }
+
+        #services {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: 240px 240px;
+            margin-bottom: 130px;
+        }
+
+        #services .card-services {
+            position: relative;
+        }
+
+        #services .card-services .text-services {
+            position: absolute;
+            top: 24px;
+            left: 0;
+            background: var(--color-primary-blue);
+            opacity: 0.5;
+            box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+            height: 50px;
+            padding-left: 1.5rem;
+            padding-right: 2rem;
+            display: flex;
+            align-items: center;
+        }
+
+
+        #services .card-services .text-services p {
+            position: relative;
+            font-weight: 500;
+            font-size: 18px;
+            color: #fff;
+        }
+
+        #services .card-services .text-services p::after {
+            position: absolute;
+            bottom: -2.5px;
+            left: 0;
+            content: '';
+            width: 45%;
+            height: 2px;
+            background: #fff;
+        }
+
+        #services .card-services img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 16px;
+        }
+
+        #services a:nth-child(2) img {
+            border-bottom-left-radius: 0;
+        }
+
+        #services a:nth-child(4) img {
+            border-top-right-radius: 0;
+            border-bottom-right-radius: 0;
+        }
+
+        #services a {
+            display: contents;
+        }
+
+        #services #infoClients {
+            padding: 3.8rem 4rem;
+            background: var(--color-primary-blue);
+            color: #fff;
+            border-top-right-radius: 16px;
+            border-bottom-right-radius: 16px;
+        }
+
+        #services #infoClients h4, #services #infoClients p, #services #infoClients i {
+            color: #fff;
+        }
+
+        #services #infoClients h4 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: .25rem;
+        }
+
+        #services #infoClients p {
+            margin-bottom: .5rem;
+        }
+
+        #services #infoClients i ~ i {
+            margin-left: .5rem;
+        }
+
+        #services #toAllServices {
+            padding: 4rem;
+        }
+
+        #services #toAllServices p {
+            width: 120px;
+            line-height: 1.1;
+            font-size: 18px;
+        }
+
+        #services #toAllServices i {
+            font-size: 18px;
+        }
+
+        #services a:last-child:hover p {
+            text-decoration: underline;
+        }
+
+        #aboutUs {
+            margin-bottom: 130px;
+        }
+
+        #aboutUs a p {
+            font-size: 18px;
+        }
+
+        #aboutUs a:hover {
+            text-decoration-color: var(--color-text-light);
         }
 
         /* #featuredOffers #featuredOffersBadge img {
@@ -148,6 +277,56 @@
                 </div>
             </div>
 
+        </div>
+        {{-- Verificar se é necessário colocar things svg no grid --}}
+        <div id="services">
+            <div>
+                <h3 class="title-section">Conheça nossos<span>Serviços</span></h3>
+            </div>
+            @for($i=0; $i < 3; $i++)
+                <a href="#">
+                    <div class="card-services">
+                        <img src="{{asset('assets/images/presentation-1.png')}}">
+                        <div class="text-services">
+                            <p>Lorem Ipsum</p>
+                        </div>
+                    </div>
+                </a>
+            @endfor
+            <div id="infoClients">
+                <div>
+                    <h4>+1200</h4>
+                    <p>Clientes atendidos</p>
+                    <div class="d-flex align-items-center">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="">
+                <div id="toAllServices">
+                    <div class="d-flex align-items-center">
+                        <p>Veja todos os serviços</p>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div id="aboutUs">
+            <div class="row mt-2">
+                <div class="col-4">
+                    <h3 class="title-section">Conheça a<span>Nossa História</span></h3>
+                    <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged...</p>
+                    <a href="#"><p>Ler mais<i class="fas fa-arrow-right ml-2"></i></p></a>
+                </div>
+                <div class="col-auto offset-1">
+                    @component('components.picture')
+                    @endcomponent
+                </div>
+            </div>
         </div>
     </div>
 @endsection
