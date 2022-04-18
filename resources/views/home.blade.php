@@ -61,6 +61,10 @@
             padding: 0 2px;
         }
 
+        #bgPresentation img {
+            z-index: 3;
+        }
+
         #vectorsPresentation {
             right: 32px;
         }
@@ -256,11 +260,23 @@
                 <button class="btn btn-sm" id="presentation_cta">Contato</button>
             </div>
             <div class="presentation-pics">
-                <img id="presentationPic2" class="carousel-pics" src="{{asset('assets/images/presentation-2.png')}}">
-                <img id="presentationPic3" class="carousel-pics" src="{{asset('assets/images/presentation-3.png')}}">
-                <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
-                <img id="bgPresentation" src="{{asset('assets/images/bg-presentation.png')}}">
-                <img id="vectorsPresentation" src="{{asset('assets/images/vectors-presentation.svg')}}">
+                <div class="carousel slide carousel-fade h-100" data-touch="false" data-ride="carousel">
+                    <div class="carousel-inner h-100">
+                        <div class="carousel-item">
+                            <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
+                        </div>
+                        <div class="carousel-item">
+                            <img id="presentationPic2" class="carousel-pics" src="{{asset('assets/images/presentation-2.png')}}">
+                        </div>
+                        <div class="carousel-item">
+                            <img id="presentationPic3" class="carousel-pics" src="{{asset('assets/images/presentation-3.png')}}">
+                        </div>
+                    </div>
+                    <div id="bgPresentation">
+                        <img src="{{asset('assets/images/bg-presentation.png')}}">
+                        <img id="vectorsPresentation" src="{{asset('assets/images/vectors-presentation.svg')}}">
+                    </div>
+                </div>
             </div>
         </div>
         <div id="featuredOffers">
@@ -329,4 +345,19 @@
             </div>
         </div>
     </div>
+@endsection
+
+@section('script')
+
+    <script>
+        window.onload = function(){
+            //Estratégia para carregar as fotos somente depois da moldura
+            $('.presentation-pics .carousel .carousel-item').first().addClass('active');
+        }
+
+        $('.carousel').carousel({
+            interval: 3500
+        })
+    </script>
+
 @endsection

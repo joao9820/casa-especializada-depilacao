@@ -12,8 +12,14 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Roboto&display=swap" rel="stylesheet">
 
+        {{-- Animate CSS --}}
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+
         {{-- FontAwesome --}}
         <script src="https://kit.fontawesome.com/d35376beee.js" crossorigin="anonymous"></script>
+
+        {{-- Wow JS --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components.css') }}">
