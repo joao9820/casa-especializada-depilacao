@@ -230,7 +230,8 @@
         }
 
         #aboutUs {
-            margin-bottom: 130px;
+            /* 130px + 30px do top da img absolute */
+            margin-bottom: 160px;
         }
 
         #aboutUs a p {
@@ -239,6 +240,28 @@
 
         #aboutUs a:hover {
             text-decoration-color: var(--color-text-light);
+        }
+
+        #findUs {
+            margin-bottom: 130px;
+        }
+
+        #findUs i {
+            margin-right: .5rem;
+            color: var(--color-secondary-orange);
+        }
+
+        #findUs p {
+            color: var(--color-primary-blue);
+            /* font-size: 18px; */
+            font-weight: 500;
+        }
+
+        #findUs iframe {
+            height: 374px;
+            width: 100%;
+            border: 2px solid rgba(239, 138, 44, 0.4);
+            border-radius: 16px;
         }
 
         /* #featuredOffers #featuredOffersBadge img {
@@ -341,6 +364,18 @@
                 <div class="col-auto offset-1">
                     @component('components.picture')
                     @endcomponent
+                </div>
+            </div>
+        </div>
+        <div id="findUs">
+            <div class="row">
+                <div class="col-6">
+                    <p><i class="fas fa-map-marker-alt"></i> Loja 3/4 - Taguatinga Norte</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d698.4473730315156!2d-48.060453863868624!3d-15.828333846224467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a32e76320428f%3A0x9eb7bad7bde72fa!2sThaynah%20-%20Casa%20Especializada%20em%20Depila%C3%A7%C3%A3o!5e0!3m2!1sen!2sbr!4v1650342955661!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="col-6">
+                    <p><i class="fas fa-map-marker-alt"></i> Ed. São José - Taguatinga Sul</p>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d239.89815939823475!2d-48.05552174049284!3d-15.83711021773233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3379b75d28af%3A0xb1f196d8148a778d!2sThaynah%20-%20Casa%20Especializada%20em%20Depila%C3%A7%C3%A3o!5e0!3m2!1sen!2sbr!4v1650340674253!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>
