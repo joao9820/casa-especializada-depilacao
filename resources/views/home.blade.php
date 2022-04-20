@@ -324,7 +324,7 @@
             </div>
             @for($i=0; $i < 3; $i++)
                 <a href="#">
-                    <div class="card-services">
+                    <div class="card-services shadow-sm">
                         <img src="{{asset('assets/images/presentation-1.png')}}">
                         <div class="text-services">
                             <p>Lorem Ipsum</p>
