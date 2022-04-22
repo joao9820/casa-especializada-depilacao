@@ -69,33 +69,6 @@
             right: 32px;
         }
 
-        h3.title-section {
-            position: relative;
-            display: inline-block;
-            color: var(--color-primary-blue);
-            font-weight: 500;
-            font-size: 2.25rem;
-            margin-bottom: 2.5rem;
-        }
-
-        h3.title-section span {
-            display: block;
-            color: var(--color-secondary-orange);
-        }
-
-        h3.title-section::after {
-            /* opacity: 0; */
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            content: '';
-            width: 45%;
-            height: 3px;
-            background: var(--color-secondary-orange);
-           /*  border-radius: 5px; */
-            transition: width .3s;
-        }
-
         #featuredOffers {
             margin-bottom: 4rem;
         }
@@ -361,7 +334,7 @@
                     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged...</p>
                     <a href="#"><p>Ler mais<i class="fas fa-arrow-right ml-2"></i></p></a>
                 </div>
-                <div class="col-auto offset-1">
+                <div class="col-auto ml-5">
                     @component('components.picture')
                     @endcomponent
                 </div>

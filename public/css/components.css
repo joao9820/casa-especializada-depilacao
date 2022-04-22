@@ -52,6 +52,8 @@
 /* Component Picture */
 .picture-area {
     position: relative;
+    width: 630px;
+    height: 385px;
 }
 
 .picture-bg {
@@ -61,8 +63,8 @@
 
 .picture-area .picture-bg, .picture-area img.picture-img {
     position: absolute;
-    width: 630px;
-    height: 385px;
+    width: 100%;
+    height: 100%;
     border-radius: 16px;
 }
 

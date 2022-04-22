@@ -34,6 +34,7 @@
 
     </head>
     <body>
+        {{-- Adaptar o menu para mobile --}}
         <div class="container">
             <div id="contactInfo">
                 <i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com
