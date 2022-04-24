@@ -35,10 +35,14 @@
     </head>
     <body>
         {{-- Adaptar o menu para mobile --}}
-        <div class="container">
-            <div id="contactInfo">
-                <i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com
-                <i class="fab fa-instagram ml-4 mr-2"></i>@casaespecializadadeplicao
+        <div class="container-md" id="containerNav">
+            <div id="contactInfo" class="d-flex flex-column justify-content-center align-items-sm-center flex-sm-row mx-auto">
+                <div>
+                    <i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com
+                </div>
+                <div>
+                    <i class="fab fa-instagram ml-sm-4 mr-2"></i>@casaespecializadadeplicao
+                </div>
             </div>
 
             @include('includes.navbar')

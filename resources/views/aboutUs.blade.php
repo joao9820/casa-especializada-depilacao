@@ -24,7 +24,7 @@
 
 
 @section('content')
-    <div class="container my-5">
+    <div class="container-md my-5">
         <div id="aboutUsText">
             <h3 class="title-section">Conheça a<span>Nossa História</span></h3>
             <div id="aboutUsImg">

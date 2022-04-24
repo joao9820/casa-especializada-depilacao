@@ -1,7 +1,7 @@
 
 
     <footer>
-        <div class="container">
+        <div class="container-md p-4">
 
             <h2 id="footerLogo">CASA ESPECIALIZADA EM DEPILAÇÃO</h2>
 

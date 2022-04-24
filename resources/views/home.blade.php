@@ -247,7 +247,7 @@
 @endsection
 
 @section('content')
-    <div class="container">
+    <div class="container-md">
         <div id="presentation">
             <div id="presentationText">
                 <h1 id="slogan">Good skin reflects Your story and Your spirit.</h1>
