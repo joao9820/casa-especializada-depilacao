@@ -11,17 +11,40 @@
 
         #aboutUsImg {
             margin-bottom: 70px;
+            margin-right: 50px;
         }
 
         @media (min-width: 992px){
             #aboutUsImg {
                 float: right;
                 margin-left: 50px;
+
             }
         }
+
+        @media (max-width: 767px){
+            .picture-area{
+               /*  min-height: 222px; */
+                max-height: 386px;
+                width: unset;
+                min-width: 315px;
+            }
+        }
+
+        @media(max-width: 575px){
+            .picture-img {
+                top: 0 !important;
+                left: 0 !important;
+            }
+
+            #aboutUsImg {
+                margin-right: 0;
+            }
+        }
+}
+
     </style>
 @endsection
-
 
 @section('content')
     <div class="container-md my-5">
