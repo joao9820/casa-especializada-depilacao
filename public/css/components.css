@@ -5,6 +5,27 @@
     border-color: transparent;
 }
 
+.card-deck a {
+    display: contents;
+}
+
+.card-deck a .card-offers {
+    transition: all .5s;
+}
+
+.card-deck a:hover .card-offers {
+    transform: scale(1.1);
+    border: 1px solid var(--color-secondary-orange) !important;
+}
+
+.card-deck a:hover .no-scale-up {
+    transform: unset;
+}
+
+.card-deck a:hover .card-offers img {
+    border-bottom-color: var(--color-secondary-orange);
+}
+
 /* .card-offers .card-body {
     padding: 0;
 } */

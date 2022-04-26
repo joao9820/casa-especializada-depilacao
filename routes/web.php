@@ -20,3 +20,7 @@ Route::get('/', function () {
 Route::get('/nossa-historia', function () {
     return view('aboutUs');
 });
+
+Route::get('/servicos', function () {
+    return view('services');
+});

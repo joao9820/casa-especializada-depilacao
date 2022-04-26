@@ -9,8 +9,8 @@
                 <li class="nav-item {{isset($current) && $current == 'home' ? 'active' : '' }}">
                     <a href="/" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item ">
-                    <a href="#" class="nav-link">Serviços</a>
+                <li class="nav-item {{isset($current) && $current == 'services' ? 'active' : '' }}">
+                    <a href="{{url('servicos')}}" class="nav-link">Serviços</a>
                 </li>
                 <li class="nav-item {{isset($current) && $current == 'aboutUs' ? 'active' : '' }}">
                     <a href="{{url('nossa-historia')}}" class="nav-link">Nossa História</a>
