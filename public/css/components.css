@@ -5,24 +5,24 @@
     border-color: transparent;
 }
 
-.card-deck a {
+.card-deck a, .swiper-wrapper a {
     display: contents;
 }
 
-.card-deck a .card-offers {
+.card-deck a .card-offers, .swiper-wrapper a .card-offers {
     transition: all .5s;
 }
 
-.card-deck a:hover .card-offers {
+.card-deck a:hover .card-offers, .swiper-wrapper a:hover .card-offers  {
     transform: scale(1.1);
     border: 1px solid var(--color-secondary-orange) !important;
 }
 
-.card-deck a:hover .no-scale-up {
+.card-deck a:hover .no-scale-up, .swiper-wrapper a:hover .no-scale-up {
     transform: unset;
 }
 
-.card-deck a:hover .card-offers img {
+.card-deck a:hover .card-offers img, .swiper-wrapper a:hover .card-offers img {
     border-bottom-color: var(--color-secondary-orange);
 }
 
