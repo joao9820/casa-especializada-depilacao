@@ -1,4 +1,4 @@
-<div class="card card-{{isset($cardType) && $cardType == "services" ? "services" : "offers"}} {{isset($scaleUp) && !$scaleUp ? 'no-scale-up' : ''}}">
+<div class="card card-{{!isset($cardType) || $cardType == "offers" ? "offers" : $cardType}} {{isset($scaleUp) && !$scaleUp ? 'no-scale-up' : ''}}">
    {{--  <div class="card-header">
         <div class="card-title">Lorem Ipsun</div>
     </div> --}}
@@ -9,8 +9,17 @@
         <div class="card-title">Lorem Ipsum</div>
         <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
     </div>
+
     <div class="card-footer">
-        <p>R$ 99,90</p>
-        <i class="fas fa-arrow-right"></i>
+        @if(!isset($cardType) || $cardType == "offers")
+            <p>R$ 99,90</p>
+            <i class="fas fa-arrow-right"></i>
+        @else
+            <button class="btn btn btn-outline rounded-pill ml-auto">
+                <p>Ver serviço</p>
+                <i class="fas fa-arrow-right ml-2"></i>
+            </button>
+        @endif
     </div>
+
 </div>

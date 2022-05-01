@@ -34,6 +34,13 @@
             gap: 2rem;
         }
 
+        @media (max-width: 767px){
+            .grid-services {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
     </style>
 @endsection
 
@@ -61,19 +68,23 @@
             </div>
         </section>
 
-       {{--  <section class="mt-5">
+        <section class="mt-5">
             <h3 class="title-section">Serviços</h3>
             <div class="grid-services">
                 @for($i=0;$i<8;$i++)
                     <a href="#">
                         @component('components.card')
-                            @slot('cardType', 'services')
+                            @slot('cardType', 'services-lg')
                             @slot('scaleUp', false)
                         @endcomponent
                     </a>
                 @endfor
             </div>
-        </section> --}}
+        </section>
+
+        @component('components.pagination')
+        @endcomponent
+
     </div>
 
 @endsection
