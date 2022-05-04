@@ -6,8 +6,8 @@
         <img src="{{asset('assets/images/presentation-1.png')}}">
     </div>
     <div class="card-body">
-        <div class="card-title">Lorem Ipsum</div>
-        <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        <div class="card-title">{{$cardTitle}}</div>
+        <p>{{$cardDesc}}</p>
     </div>
 
     <div class="card-footer">
@@ -15,10 +15,10 @@
             <p>R$ 99,90</p>
             <i class="fas fa-arrow-right"></i>
         @else
-            <button class="btn btn btn-outline rounded-pill ml-auto">
+            <a href="{{url('servicos/1')}}" class="btn btn btn-outline rounded-pill ml-auto">
                 <p>Ver serviço</p>
                 <i class="fas fa-arrow-right ml-2"></i>
-            </button>
+            </a>
         @endif
     </div>
 

@@ -56,6 +56,8 @@
                             <div class="swiper-slide d-flex justify-content-center">
                                 <a href="#">
                                     @component('components.card')
+                                        @slot('cardTitle', 'Lorem Ipsum')
+                                        @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
                                         @slot('scaleUp', false)
                                     @endcomponent
                                 </a>
@@ -72,12 +74,16 @@
             <h3 class="title-section">Serviços</h3>
             <div class="grid-services">
                 @for($i=0;$i<8;$i++)
-                    <a href="#">
-                        @component('components.card')
-                            @slot('cardType', 'services-lg')
-                            @slot('scaleUp', false)
-                        @endcomponent
-                    </a>
+                    @component('components.card')
+                        @slot('cardType', 'services-lg')
+                        @slot('cardTitle', 'Lorem Ipsum')
+                        @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
+                        @slot('scaleUp', false)
+                    @endcomponent
                 @endfor
             </div>
         </section>

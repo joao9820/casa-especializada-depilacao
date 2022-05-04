@@ -63,6 +63,14 @@
     color: var(--color-text-light) !important;
 }
 
+.card-services-lg p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 4;
+   line-height: 1.2rem;
+    overflow: hidden;
+}
+
 .card-img img {
     width: 100%;
     object-fit: cover;

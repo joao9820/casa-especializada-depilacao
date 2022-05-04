@@ -24,3 +24,7 @@ Route::get('/nossa-historia', function () {
 Route::get('/servicos', function () {
     return view('services');
 });
+
+Route::get('/servicos/{id}', function () {
+    return view('serviceInfo');
+});
