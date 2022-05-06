@@ -14,20 +14,25 @@
         .description p {
             text-align: justify;
             margin-bottom: 1.5rem;
+            font-size: 14px;
         }
 
         .description p.topic {
             color: var(--color-primary-blue);
-            font-weight: 600;
+            font-weight: 400;
+            font-size: 18px;
             margin-bottom: 1rem;
             margin-top: 1.5rem;
+        }
+
+        .recently {
+            margin-top: 100px;
         }
 
     </style>
 @endsection
 
 @section('content')
-
     <div class="container-md my-5">
         <img src="{{asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService" >
         <h3 class="title-section my-5">Depilação em cera</h3>
@@ -55,5 +60,9 @@
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </div>
+    </div>
+    <hr/>
+    <div class="recently">
+
     </div>
 @endsection

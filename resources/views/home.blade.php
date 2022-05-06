@@ -283,6 +283,8 @@
                     @for($i=0; $i < 4; $i++)
                         <a href="#">
                             @component('components.card')
+                                @slot('cardTitle', 'LoremIpsum')
+                                @slot('cardDesc', 'LoremIpsum')
                             @endcomponent
                         </a>
                     @endfor
