@@ -1,4 +1,4 @@
-<div class="card card-{{!isset($cardType) || $cardType == "offers" ? "offers" : $cardType}} {{isset($scaleUp) && !$scaleUp ? 'no-scale-up' : ''}}">
+<div class="card card-{{(!isset($cardType) || $cardType == 'offers') ? 'offers' : $cardType}} {{(isset($scaleUp) && !$scaleUp) ? 'no-scale-up' : ''}}">
    {{--  <div class="card-header">
         <div class="card-title">Lorem Ipsun</div>
     </div> --}}
@@ -21,5 +21,4 @@
             </a>
         @endif
     </div>
-
 </div>

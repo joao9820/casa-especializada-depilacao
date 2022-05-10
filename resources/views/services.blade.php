@@ -57,7 +57,11 @@
                                 <a href="#">
                                     @component('components.card')
                                         @slot('cardTitle', 'Lorem Ipsum')
-                                        @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
+                                        @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
                                         @slot('scaleUp', false)
                                     @endcomponent
                                 </a>

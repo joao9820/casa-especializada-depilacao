@@ -1,8 +1,15 @@
-.card-offers, .card-services-md {
+.card-offers {
     height: 320px;
     max-width: 256px;
     border-radius: 16px;
     border-color: transparent;
+}
+
+.card-services-md {
+    height: 412px;
+    width: 100%;
+    max-width: 348px;
+    border-radius: 16px;
 }
 
 .card-services-lg {
@@ -25,11 +32,11 @@
     display: contents;
 }
 
-.card-deck a .card-offers, .swiper-wrapper a .card-offers {
+.card-deck a .card-offers, .swiper-wrapper a .card-offers, .card-deck a .card-services-md {
     transition: all .5s;
 }
 
-.card-deck a:hover .card-offers, .swiper-wrapper a:hover .card-offers  {
+.card-deck a:hover .card-offers, .swiper-wrapper a:hover .card-offers, .card-deck a:hover .card-services-md  {
     transform: scale(1.1);
     border: 1px solid var(--color-secondary-orange) !important;
 }
@@ -38,7 +45,7 @@
     transform: unset;
 }
 
-.card-deck a:hover .card-offers img, .swiper-wrapper a:hover .card-offers img {
+.card-deck a:hover .card-offers img, .swiper-wrapper a:hover .card-offers img, .card-deck a:hover .card-services-md img {
     border-bottom-color: var(--color-secondary-orange);
 }
 
@@ -58,17 +65,27 @@
 
 .card-body p {
     font-weight: 400;
-    line-height: 1rem;
     font-size: 14px;
     color: var(--color-text-light) !important;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+
+.card-offers p {
+    -webkit-line-clamp: 4;
+    line-height: 1rem;
+}
+
+.card-services-md p {
+    -webkit-line-clamp: 3;
+    line-height: 1.2rem;
 }
 
 .card-services-lg p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
     -webkit-line-clamp: 4;
    line-height: 1.2rem;
-    overflow: hidden;
 }
 
 .card-img img {
@@ -82,6 +99,11 @@
 .card-offers .card-img img {
     height: 140px;
     border-bottom: 3px solid var(--color-primary-blue);
+}
+
+.card-services-md .card-img img {
+    height: 225px;
+    border-bottom: 3px solid var(--color-secondary-orange);
 }
 
 .card-services-lg .card-img img {
