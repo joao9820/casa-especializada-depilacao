@@ -28,6 +28,12 @@
 
 }
 
+@media (max-width: 992px){
+    .card-deck .card-services-md {
+        margin: 1rem;
+    }
+}
+
 .card-deck a, .grid-services a, .swiper-wrapper a {
     display: contents;
 }
