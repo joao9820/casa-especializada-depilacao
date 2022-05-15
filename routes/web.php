@@ -21,6 +21,10 @@ Route::get('/nossa-historia', function () {
     return view('aboutUs');
 });
 
+Route::get('/contato', function () {
+    return view('meetUs');
+});
+
 Route::get('/servicos', function () {
     return view('services');
 });

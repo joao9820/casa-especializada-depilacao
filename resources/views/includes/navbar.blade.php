@@ -15,11 +15,11 @@
                 <li class="nav-item {{isset($current) && $current == 'aboutUs' ? 'active' : '' }}">
                     <a href="{{url('nossa-historia')}}" class="nav-link">Nossa História</a>
                 </li>
-                <li class="nav-item">
+              {{--   <li class="nav-item">
                     <a href="#" class="nav-link">Portfólio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#" class="nav-link">Contato</a>
+                </li> --}}
+                <li class="nav-item {{isset($current) && $current == 'meetUs' ? 'active' : '' }}">
+                    <a href="{{url('contato')}}" class="nav-link">Contato</a>
                 </li>
             </ul>
         </div>

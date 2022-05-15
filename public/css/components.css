@@ -141,12 +141,13 @@
     align-items: center;
 }
 
-.card-footer .btn-outline:hover {
+.card-footer .btn-outline:hover, .card-footer .btn-outline:focus {
     background-color: var(--color-secondary-orange);
     transition: all .15s;
 }
 
-.card-footer .btn-outline:hover p, .card-footer .btn-outline:hover i {
+.card-footer .btn-outline:hover p, .card-footer .btn-outline:hover i,
+.card-footer .btn-outline:focus p, .card-footer .btn-outline:focus i {
     color: #fff !important;
 }
 
