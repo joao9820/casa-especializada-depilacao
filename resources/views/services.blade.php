@@ -23,10 +23,6 @@
             transform: translateY(-50%);
         }
 
-        .swiper-button-next, .swiper-button-prev {
-            color: var(--color-secondary-orange);
-        }
-
         .grid-services {
             width: 100%;
             display: grid;
@@ -100,29 +96,5 @@
 @endsection
 
 @section('script')
-    <script>
-
-        var swiper = new Swiper(".my-swiper", {
-            slidesPerView: 1,
-            spaceBetween: 30,
-            slidesPerGroup: 1,
-            breakpoints: {
-            700: {
-                slidesPerView: 2,
-                },
-            992: {
-                slidesPerView: 3,
-            },
-            1200: {
-                slidesPerView: 4,
-             }
-            },
-            loop: false,
-            navigation:{
-                nextEl:".swiper-button-next",
-                prevEl: ".swiper-button-prev",
-            }
-
-        });
-    </script>
+    <script src="{{asset('js/swiper-offers.js')}}"></script>
 @endsection

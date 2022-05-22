@@ -73,28 +73,6 @@
             margin-bottom: 4rem;
         }
 
-        #featuredOffers #featuredOffersBadge {
-            /* position: relative; */
-            /* display: flex; */
-        }
-
-        #featuredOffers .card-deck a {
-            display: contents;
-        }
-
-        #featuredOffers .card-deck a .card-offers {
-            transition: all .5s;
-        }
-
-        #featuredOffers .card-deck a:hover .card-offers {
-            transform: scale(1.1);
-            border: 1px solid var(--color-secondary-orange) !important;
-        }
-
-        #featuredOffers .card-deck a:hover .card-offers img {
-            border-bottom-color: var(--color-secondary-orange);
-        }
-
         #services {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -243,6 +221,59 @@
             right: 0;
         } */
 
+        @media (max-width: 991px){
+            #bgPresentation {
+                display: none;
+            }
+
+            #presentation {
+                height: auto;
+                flex-direction: column-reverse;
+            }
+
+            #presentationText {
+                max-width: none !important;
+            }
+
+            .presentation-pics {
+                height: 405px !important;
+                margin-top: 3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .carousel-pics {
+                height: 405px;
+                width: 100%;
+                /* position: unset; */
+                border-radius: 16px;
+                border: 1px solid var(--color-background-light-orange);
+                padding: 0;
+            }
+
+            .carousel-indicators li {
+                background-color: var(--color-secondary-orange);
+            }
+
+            .picture-bg {
+                display: none;
+            }
+
+        }
+
+        @media(max-width: 1199px){
+            .picture-bg, .picture-vectors {
+                display: none;
+            }
+            .picture-img {
+                position: unset !important;
+                width: 100% !important;
+            }
+
+            .picture-area {
+                width: 100%;
+            }
+        }
+
     </style>
 @endsection
 
@@ -256,7 +287,12 @@
                 <button class="btn btn-sm" id="presentation_cta">Contato</button>
             </div>
             <div class="presentation-pics">
-                <div class="carousel slide carousel-fade h-100" data-touch="false" data-ride="carousel">
+                <div id="carouselPresentation" class="carousel slide carousel-fade h-100" data-ride="carousel">
+                    <ol class="carousel-indicators d-lg-none">
+                        <li data-target="#carouselPresentation" data-slide-to="0" class="active"></li>
+                        <li data-target="#carouselPresentation" data-slide-to="1"></li>
+                        <li data-target="#carouselPresentation" data-slide-to="2"></li>
+                    </ol>
                     <div class="carousel-inner h-100">
                         <div class="carousel-item">
                             <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
@@ -272,6 +308,16 @@
                         <img src="{{asset('assets/images/bg-presentation.png')}}">
                         <img id="vectorsPresentation" src="{{asset('assets/images/vectors-presentation.svg')}}">
                     </div>
+                    {{-- <div class="d-lg-none">
+                        <button class="carousel-control-prev" type="button" data-target="#carouselPresentation" data-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Anterior</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-target="#carouselPresentation" data-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="sr-only">Próximo</span>
+                        </button>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -279,15 +325,28 @@
             <div id="featuredOffersBadge">
                 {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
                 <h3 class="title-section">Ofertas</h3>
-                <div class="card-deck">
-                    @for($i=0; $i < 4; $i++)
-                        <a href="#">
-                            @component('components.card')
-                                @slot('cardTitle', 'LoremIpsum')
-                                @slot('cardDesc', 'LoremIpsum')
-                            @endcomponent
-                        </a>
-                    @endfor
+                <div class="position-relative px-5">
+                    <div id="carouselOffers" class="swiper my-swiper">
+                        <div class="swiper-wrapper">
+                            @for($i=0;$i<4;$i++)
+                                <div class="swiper-slide d-flex justify-content-center">
+                                    <a href="#">
+                                        @component('components.card')
+                                            @slot('cardTitle', 'Lorem Ipsum')
+                                            @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
+                                            @slot('scaleUp', false)
+                                        @endcomponent
+                                    </a>
+                                </div>
+                            @endfor
+                        </div>
+                    </div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
                 </div>
             </div>
 
@@ -331,12 +390,12 @@
         </div>
         <div id="aboutUs">
             <div class="row mt-2">
-                <div class="col-4">
+                <div class="col-12 col-xl-4">
                     <h3 class="title-section">Conheça a<span>Nossa História</span></h3>
                     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged...</p>
                     <a href="#"><p>Ler mais<i class="fas fa-arrow-right ml-2"></i></p></a>
                 </div>
-                <div class="col-auto ml-5">
+                <div class="col-12 col-xl-auto ml-xl-auto">
                     @component('components.picture')
                     @endcomponent
                 </div>
@@ -344,11 +403,11 @@
         </div>
         <div id="findUs">
             <div class="row">
-                <div class="col-6">
+                <div class="col-12 col-lg-6 mb-4 mb-lg-0">
                     <p><i class="fas fa-map-marker-alt"></i> Loja 3/4 - Taguatinga Norte</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d698.4473730315156!2d-48.060453863868624!3d-15.828333846224467!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a32e76320428f%3A0x9eb7bad7bde72fa!2sThaynah%20-%20Casa%20Especializada%20em%20Depila%C3%A7%C3%A3o!5e0!3m2!1sen!2sbr!4v1650342955661!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
-                <div class="col-6">
+                <div class="col-12 col-lg-6">
                     <p><i class="fas fa-map-marker-alt"></i> Ed. São José - Taguatinga Sul</p>
                     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d239.89815939823475!2d-48.05552174049284!3d-15.83711021773233!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3379b75d28af%3A0xb1f196d8148a778d!2sThaynah%20-%20Casa%20Especializada%20em%20Depila%C3%A7%C3%A3o!5e0!3m2!1sen!2sbr!4v1650340674253!5m2!1sen!2sbr" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
@@ -358,6 +417,8 @@
 @endsection
 
 @section('script')
+
+<script src="{{asset('js/swiper-offers.js')}}"></script>
 
     <script>
         window.onload = function(){
@@ -369,5 +430,6 @@
             interval: 3500
         })
     </script>
+
 
 @endsection

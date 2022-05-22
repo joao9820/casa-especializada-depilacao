@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="info-menu">
+                <div class="info-menu mx-md-4">
                     <p class="subtitle">Menu</p>
                     <div class="info-items">
                         <ul>

@@ -54,6 +54,10 @@
             margin-bottom: 2.5rem;
         }
 
+        .media-social p {
+            word-break: break-all;
+        }
+
         .localization p , .localization p i {
             color: var(--color-secondary-orange);
         }
@@ -64,7 +68,7 @@
 
         .form-email {
             width: 100%;
-            margin-right: 2.5rem;
+           /*  margin-right: 2.5rem; */
         }
 
         .form-email .form-group {
@@ -131,16 +135,64 @@
             border-radius: 16px;
         }
 
+        @media (max-width: 1199px) {
+            .picture-area {
+                width: 430px;
+            }
+        }
+
+        @media (max-width: 991px) {
+
+            .localization, .group-localization {
+                margin-bottom: 0 !important;
+            }
+
+            .picture-area {
+                width: 100%;
+                height: auto;
+               /*  height: auto;
+                min-height: 385px; */
+            }
+
+            .picture-bg {
+                display: none;
+            }
+
+            .main-content {
+                margin-right: 0;
+                margin-bottom: 50px;
+            }
+
+            .info {
+                top: 0;
+                left: 0;
+                height: auto;
+                position: unset;
+               /*  border: 2px solid var(--color-background-light-orange); */
+            }
+
+            .picture-area img {
+                display: none;
+            }
+        }
+
+        @media (max-width: 575px){
+            .picture-area {
+                width: 100%;
+                /* min-height: 555px; */
+            }
+        }
+
     </style>
 @endsection
 
 @section('content')
     <div class="container-md py-5">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between flex-column flex-lg-row">
             <div class="main-content">
                 <div class="mb-2">
                     <h3 class="title-section">Contate-nos</h3>
-                    <p>Sinta-se livre para contactar-nos a qualquer hora. Retornaremos o mais breve possível!</p>
+                    <p>Sinta-se livre para contatar-nos a qualquer hora. Retornaremos o mais breve possível!</p>
                 </div>
                 <form method="POST" class="form-email">
                     <div class="form-group">
@@ -170,18 +222,20 @@
                                 <p><i class="fab fa-instagram mr-2"></i>@casaespecializadadeplicao</p>
 
                         </div>
-                        <div class="localization">
-                            <p><i class="fas fa-map-marker-alt mr-2"></i> Loja 3/4 - Taguatinga Norte</p>
-                            <div class="ml-4">
-                                <div><i class="fas fa-phone mr-2"></i>(61) 3352-4265</div>
-                                <div><i class="fab fa-whatsapp mr-2"></i>(61) 99934-7852</div>
+                        <div class="d-sm-flex justify-content-sm-between d-lg-block group-localization">
+                            <div class="localization mr-sm-2 mr-md-0">
+                                <p><i class="fas fa-map-marker-alt mr-2"></i> Loja 3/4 - Taguatinga Norte</p>
+                                <div class="ml-4">
+                                    <div><i class="fas fa-phone mr-2"></i>(61) 3352-4265</div>
+                                    <div><i class="fab fa-whatsapp mr-2"></i>(61) 99934-7852</div>
+                                </div>
                             </div>
-                        </div>
-                        <div class="localization">
-                            <p><i class="fas fa-map-marker-alt mr-2"></i> Ed. São José - Taguatinga Sul</p>
-                            <div class="ml-4">
-                                <div><i class="fas fa-phone mr-2"></i>(61) 3351-8488</div>
-                                <div><i class="fab fa-whatsapp mr-2"></i>(61) 99315-9867</div>
+                            <div class="localization">
+                                <p><i class="fas fa-map-marker-alt mr-2"></i> Ed. São José - Taguatinga Sul</p>
+                                <div class="ml-4">
+                                    <div><i class="fas fa-phone mr-2"></i>(61) 3351-8488</div>
+                                    <div><i class="fab fa-whatsapp mr-2"></i>(61) 99315-9867</div>
+                                </div>
                             </div>
                         </div>
                     </div>

@@ -162,6 +162,10 @@ footer #footerInfo .info-items {
     margin-top: 2rem;
 }
 
+footer #footerInfo .info-items ul li {
+    white-space: nowrap;
+}
+
 @media (max-width: 767px) {
 
     footer #footerInfo {
