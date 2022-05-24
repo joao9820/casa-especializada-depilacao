@@ -3,6 +3,7 @@ var swiper = new Swiper(".my-swiper", {
     slidesPerView: 1,
     spaceBetween: 30,
     slidesPerGroup: 1,
+    /* centerInsufficientSlides: true, */
     breakpoints: {
     700: {
         slidesPerView: 2,

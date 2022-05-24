@@ -59,6 +59,10 @@
     border-bottom-color: var(--color-secondary-orange);
 }
 
+.swiper-slide:last-child {
+    margin-right: 0 !important;
+}
+
 /* .card-offers .card-body {
     padding: 0;
 } */

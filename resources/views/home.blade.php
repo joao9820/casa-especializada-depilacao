@@ -14,7 +14,7 @@
             height: 405px;
             display: flex;
             align-items: center;
-            margin-bottom: 4rem;
+            margin-bottom: 85px;
             /* background-repeat: no-repeat;
             background-position: right;
             background-image: url(); */
@@ -70,14 +70,15 @@
         }
 
         #featuredOffers {
-            margin-bottom: 4rem;
+            margin-bottom: 85px;
         }
 
         #services {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            grid-template-rows: 240px 240px;
-            margin-bottom: 130px;
+            grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+            grid-auto-rows: 240px;
+            /* grid-template-rows: 240px 240px; */
+            margin-bottom: 85px;
         }
 
         #services .card-services {
@@ -182,7 +183,7 @@
 
         #aboutUs {
             /* 130px + 30px do top da img absolute */
-            margin-bottom: 160px;
+            margin-bottom: calc(86px + 30px);
         }
 
         #aboutUs a p {
@@ -194,7 +195,7 @@
         }
 
         #findUs {
-            margin-bottom: 130px;
+            margin-bottom: 85px;
         }
 
         #findUs i {
@@ -221,7 +222,15 @@
             right: 0;
         } */
 
+        @media(max-width: 575px){
+            #services {
+                grid-template-rows: auto repeat(3, 300px) auto auto;
+                gap: .5rem;
+            }
+        }
+
         @media (max-width: 991px){
+
             #bgPresentation {
                 display: none;
             }
@@ -271,6 +280,16 @@
 
             .picture-area {
                 width: 100%;
+            }
+
+            #aboutUs {
+                margin-bottom: 85px;
+            }
+        }
+
+        @media(min-width: 1200px){
+            #services {
+                grid-template-columns: repeat(auto-fill, minmax(270px, 370px));
             }
         }
 
@@ -389,13 +408,14 @@
             </a>
         </div>
         <div id="aboutUs">
-            <div class="row mt-2">
+            <div class="row flex-column-reverse flex-xl-row mt-2">
                 <div class="col-12 col-xl-4">
-                    <h3 class="title-section">Conheça a<span>Nossa História</span></h3>
+                    <h3 class="title-section d-none d-xl-block">Conheça a<span>Nossa História</span></h3>
                     <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged...</p>
                     <a href="#"><p>Ler mais<i class="fas fa-arrow-right ml-2"></i></p></a>
                 </div>
-                <div class="col-12 col-xl-auto ml-xl-auto">
+                <div class="col-12 col-xl-auto mb-4 mb-xl-0 ml-xl-auto">
+                    <h3 class="title-section d-inline-block d-xl-none">Conheça a<span>Nossa História</span></h3>
                     @component('components.picture')
                     @endcomponent
                 </div>

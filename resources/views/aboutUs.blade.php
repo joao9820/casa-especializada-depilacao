@@ -29,6 +29,10 @@
                 width: unset;
                 min-width: 315px;
             }
+
+            .picture-vectors {
+                display: none;
+            }
         }
 
         @media(max-width: 575px){
