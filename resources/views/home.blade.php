@@ -378,9 +378,9 @@
             @for($i=0; $i < 3; $i++)
                 <a href="#">
                     <div class="card-services shadow-sm">
-                        <img src="{{asset('assets/images/presentation-1.png')}}">
+                        <img src="{{asset($serviceGroups[$i]['img'])}}">
                         <div class="text-services">
-                            <p>Lorem Ipsum</p>
+                            <p>{{$serviceGroups[$i]['name']}}</p>
                         </div>
                     </div>
                 </a>

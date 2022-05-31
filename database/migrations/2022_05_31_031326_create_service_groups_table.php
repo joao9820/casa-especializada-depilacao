@@ -16,6 +16,7 @@ class CreateServiceGroupsTable extends Migration
         Schema::create('service_groups', function (Blueprint $table) {
             $table->id();
             $table->string('name', 120);
+            $table->enum('audience', ['M', 'F']);
             $table->string('img', 220)->nullable();
             $table->timestamps();
         });

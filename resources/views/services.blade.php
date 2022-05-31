@@ -73,18 +73,15 @@
         <section class="mt-5">
             <h3 class="title-section">Serviços</h3>
             <div class="grid-services">
-                @for($i=0;$i<8;$i++)
+                @foreach($serviceGroups as $serv)
                     @component('components.card')
                         @slot('cardType', 'services-lg')
-                        @slot('cardTitle', 'Lorem Ipsum')
-                        @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
+                        @slot('cardImg', $serv->img)
+                        @slot('cardTitle', $serv->name)
+                        @slot('cardDesc', $serv->name)
                         @slot('scaleUp', false)
                     @endcomponent
-                @endfor
+                @endforeach
             </div>
         </section>
 

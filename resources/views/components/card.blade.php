@@ -3,7 +3,7 @@
         <div class="card-title">Lorem Ipsun</div>
     </div> --}}
     <div class="card-img">
-        <img src="{{asset('assets/images/presentation-1.png')}}">
+        <img src="{{isset($cardImg) ? asset($cardImg) : asset('assets/images/presentation-1.png')}}">
     </div>
     <div class="card-body">
         <div class="card-title">{{$cardTitle}}</div>

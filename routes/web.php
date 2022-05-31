@@ -13,9 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index')->name('home');
 
 Route::get('/nossa-historia', function () {
     return view('aboutUs');
@@ -25,9 +23,7 @@ Route::get('/contato', function () {
     return view('meetUs');
 });
 
-Route::get('/servicos', function () {
-    return view('services');
-});
+Route::get('/servicos', 'ServiceController@index')->name('servicos');
 
 Route::get('/servicos/{id}', function () {
     return view('serviceInfo');

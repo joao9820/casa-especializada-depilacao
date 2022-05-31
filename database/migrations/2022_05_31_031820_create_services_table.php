@@ -17,8 +17,12 @@ class CreateServicesTable extends Migration
             $table->id();
             $table->bigInteger('service_group_id')->unsigned();
             $table->string('name', 220);
-            $table->decimal('price', 4, 2);
+            $table->decimal('price', 5, 2);
             $table->timestamps();
+
+            $table->foreign('service_group_id')
+            ->references('id')->on('service_groups');
+
         });
     }
 

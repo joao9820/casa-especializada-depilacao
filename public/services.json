@@ -1,0 +1,320 @@
+[
+  {
+    "id": 1,
+    "service_group_id": 1,
+    "name": "Barba",
+    "price": 60
+  },
+  {
+    "id": 2,
+    "service_group_id": 1,
+    "name": "Bigode",
+    "price": 20
+  },
+  {
+    "id": 3,
+    "service_group_id": 1,
+    "name": "Queixo",
+    "price": 20
+  },
+  {
+    "id": 4,
+    "service_group_id": 1,
+    "name": "Nariz",
+    "price": 20
+  },
+  {
+    "id": 5,
+    "service_group_id": 1,
+    "name": "Pescoço",
+    "price": 26
+  },
+  {
+    "id": 6,
+    "service_group_id": 1,
+    "name": "Orelhas",
+    "price": 20
+  },
+  {
+    "id": 7,
+    "service_group_id": 1,
+    "name": "Nuca",
+    "price": 24
+  },
+  {
+    "id": 8,
+    "service_group_id": 2,
+    "name": "Rosto",
+    "price": 51
+  },
+  {
+    "id": 9,
+    "service_group_id": 2,
+    "name": "Nariz",
+    "price": 14
+  },
+  {
+    "id": 10,
+    "service_group_id": 2,
+    "name": "Buço",
+    "price": 13
+  },
+  {
+    "id": 11,
+    "service_group_id": 2,
+    "name": "Queixo",
+    "price": 13
+  },
+  {
+    "id": 12,
+    "service_group_id": 2,
+    "name": "Pescoço",
+    "price": 17
+  },
+  {
+    "id": 13,
+    "service_group_id": 2,
+    "name": "Costeletas",
+    "price": 14
+  },
+  {
+    "id": 14,
+    "service_group_id": 2,
+    "name": "Nuca",
+    "price": 25
+  },
+  {
+    "id": 15,
+    "service_group_id": 3,
+    "name": "Ombros",
+    "price": 31
+  },
+  {
+    "id": 16,
+    "service_group_id": 3,
+    "name": "Axilas",
+    "price": 30
+  },
+  {
+    "id": 17,
+    "service_group_id": 3,
+    "name": "Braços",
+    "price": 53
+  },
+  {
+    "id": 18,
+    "service_group_id": 3,
+    "name": "Mãos",
+    "price": 22
+  },
+  {
+    "id": 19,
+    "service_group_id": 3,
+    "name": "Costas",
+    "price": 52
+  },
+  {
+    "id": 20,
+    "service_group_id": 3,
+    "name": "Metade das Costas",
+    "price": 26
+  },
+  {
+    "id": 21,
+    "service_group_id": 3,
+    "name": "Peito",
+    "price": 52
+  },
+  {
+    "id": 22,
+    "service_group_id": 3,
+    "name": "Pernas Completas",
+    "price": 69
+  },
+  {
+    "id": 23,
+    "service_group_id": 3,
+    "name": "Coxas",
+    "price": 48
+  },
+  {
+    "id": 24,
+    "service_group_id": 3,
+    "name": "1/2 Perna",
+    "price": 43
+  },
+  {
+    "id": 25,
+    "service_group_id": 3,
+    "name": "Pés",
+    "price": 22
+  },
+  {
+    "id": 26,
+    "service_group_id": 4,
+    "name": "Axilas",
+    "price": 17
+  },
+  {
+    "id": 27,
+    "service_group_id": 4,
+    "name": "Braços Completos",
+    "price": 43
+  },
+  {
+    "id": 28,
+    "service_group_id": 4,
+    "name": "Mãos",
+    "price": 17
+  },
+  {
+    "id": 29,
+    "service_group_id": 4,
+    "name": "Dedos das Mãos",
+    "price": 16
+  },
+  {
+    "id": 30,
+    "service_group_id": 4,
+    "name": "Seios",
+    "price": 13
+  },
+  {
+    "id": 31,
+    "service_group_id": 4,
+    "name": "Entre Seios",
+    "price": 13
+  },
+  {
+    "id": 32,
+    "service_group_id": 4,
+    "name": "Barriga",
+    "price": 25
+  },
+  {
+    "id": 33,
+    "service_group_id": 4,
+    "name": "Linha Abdominal",
+    "price": 14
+  },
+  {
+    "id": 34,
+    "service_group_id": 4,
+    "name": "Linha Diafragma",
+    "price": 14
+  },
+  {
+    "id": 35,
+    "service_group_id": 4,
+    "name": "Faixa",
+    "price": 17
+  },
+  {
+    "id": 36,
+    "service_group_id": 4,
+    "name": "Costas",
+    "price": 35
+  },
+  {
+    "id": 37,
+    "service_group_id": 4,
+    "name": "Metade das Costas",
+    "price": 18
+  },
+  {
+    "id": 38,
+    "service_group_id": 4,
+    "name": "Pernas Completas",
+    "price": 50
+  },
+  {
+    "id": 39,
+    "service_group_id": 4,
+    "name": "Meia Perna",
+    "price": 30
+  },
+  {
+    "id": 40,
+    "service_group_id": 4,
+    "name": "Coxas",
+    "price": 33
+  },
+  {
+    "id": 41,
+    "service_group_id": 4,
+    "name": "Pés",
+    "price": 17
+  },
+  {
+    "id": 42,
+    "service_group_id": 5,
+    "name": "Contorno Simples",
+    "price": 58
+  },
+  {
+    "id": 43,
+    "service_group_id": 5,
+    "name": "Contorno Completo",
+    "price": 88
+  },
+  {
+    "id": 44,
+    "service_group_id": 5,
+    "name": "Contorno Completo e Lateral Anal",
+    "price": 125
+  },
+  {
+    "id": 45,
+    "service_group_id": 5,
+    "name": "Lateral Anal",
+    "price": 37
+  },
+  {
+    "id": 46,
+    "service_group_id": 5,
+    "name": "Nádegas",
+    "price": 51
+  },
+  {
+    "id": 47,
+    "service_group_id": 6,
+    "name": "Contorno Simples",
+    "price": 33
+  },
+  {
+    "id": 48,
+    "service_group_id": 6,
+    "name": "Pubiana Completa",
+    "price": 42
+  },
+  {
+    "id": 49,
+    "service_group_id": 6,
+    "name": "Pubiana Completo e Lateral Anal",
+    "price": 58
+  },
+  {
+    "id": 50,
+    "service_group_id": 6,
+    "name": "Contorno Simples 1/2 Pub. e Lat. Anal",
+    "price": 58
+  },
+  {
+    "id": 51,
+    "service_group_id": 6,
+    "name": "1/2 Pubiana",
+    "price": 17
+  },
+  {
+    "id": 52,
+    "service_group_id": 6,
+    "name": "Lateral Anal",
+    "price": 17
+  },
+  {
+    "id": 53,
+    "service_group_id": 6,
+    "name": "Nádegas",
+    "price": 25
+  }
+]
