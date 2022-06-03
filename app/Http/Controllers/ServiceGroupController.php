@@ -3,10 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Repositories\ServiceGroupRepository;
-use App\ServiceGroup;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ServiceGroupController extends Controller
 {
 
     private $serviceGroupRepository;
@@ -16,11 +15,10 @@ class HomeController extends Controller
         $this->serviceGroupRepository = $serviceGroupRepository;
     }
 
-    public function index(){
+    public function index()
+    {
+        $serviceGroups = $this->serviceGroupRepository->all();
 
-        $serviceGroups = $this->serviceGroupRepository->where('audience', 'F')->get();
-
-        return view('home', compact('serviceGroups'));
-
+        return view('services', compact('serviceGroups'));
     }
 }

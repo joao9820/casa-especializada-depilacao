@@ -10,7 +10,7 @@
                     <a href="{{route('home')}}" class="nav-link">Home</a>
                 </li>
                 <li class="nav-item {{isset($current) && $current == 'services' ? 'active' : '' }}">
-                    <a href="{{route('servicos')}}" class="nav-link">Serviços</a>
+                    <a href="{{route('grupo-servicos')}}" class="nav-link">Serviços</a>
                 </li>
                 <li class="nav-item {{isset($current) && $current == 'aboutUs' ? 'active' : '' }}">
                     <a href="{{url('nossa-historia')}}" class="nav-link">Nossa História</a>

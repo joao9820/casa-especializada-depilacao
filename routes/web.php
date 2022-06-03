@@ -23,7 +23,7 @@ Route::get('/contato', function () {
     return view('meetUs');
 });
 
-Route::get('/servicos', 'ServiceController@index')->name('servicos');
+Route::get('/servicos', 'ServiceGroupController@index')->name('grupo-servicos');
 
 Route::get('/servicos/{id}', function () {
     return view('serviceInfo');

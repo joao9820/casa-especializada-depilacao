@@ -376,7 +376,7 @@
                 <h3 class="title-section">Conheça nossos<span>Serviços</span></h3>
             </div>
             @for($i=0; $i < 3; $i++)
-                <a href="#">
+                <a href="{{route('grupo-servicos')}}">
                     <div class="card-services shadow-sm">
                         <img src="{{asset($serviceGroups[$i]['img'])}}">
                         <div class="text-services">
