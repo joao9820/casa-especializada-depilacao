@@ -14,16 +14,14 @@ class CreateServicePromotions extends Migration
     public function up()
     {
         Schema::create('service_promotions', function (Blueprint $table) {
-            $table->id();
             $table->bigInteger('promotion_id')->unsigned();
             $table->bigInteger('service_id')->unsigned();
-            $table->decimal('new_price', 10, 2);
 
             $table->foreign('promotion_id')
-            ->references('id')->on('promotions');
+            ->references('id')->on('promotions')->cascadeOnDelete();
 
             $table->foreign('service_id')
-            ->references('id')->on('services');
+            ->references('id')->on('services')->cascadeOnDelete();
         });
     }
 
