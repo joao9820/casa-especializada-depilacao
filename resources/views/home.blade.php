@@ -340,36 +340,38 @@
                 </div>
             </div>
         </div>
-        <div id="featuredOffers">
-            <div id="featuredOffersBadge">
-                {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
-                <h3 class="title-section">Ofertas</h3>
-                <div class="position-relative px-5">
-                    <div id="carouselOffers" class="swiper my-swiper">
-                        <div class="swiper-wrapper">
-                            @for($i=0;$i<4;$i++)
-                                <div class="swiper-slide d-flex justify-content-center">
-                                    <a href="#">
-                                        @component('components.card')
-                                            @slot('cardTitle', 'Lorem Ipsum')
-                                            @slot('cardDesc', 'Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                                            Lorem Ipsum is simply dummy text of the printing and typesetting industry.')
-                                            @slot('scaleUp', false)
-                                        @endcomponent
-                                    </a>
-                                </div>
-                            @endfor
-                        </div>
-                    </div>
-                    <div class="swiper-button-next"></div>
-                    <div class="swiper-button-prev"></div>
-                </div>
-            </div>
 
-        </div>
+        @if($promotions->isNotEmpty())
+            <div id="featuredOffers">
+                <div id="featuredOffersBadge">
+                    {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
+
+                    <h3 class="title-section">Promoções{{-- <span>Imperdiveis</span> --}}</h3>
+                    <div class="position-relative px-5">
+                        <div id="carouselOffers" class="swiper my-swiper">
+                            <div class="swiper-wrapper">
+                                @foreach($promotions as $promo)
+                                    <div class="swiper-slide d-flex justify-content-center">
+                                        <a href="#">
+                                            @component('components.card')
+                                                {{-- @slot('cardImg', $promo->services->first()->img) --}}
+                                                @slot('cardTitle', $promo->name)
+                                                @slot('cardDesc', '')
+                                                @slot('cardPrice', $promo->new_price)
+                                                @slot('scaleUp', false)
+                                            @endcomponent
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="swiper-button-next"></div>
+                        <div class="swiper-button-prev"></div>
+                    </div>
+                </div>
+
+            </div>
+        @endif
         {{-- Verificar se é necessário colocar things svg no grid --}}
         <div id="services">
             <div>

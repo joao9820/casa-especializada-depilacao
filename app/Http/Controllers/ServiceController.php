@@ -2,11 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Repositories\ServiceGroupRepository;
 use App\ServiceGroup;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
 {
+    private $serviceGroupRepository;
+
+    function __construct(ServiceGroupRepository $serviceGroupRepository)
+    {
+        $this->serviceGroupRepository = $serviceGroupRepository->getModel();
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +22,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        $serviceGroups = ServiceGroup::all();
+        $serviceGroups = $this->serviceGroupRepository->all();
 
         return view('services', compact('serviceGroups'));
     }

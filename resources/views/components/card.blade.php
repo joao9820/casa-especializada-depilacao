@@ -12,7 +12,7 @@
 
     <div class="card-footer">
         @if(!isset($cardType) || $cardType == "offers")
-            <p>R$ 99,90</p>
+            <p>R$ {{$cardPrice}}</p>
             <i class="fas fa-arrow-right"></i>
         @else
             <a href="{{url('servicos/1')}}" class="btn btn btn-outline rounded-pill ml-auto">

@@ -16,18 +16,18 @@ class PromotionSeeder extends Seeder
         $data = [
             [
                 "id" => 1, "name" => 'Axilas + 1/2 Pernas + Virilha Simples', "new_price" => 74.90, "active" => 1, "services" => [
-                    29, 39, 47
+                    26, 39, 47
                 ]
             ],
             [
                 "id" => 2, "name" => 'Buço + Axilas + Virilha Completa', "new_price" => 77.90, "active" => 1, "services" => [
-                    10, 29, 48
+                    10, 26, 48
                 ]
             ],
             [
                 "id" => 3, "name" => 'Axilas + Virilha Simples + Perna Completa', "new_price" => 89.90, "active" => 1,
                 "services" => [
-                    29, 47, 38
+                    26, 47, 38
                 ]
             ]
         ];

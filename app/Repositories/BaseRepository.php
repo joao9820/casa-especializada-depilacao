@@ -3,31 +3,19 @@
 namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Query\Builder;
 
 class BaseRepository {
 
-    private $model;
+    protected $model;
 
     function __construct(Model $model)
     {
         $this->model = $model;
     }
 
-    public function all(){
-        return $this->model->all();
+    /** Retorna uma instância da model setada pelo repository para utilização dos métodos de Model e Builder*/
+    public function getModel() {
+        return $this->model;
     }
-
-     /**
-     * Add a basic where clause to the query.
-     *
-     * @param  \Closure|string|array|\Illuminate\Database\Query\Expression  $column
-     * @param  mixed  $operator
-     * @param  mixed  $value
-     * @param  string  $boolean
-     * @return Builder
-     */
-    public function where($column, $operator = null, $value = null, $boolean = 'and'){
-        return $this->model->where($column, $operator, $value, $boolean);
-    }
-
 }
