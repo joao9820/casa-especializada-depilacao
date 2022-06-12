@@ -195,16 +195,19 @@
                     <p>Sinta-se livre para contatar-nos a qualquer hora. Retornaremos o mais breve possível!</p>
                 </div>
                 <form method="POST" class="form-email">
+                    @csrf
                     <div class="form-group">
                         <input class="form-control" type="text" name="name" placeholder="Nome" />
+                    </div>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="phone" placeholder="Telefone" />
                     </div>
                     <div class="form-group">
                         <input class="form-control" type="email" name="email" placeholder="E-mail" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="phone" placeholder="Telefone" />
+                        <input class="form-control" type="text" name="subject" placeholder="Assunto" />
                     </div>
-
                     <div class="form-group"><textarea rows="3" name="text" placeholder="Mensagem" class="form-control"></textarea></div>
                 </form>
                 <button type="submit" class="btn send-email">Enviar</button>

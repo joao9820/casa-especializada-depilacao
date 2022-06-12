@@ -19,9 +19,7 @@ Route::get('/nossa-historia', function () {
     return view('aboutUs');
 });
 
-Route::get('/contato', function () {
-    return view('meetUs');
-});
+Route::get('/contato', 'MeetUsController@index')->name('contato');
 
 Route::get('/servicos', 'ServiceGroupController@index')->name('grupo-servicos');
 

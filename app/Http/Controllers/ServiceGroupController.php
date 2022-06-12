@@ -19,7 +19,7 @@ class ServiceGroupController extends Controller
 
     public function index()
     {
-        $serviceGroups = $this->serviceGroupRepository->all();
+        $serviceGroups = $this->serviceGroupRepository->with('services')->get();
 
         $promotions = $this->promotionRepository->getAllActivitiesPromotions();
 

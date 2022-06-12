@@ -19,7 +19,7 @@
                     <a href="#" class="nav-link">Portfólio</a>
                 </li> --}}
                 <li class="nav-item {{isset($current) && $current == 'meetUs' ? 'active' : '' }}">
-                    <a href="{{url('contato')}}" class="nav-link">Contato</a>
+                    <a href="{{route('contato')}}" class="nav-link">Contato</a>
                 </li>
             </ul>
         </div>

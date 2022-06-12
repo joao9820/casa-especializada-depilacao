@@ -37,6 +37,13 @@
 
         }
 
+        .services-tag {
+            font-size: 85%;
+            font-weight: 500;
+            margin-left: .2rem;
+            margin-bottom: .5rem;
+        }
+
     </style>
 @endsection
 
@@ -81,12 +88,31 @@
             <h3 class="title-section">Serviços</h3>
             <div class="grid-services">
                 {{-- É possível listar na descrição, todos os serviços que o grupo contém --}}
-                @foreach($serviceGroups as $serv)
+                @foreach($serviceGroups as $servGroup)
+
+                    @php $groupName = $servGroup->audience == 'F' ?  'Fem.' : 'Masc.' @endphp
+
                     @component('components.card')
                         @slot('cardType', 'services-lg')
-                        @slot('cardImg', $serv->img)
-                        @slot('cardTitle', $serv->name)
-                        @slot('cardDesc', $serv->name)
+                        @slot('cardImg', $servGroup->img)
+                        @slot('cardTitle', $servGroup->name . ' ' . $groupName)
+
+                            @slot('cardDesc')
+                                {{-- <ul>
+                                    @foreach($servGroup->services as $serv)
+
+                                        <li>{{$serv->name}}</li>
+
+                                    @endforeach
+                                </ul> --}}
+                                    <div class="">
+                                    @foreach($servGroup->services as $serv)
+
+                                        <span class='badge badge-pill badge-info services-tag'>{{$serv->name}}</span>
+
+                                    @endforeach
+                                    </div>
+                            @endslot
                         @slot('scaleUp', false)
                     @endcomponent
                 @endforeach
