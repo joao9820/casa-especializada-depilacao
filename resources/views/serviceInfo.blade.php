@@ -9,11 +9,13 @@
             height: 470px;
             width: 100%;
             margin-bottom: 2.5rem;
+            border-radius: 1rem;
         }
 
         #imgService, .moldure-shadow {
             height: 100%;
             width: 100%;
+            border-radius: 1rem;
             position: absolute;
             top: 0;
             left: 0;
@@ -73,6 +75,23 @@
 
         h4.title-section {
             margin-bottom: 1.5rem;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) {
+            background-color: var(--color-background-light-orange) !important;
+        }
+
+        .table-bordered td, .table-bordered th {
+            border: 1px solid var(--color-background-md-orange) !important;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            border-bottom: none !important;
+        }
+
+        .table th, .table td {
+            color: var(--color-primary-blue) !important;
         }
 
     </style>
