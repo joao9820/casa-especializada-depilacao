@@ -14,8 +14,8 @@
         @if(!isset($cardType) || $cardType == "offers")
             <p>R$ {{$cardPrice}}</p>
             <i class="fas fa-arrow-right"></i>
-        @else
-            <a href="{{url('servicos/1')}}" class="btn btn btn-outline rounded-pill ml-auto">
+        @elseif(isset($serviceId))
+            <a href='{{route("info-servico", ['id' => $serviceId])}}' class="btn btn btn-outline rounded-pill ml-auto">
                 <p>Ver serviço</p>
                 <i class="fas fa-arrow-right ml-2"></i>
             </a>

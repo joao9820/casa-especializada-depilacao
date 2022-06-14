@@ -106,21 +106,22 @@
                                     @endforeach
                                 </ul> --}}
                                     <div class="">
-                                    @foreach($servGroup->services as $serv)
+                                        @foreach($servGroup->services as $serv)
 
-                                        <span class='badge badge-pill badge-info services-tag'>{{$serv->name}}</span>
+                                            <span class='badge badge-pill badge-info services-tag'>{{$serv->name}}</span>
 
-                                    @endforeach
+                                        @endforeach
                                     </div>
                             @endslot
+                        @slot('serviceId', $servGroup->id)
                         @slot('scaleUp', false)
                     @endcomponent
                 @endforeach
             </div>
         </section>
 
-        @component('components.pagination')
-        @endcomponent
+       {{--  @component('components.pagination')
+        @endcomponent --}}
 
     </div>
 

@@ -260,6 +260,15 @@ footer #footerInfo .info-social .info-items div p {
     margin-left: .25rem;
 }
 
+h4.title-section {
+    position: relative;
+    display: inline-block;
+    color: var(--color-primary-blue);
+    font-weight: 500;
+    font-size: 2.25rem;
+    margin-bottom: 2.5rem;
+}
+
 h3.title-section {
     position: relative;
     display: inline-block;

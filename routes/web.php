@@ -22,7 +22,7 @@ Route::get('/nossa-historia', function () {
 Route::get('/contato', 'MeetUsController@index')->name('contato');
 
 Route::get('/servicos', 'ServiceGroupController@index')->name('grupo-servicos');
+Route::get('/servicos/{id}', 'ServiceGroupController@show')->name('info-servico');
 
-Route::get('/servicos/{id}', function () {
-    return view('serviceInfo');
-});
+
+

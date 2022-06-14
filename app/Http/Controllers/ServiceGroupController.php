@@ -25,4 +25,14 @@ class ServiceGroupController extends Controller
 
         return view('services', compact('serviceGroups', 'promotions'));
     }
+
+    public function show($id){
+
+        $serviceGroup = $this->serviceGroupRepository->find($id);
+
+        $serviceGroup->load('services');
+
+        return view('serviceInfo', compact('serviceGroup'));
+
+    }
 }

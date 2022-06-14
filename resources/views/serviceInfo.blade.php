@@ -8,6 +8,7 @@
             position: relative;
             height: 470px;
             width: 100%;
+            margin-bottom: 2.5rem;
         }
 
         #imgService, .moldure-shadow {
@@ -32,7 +33,7 @@
 
         #imgService {
             object-fit: cover;
-            object-position: top center;
+            object-position: top;
         }
 
         .description p {
@@ -70,17 +71,21 @@
             margin-bottom: 2rem;
         }
 
+        h4.title-section {
+            margin-bottom: 1.5rem;
+        }
+
     </style>
 @endsection
 
 @section('content')
     <div class="container-md my-5">
+        <h3 class="title-section">{{$serviceGroup->name}}</h3>
         <div class="moldure">
-            <img src="{{asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService">
+            <img src="{{asset($serviceGroup->img)}}" alt="Imagem do serviço" id="imgService">
             <div class="moldure-shadow"></div>
         </div>
-        <h3 class="title-section">Depilação em cera</h3>
-        <div class="description">
+        {{-- <div class="description">
             <p class="topic">Lorem Ipsum</p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
 
@@ -103,6 +108,25 @@
 
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+        </div> --}}
+        <h4 class="title-section">Tabela de Preços</h4>
+        <div class="table-responsive mx-auto">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">Serviço</th>
+                        <th scope="col">Preço</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($serviceGroup->services as $service)
+                        <tr>
+                            <td>{{$service->name}}</td>
+                            <td>R$ {{$service->price}}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
         <hr class="divider" >
         <div class="recently">
