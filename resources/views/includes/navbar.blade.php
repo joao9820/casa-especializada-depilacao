@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-light align-items-center align-items-md-center mt-3" id="navbar">
+<nav class="navbar navbar-expand-md navbar-light align-items-center align-items-md-center" id="navbar">
     <img id="logomarca" src="{{asset('assets/images/logo.png')}}" alt="Logo Marca" />
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

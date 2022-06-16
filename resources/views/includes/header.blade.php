@@ -48,6 +48,9 @@
                     <i class="fab fa-instagram ml-sm-4 mr-2"></i>@casaespecializadadeplicao
                 </div>
             </div>
-
-            @include('includes.navbar')
+        </div>
+        <div class="mb-5" id="bgNavbar">
+            <div class="container-md">
+                @include('includes.navbar')
+            </div>
         </div>
