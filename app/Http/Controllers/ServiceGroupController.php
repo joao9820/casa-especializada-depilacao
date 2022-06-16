@@ -32,6 +32,8 @@ class ServiceGroupController extends Controller
 
         $serviceGroup->load('services');
 
+        //$serviceGroup->services = $serviceGroup->services->sortBy('name');
+
         return view('serviceInfo', compact('serviceGroup'));
 
     }

@@ -187,7 +187,7 @@
 @endsection
 
 @section('content')
-    <div class="container-md py-5">
+    <div class="container-md">
         <div class="d-flex justify-content-between flex-column flex-lg-row">
             <div class="main-content">
                 <div class="mb-2">

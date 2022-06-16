@@ -1,5 +1,5 @@
 @include('includes/header')
-    <main class="pt-5">
+    <main>
         <div>
             @yield('content')
         </div>

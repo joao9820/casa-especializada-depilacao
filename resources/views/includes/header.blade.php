@@ -39,7 +39,7 @@
     </head>
     <body>
         {{-- Adaptar o menu para mobile --}}
-        <div>
+        <div id="headerContact" class="d-none d-md-block">
             <div class="container-md" id="containerNav">
                 <div id="contactInfo" class="d-flex flex-column justify-content-center align-items-sm-center flex-sm-row mx-auto">
                     <div>

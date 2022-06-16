@@ -4,6 +4,10 @@
 @section('style')
     <style>
 
+        body main {
+            padding: 3rem 0;
+        }
+
         #slogan {
             font-size: 48px;
             font-weight: 700;

@@ -7,12 +7,15 @@
         .moldure {
             position: relative;
             height: 470px;
-            width: 100%;
+            /* width: 100%; */
+            max-width: 900px;
             margin-bottom: 2.5rem;
             border-radius: 1rem;
         }
 
         #imgService, .moldure-shadow {
+           /*  height:auto; */
+         /*    max-height: 50vh; */
             height: 100%;
             width: 100%;
             border-radius: 1rem;
@@ -35,7 +38,8 @@
 
         #imgService {
             object-fit: cover;
-            object-position: top;
+            /* Talvez, salvar a referência do melhor angulo da imagem, left, top, center, bottom, junto da imagem no BD */
+            object-position: top center;
         }
 
         .description p {
@@ -54,10 +58,6 @@
 
         .recently {
             margin-top: 100px;
-        }
-
-        .title-section {
-            margin: 2rem 0;
         }
 
         .divider {
@@ -94,15 +94,40 @@
             color: var(--color-primary-blue) !important;
         }
 
+        hr:not(.divider) {
+            margin-top: -0.8rem;
+            /* margin-bottom: 1rem; */
+            border-top-style: dotted !important;
+            /* border: 0; */
+            border-top: 2px solid rgba(0,0,0, 0.4);
+            /* border-width: thick; */
+        }
+
+        .services-price p {
+            background: var(--color-background-light);
+            color: var(--color-primary-blue);
+        }
+
+        .services-price p.service-name {
+            padding-right: 0.4rem;
+        }
+
+        .services-price p.price {
+            padding-left: 0.4rem;
+        }
+
     </style>
 @endsection
 
 @section('content')
-    <div class="container-md my-5">
+    <div class="container-md">
+        {{-- Adicionar botão para voltar --}}
         <h3 class="title-section">{{$serviceGroup->name}}</h3>
-        <div class="moldure">
-            <img src="{{asset($serviceGroup->img)}}" alt="Imagem do serviço" id="imgService">
-            <div class="moldure-shadow"></div>
+        <div class="d-flex justify-content-center w-100">
+            <div class="moldure w-100">
+                <img src="{{asset($serviceGroup->img)}}" alt="Imagem do serviço" id="imgService">
+                <div class="moldure-shadow"></div>
+            </div>
         </div>
         {{-- <div class="description">
             <p class="topic">Lorem Ipsum</p>
@@ -128,9 +153,9 @@
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </div> --}}
-        <h4 class="title-section">Tabela de Preços</h4>
-        <div class="table-responsive mx-auto">
-            <table class="table table-striped table-bordered">
+        <h4 class="title-section">Preços</h4>
+        {{-- <div class="table-responsive mx-auto">
+            <table class="table table-striped ">
                 <thead>
                     <tr>
                         <th scope="col">Serviço</th>
@@ -146,8 +171,25 @@
                     @endforeach
                 </tbody>
             </table>
+
+        </div> --}}
+        <div class="services-price">
+           @foreach($serviceGroup->services as $service)
+            <div class="mb-3">
+                <div class="d-flex justify-content-between">
+                    <p class="service-name">
+                        {{$service->name}}
+                    </p>
+                    {{-- <span>...........................................</span> --}}
+                    <p class="price">
+                        R$ {{$service->price}}
+                    </p>
+                </div>
+                <hr>
+            </div>
+            @endforeach
         </div>
-        <hr class="divider" >
+        <hr class="divider">
         <div class="recently">
             <h4>Recentes</h4>
             <div class="card-deck d-flex flex-column align-items-center flex-lg-row">

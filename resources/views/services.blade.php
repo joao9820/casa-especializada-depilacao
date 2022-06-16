@@ -43,7 +43,9 @@
             margin-left: .2rem;
             margin-bottom: .5rem;
             background: var(--color-background-md-orange);
+            border: 2px solid #ef8a2c3b;
             color: #fff;
+            white-space: normal;
         }
 
     </style>
@@ -51,7 +53,7 @@
 
 @section('content')
 
-    <div class="container-md my-5">
+    <div class="container-md">
         <section>
             @if($promotions->isNotEmpty())
             <div id="featuredOffers">
