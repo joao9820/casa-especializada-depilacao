@@ -298,7 +298,7 @@
 
 @section('content')
     <div class="container-md">
-        <div id="presentation">
+        <section id="presentation">
             <div id="presentationText">
                 <h1 id="slogan">Good skin reflects Your story and Your spirit.</h1>
                 <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -339,10 +339,10 @@
                     </div> --}}
                 </div>
             </div>
-        </div>
+        </section>
 
         @if($promotions->isNotEmpty())
-            <div id="featuredOffers">
+            <section id="featuredOffers">
                 <div id="featuredOffersBadge">
                     {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
 
@@ -370,7 +370,7 @@
                     </div>
                 </div>
 
-            </div>
+            </section>
         @endif
         {{-- Verificar se é necessário colocar things svg no grid --}}
         <div id="services">

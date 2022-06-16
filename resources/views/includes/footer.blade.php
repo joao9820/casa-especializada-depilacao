@@ -57,6 +57,25 @@
         new WOW().init();
     </script>
 
+    <script>
+
+        window.addEventListener('scroll', function(){
+
+            const nav = $("#bgNavbar");
+
+            if(window.scrollY > 36){
+
+                console.log(nav);
+
+                nav.addClass('nav-fixed');
+
+            }else{
+                nav.removeClass('nav-fixed');
+            }
+
+        });
+    </script>
+
     @hasSection('script')
         @yield('script')
     @endif

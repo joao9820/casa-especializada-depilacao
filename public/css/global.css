@@ -40,7 +40,18 @@ body {
 }
 
 #bgNavbar {
+    width: 100%;
     background: var(--color-primary-blue);
+    /* margin-top: 36px; */
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    /* top:36; */
+}
+
+#bgNavbar.nav-fixed {
+   /*  position: fixed;
+    margin-bottom: 98px; */
 }
 
 .navbar #logomarca {
