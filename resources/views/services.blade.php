@@ -42,6 +42,8 @@
             font-weight: 500;
             margin-left: .2rem;
             margin-bottom: .5rem;
+            background: var(--color-background-md-orange);
+            color: #fff;
         }
 
     </style>
@@ -108,7 +110,7 @@
                                     <div class="">
                                         @foreach($servGroup->services as $serv)
 
-                                            <span class='badge badge-pill badge-info services-tag'>{{$serv->name}}</span>
+                                            <span class='badge badge-pill services-tag'>{{$serv->name}}</span>
 
                                         @endforeach
                                     </div>

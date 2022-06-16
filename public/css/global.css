@@ -1,10 +1,12 @@
 :root {
     --color-primary-blue: #1F1745;
     --color-secondary-orange: #EF8A2C;
+    --color-background-md-orange: #F4B273;
     --color-background-light-orange: #f5cca7;
     --color-background-light: #FDFAF9;
     --color-text-light: #6A7682;
     --color-text-muted: #9AA3AC;
+
 }
 
 html, body {
