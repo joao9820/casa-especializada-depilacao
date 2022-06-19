@@ -73,9 +73,9 @@
             margin-bottom: 2rem;
         }
 
-        h4.title-section {
+        /* h4.title-section {
             margin-bottom: 1.5rem;
-        }
+        } */
 
         .table-striped tbody tr:nth-of-type(odd) {
             background-color: var(--color-background-light-orange) !important;
@@ -116,13 +116,43 @@
             padding-left: 0.4rem;
         }
 
+        .btn-return {
+            background-color: var(--color-secondary-orange);
+            margin-right: 1.25rem;
+            border-color: var(--color-secondary-orange);
+            border-width: 2px;
+            transition: .3s all;
+        }
+
+        .btn-return:hover {
+            /* background-color: var(--color-secondary-orange); */
+            opacity: .8;
+        }
+
+        /* .btn-return:hover i {
+            color: #fff;
+        } */
+
+        .btn-return i {
+            /* color: var(--color-secondary-orange); */
+            color: #fff;
+            font-size: 15px;
+        }
+
+        .services-price * {
+            font-weight: 600;
+        }
+
     </style>
 @endsection
 
 @section('content')
     <div class="container-md">
         {{-- Adicionar botão para voltar --}}
-        <h3 class="title-section">{{$serviceGroup->name}}</h3>
+        <div class="d-flex align-items-center mb-5">
+            <a href={{isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : route('grupo-servicos')}} class="btn btn-sm rounded-circle btn-return"><i class="fas fa-arrow-left"></i></a>
+            <h3 class="title-section mb-0">{{$serviceGroup->name . ' ' . $serviceGroup->audience}}</h3>
+        </div>
         <div class="d-flex justify-content-center w-100">
             <div class="moldure w-100">
                 <img src="{{asset($serviceGroup->img)}}" alt="Imagem do serviço" id="imgService">
@@ -153,7 +183,7 @@
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
                 Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
         </div> --}}
-        <h4 class="title-section">Preços</h4>
+        <h4 class="title-section mb-3">Preços</h4>
         {{-- <div class="table-responsive mx-auto">
             <table class="table table-striped ">
                 <thead>

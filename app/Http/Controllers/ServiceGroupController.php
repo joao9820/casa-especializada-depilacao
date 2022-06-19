@@ -30,6 +30,8 @@ class ServiceGroupController extends Controller
 
         $serviceGroup = $this->serviceGroupRepository->find($id);
 
+        /* $serviceGroup->name .= $serviceGroup->audience == 'F' ? ' Fem.' : ' Masc.'; */
+
         $serviceGroup->load('services');
 
         //$serviceGroup->services = $serviceGroup->services->sortBy('name');

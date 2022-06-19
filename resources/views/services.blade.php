@@ -94,32 +94,32 @@
                 {{-- É possível listar na descrição, todos os serviços que o grupo contém --}}
                 @foreach($serviceGroups as $servGroup)
 
-                    @php $groupName = $servGroup->audience == 'F' ?  'Fem.' : 'Masc.' @endphp
+                    <a href={{route("info-servico", ['id' => $servGroup->id])}}>
+                        @component('components.card')
+                            @slot('cardType', 'services-lg')
+                            @slot('cardImg', $servGroup->img)
+                            @slot('cardTitle', $servGroup->name . ' ' . $servGroup->audience)
 
-                    @component('components.card')
-                        @slot('cardType', 'services-lg')
-                        @slot('cardImg', $servGroup->img)
-                        @slot('cardTitle', $servGroup->name . ' ' . $groupName)
-
-                            @slot('cardDesc')
-                                {{-- <ul>
-                                    @foreach($servGroup->services as $serv)
-
-                                        <li>{{$serv->name}}</li>
-
-                                    @endforeach
-                                </ul> --}}
-                                    <div class="">
+                                @slot('cardDesc')
+                                    {{-- <ul>
                                         @foreach($servGroup->services as $serv)
 
-                                            <span class='badge badge-pill services-tag'>{{$serv->name}}</span>
+                                            <li>{{$serv->name}}</li>
 
                                         @endforeach
-                                    </div>
-                            @endslot
-                        @slot('serviceId', $servGroup->id)
-                        @slot('scaleUp', false)
-                    @endcomponent
+                                    </ul> --}}
+                                        <div class="">
+                                            @foreach($servGroup->services as $serv)
+
+                                                <span class='badge badge-pill services-tag'>{{$serv->name}}</span>
+
+                                            @endforeach
+                                        </div>
+                                @endslot
+                            {{-- @slot('serviceId', $servGroup->id) --}}
+                            @slot('scaleUp', false)
+                        @endcomponent
+                    </a>
                 @endforeach
             </div>
         </section>

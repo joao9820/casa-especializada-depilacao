@@ -13,16 +13,18 @@ class HomeController extends Controller
 
     function __construct(ServiceGroupRepository $serviceGroupRepository, PromotionRepository $promotionRepository)
     {
-        $this->serviceGroupRepository = $serviceGroupRepository->getModel();
+        $this->serviceGroupRepository = $serviceGroupRepository;
         $this->promotionRepository = $promotionRepository;
     }
 
     public function index(){
 
-        $serviceGroups = $this->serviceGroupRepository->where('audience', 'F')->get();
+        $serviceGroupsFemale = $this->serviceGroupRepository->getFemaleServices();
+        $serviceGroupsMale = $this->serviceGroupRepository->getMaleServices();
+
         $promotions = $this->promotionRepository->getAllActivitiesPromotions();
 
-        return view('home', compact('serviceGroups', 'promotions'));
+        return view('home', compact('serviceGroupsFemale', 'serviceGroupsMale', 'promotions'));
 
     }
 }

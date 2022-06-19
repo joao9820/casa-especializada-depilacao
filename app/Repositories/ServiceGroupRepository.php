@@ -11,5 +11,12 @@ class ServiceGroupRepository extends BaseRepository {
         parent::__construct($model);
     }
 
+    public function getFemaleServices(){
+        return $this->model->where('audience', 'F')->get();
+    }
+
+    public function getMaleServices(){
+        return $this->model->where('audience', 'M')->get();
+    }
 
 }

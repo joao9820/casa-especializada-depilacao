@@ -19,6 +19,20 @@
     border: 1px solid var(--color-secondary-orange) !important;
 }
 
+.card-services-lg .card-img {
+    overflow: hidden;
+    border-top-right-radius: 16px;
+    border-top-left-radius: 16px;
+}
+
+.card-services-lg .card-img img {
+    transition: all .75s;
+}
+
+.card-services-lg:hover .card-img img {
+    transform: scale(1.2);
+}
+
 @media (max-width: 767px) {
 
     .card-services-lg {
@@ -149,11 +163,12 @@
     align-items: center;
 }
 
-.card-footer .btn-outline:hover, .card-footer .btn-outline:focus {
+.card-services-lg:hover .card-footer .btn-outline, .card-footer .btn-outline:hover, .card-footer .btn-outline:focus {
     background-color: var(--color-secondary-orange);
     transition: all .15s;
 }
 
+.card-services-lg:hover .card-footer .btn-outline p, .card-services-lg:hover .card-footer .btn-outline i,
 .card-footer .btn-outline:hover p, .card-footer .btn-outline:hover i,
 .card-footer .btn-outline:focus p, .card-footer .btn-outline:focus i {
     color: #fff !important;

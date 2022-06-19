@@ -85,8 +85,43 @@
             margin-bottom: 85px;
         }
 
+        #changeAudience {
+            display: none;
+        }
+
+        #services .custom-switch .custom-control-label::before {
+            border-color: #F8AFA6;
+        }
+
+        #services .custom-switch .custom-control-label::after {
+            background-color: #F8AFA6;
+        }
+
+        #services .custom-control-input:checked~.custom-control-label::before{
+            border-color: initial;
+        }
+
+        #services .custom-control-input:checked~.custom-control-label::after{
+            background-color: #fff;
+        }
+
+        /* #services .custom-control-input:focus~.custom-control-label::after{
+            box-shadow: 0 0 0 0.2rem #FADCD9;
+        } */
+
+
         #services .card-services {
             position: relative;
+
+        }
+
+        #services .card-services-img {
+            overflow: hidden;
+            border-radius: 16px;
+        }
+
+        #services .card-services-male {
+            display: none;
         }
 
         #services .card-services .text-services {
@@ -128,11 +163,29 @@
             border-radius: 16px;
         }
 
-        #services a:nth-child(2) img {
+        #services .card-services-img img, #services .card-services-img .text-services {
+            transition: all .75s;
+        }
+
+        #services .card-services-img:hover .text-services {
+            opacity: 1;
+        }
+
+        #services .card-services-img:hover img {
+            transform: scale(1.2);
+        }
+
+        #services a:nth-child(2) .card-services img,
+        #services a:nth-child(5) .card-services img,
+        #services a:nth-child(2) .card-services,
+        #services a:nth-child(5) .card-services {
             border-bottom-left-radius: 0;
         }
 
-        #services a:nth-child(4) img {
+        #services a:nth-child(4) .card-services img,
+        #services a:nth-child(7) .card-services img,
+        #services a:nth-child(4) .card-services,
+        #services a:nth-child(7) .card-services {
             border-top-right-radius: 0;
             border-bottom-right-radius: 0;
         }
@@ -142,7 +195,7 @@
         }
 
         #services #infoClients {
-            padding: 3.8rem 4rem;
+            padding: 2.3rem 2.5rem;
             background: var(--color-primary-blue);
             color: #fff;
             border-top-right-radius: 16px;
@@ -154,9 +207,10 @@
         }
 
         #services #infoClients h4 {
+            max-width: 180px;
             font-size: 2.25rem;
             font-weight: 700;
-            margin-bottom: .25rem;
+            margin-bottom: .45rem;
         }
 
         #services #infoClients p {
@@ -380,21 +434,40 @@
         <div id="services">
             <div>
                 <h3 class="title-section">Conheça nossos<span>Serviços</span></h3>
+                <div class="d-flex align-items-center">
+                    {{-- <label for="audience">F</label> --}}
+                        <div class="custom-control custom-switch" id="changeAudience">
+                            <input type="checkbox" class="custom-control-input" id="audience">
+                            <label class="custom-control-label" for="audience" id="audienceOption">Feminino</label>
+                        </div>
+                    {{-- <label class="custom-control-label" for="audience">M</label> --}}
+                </div>
             </div>
             @for($i=0; $i < 3; $i++)
-                <a href="{{route('grupo-servicos')}}">
-                    <div class="card-services shadow-sm">
-                        <img src="{{asset($serviceGroups[$i]['img'])}}">
+                <a href="{{route('info-servico', ['id' => $serviceGroupsFemale[$i]['id']])}}" class="card-services-female">
+                    <div class="card-services card-services-img shadow-sm">
+                        <img src="{{asset($serviceGroupsFemale[$i]['img'])}}">
                         <div class="text-services">
-                            <p>{{$serviceGroups[$i]['name']}}</p>
+                            <p>{{$serviceGroupsFemale[$i]['name']}}</p>
+                        </div>
+                    </div>
+                </a>
+            @endfor
+
+            @for($i=0; $i < 3; $i++)
+                <a href="{{route('info-servico', ['id' => $serviceGroupsMale[$i]['id']])}}" class="card-services-male">
+                    <div class="card-services card-services-img shadow-sm">
+                        <img src="{{asset($serviceGroupsMale[$i]['img'])}}">
+                        <div class="text-services">
+                            <p>{{$serviceGroupsMale[$i]['name']}}</p>
                         </div>
                     </div>
                 </a>
             @endfor
             <div id="infoClients">
                 <div>
-                    <h4>+1200</h4>
-                    <p>Clientes atendidos</p>
+                    <h4>Há mais de 30 anos</h4>
+                    <p>Atendendo nossos clientes com excelência</p>
                     <div class="d-flex align-items-center">
                         <i class="fas fa-star"></i>
                         <i class="fas fa-star"></i>
@@ -450,12 +523,32 @@
         window.onload = function(){
             //Estratégia para carregar as fotos somente depois da moldura
             $('.presentation-pics .carousel .carousel-item').first().addClass('active');
+
+            //Exibe apenas quando carrega toda a página
+            $('#changeAudience').toggle();
+
+
+            $('#audience').on('change', function(){
+                if($(this).is(':checked')){
+
+                    $('.card-services-female').toggle();
+                    $('.card-services-male').css('display', 'contents');
+
+                    $("#audienceOption").text('Masculino');
+                }
+                else{
+                    $('.card-services-male').toggle();
+                    $('.card-services-female').css('display', 'contents');
+
+                    $("#audienceOption").text('Feminino');
+                }
+            });
+
         }
 
         $('.carousel').carousel({
             interval: 3500
         })
     </script>
-
 
 @endsection
