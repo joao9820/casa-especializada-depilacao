@@ -89,12 +89,28 @@
             display: none;
         }
 
+        #services .custom-switch {
+            padding-left: 3.75rem;
+        }
+
+        #services .custom-control-label {
+            font-size: 24px;
+        }
+
         #services .custom-switch .custom-control-label::before {
+            left: -4.25rem;
             border-color: #F8AFA6;
+            width: 3.75rem;
+            height: 2rem;
+            border-radius: 1.5rem;
         }
 
         #services .custom-switch .custom-control-label::after {
+            left: calc(-4.25rem + 2px);
             background-color: #F8AFA6;
+            width: calc(2rem - 4px);
+            height: calc(2rem - 4px);
+            border-radius: 1rem;
         }
 
         #services .custom-control-input:checked~.custom-control-label::before{
@@ -103,7 +119,16 @@
 
         #services .custom-control-input:checked~.custom-control-label::after{
             background-color: #fff;
+            transform: translateX(1.75rem);
         }
+
+        .custom-control-input:not(:disabled):active ~.custom-control-label::before{
+            background-color: #fff !important;
+        }
+
+        /* .custom-control-input:not(:disabled):checked ~.custom-control-label::before{
+            background-color: #F8AFA6;
+        } */
 
         /* #services .custom-control-input:focus~.custom-control-label::after{
             box-shadow: 0 0 0 0.2rem #FADCD9;
