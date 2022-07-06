@@ -24,6 +24,14 @@ class HomeController extends Controller
 
         $promotions = $this->promotionRepository->getAllActivitiesPromotions();
 
+        /* dd($promotions); */
+
+        $promotions->each(function($promo) {
+            $promo->old_price = $promo->services->sum('price');
+        });
+
+        //dd($promotions);
+
         return view('home', compact('serviceGroupsFemale', 'serviceGroupsMale', 'promotions'));
 
     }

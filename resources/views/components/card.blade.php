@@ -2,9 +2,12 @@
    {{--  <div class="card-header">
         <div class="card-title">Lorem Ipsun</div>
     </div> --}}
-    <div class="card-img">
-        <img src="{{isset($cardImg) ? asset($cardImg) : asset('assets/images/presentation-1.png')}}">
-    </div>
+    @if(isset($cardImg))
+        <div class="card-img">
+            <img src="{{isset($cardImg) ? asset($cardImg) : asset('assets/images/presentation-1.png')}}">
+        </div>
+    @endif
+
     <div class="card-body">
         <div class="card-title">{{$cardTitle}}</div>
         <p>{{$cardDesc}}</p>
@@ -12,7 +15,12 @@
 
     <div class="card-footer">
         @if(!isset($cardType) || $cardType == "offers")
-            <p>R$ {{$cardPrice}}</p>
+            <div class="d-flex align-items-center">
+                <p>R$ {{$cardPrice}}</p>
+                @if(isset($cardOldPrice))
+                    <small class="old-price">R$ {{$cardOldPrice}}</small>
+                @endif
+            </div>
             <i class="fas fa-arrow-right"></i>
         @else
             <button class="btn btn btn-outline rounded-pill ml-auto">

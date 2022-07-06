@@ -1,5 +1,5 @@
 .card-offers {
-    height: 320px;
+    max-height: 320px;
     max-width: 256px;
     border-radius: 16px;
     border-color: transparent;
@@ -153,7 +153,13 @@
     /* color: var(--color-secondary-orange) !important; */
 }
 
-.card-footer p, .card-footer .btn-outline i {
+.card-footer .old-price {
+    text-decoration: line-through;
+    font-size: 85%;
+    margin-left: .5rem;
+}
+
+.card-footer p, .card-footer .old-price, .card-footer .btn-outline i {
     color: var(--color-secondary-orange) !important;
 }
 

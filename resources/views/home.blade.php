@@ -77,6 +77,14 @@
             margin-bottom: 85px;
         }
 
+        #featuredOffers .title-section {
+            margin-bottom: 1.5rem;
+        }
+
+        #featuredOffers .title-section ~ #obs {
+            margin-bottom: 1rem;
+        }
+
         #services {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
@@ -299,6 +307,10 @@
             border-radius: 16px;
         }
 
+        #featuredOffersBadge #obs, #featuredOffersBadge #obs b  {
+            color: var(--color-primary-blue);
+        }
+
         /* #featuredOffers #featuredOffersBadge img {
             position: absolute;
             top: 0;
@@ -428,8 +440,10 @@
             <section id="featuredOffers">
                 <div id="featuredOffersBadge">
                     {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
-
-                    <h3 class="title-section">Promoções{{-- <span>Imperdiveis</span> --}}</h3>
+                    <div class="d-flex flex-column flex-sm-row align-items-sm-end justify-content-sm-between">
+                        <h3 class="title-section">Promoções</h3>
+                        <small id="obs"><b>Obs:</b> As promoções são válidas de de Segunda a Quarta-feira</small>
+                    </div>
                     <div class="position-relative px-5">
                         <div id="carouselOffers" class="swiper my-swiper">
                             <div class="swiper-wrapper">
@@ -441,6 +455,7 @@
                                                 @slot('cardTitle', $promo->name)
                                                 @slot('cardDesc', '')
                                                 @slot('cardPrice', $promo->new_price)
+                                                @slot('cardOldPrice', $promo->old_price)
                                                 @slot('scaleUp', false)
                                             @endcomponent
                                         </a>
