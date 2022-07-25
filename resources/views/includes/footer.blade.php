@@ -25,11 +25,10 @@
                     <p class="subtitle">Menu</p>
                     <div class="info-items">
                         <ul>
-                            <li class="active"><a href="#"><i class="fas fa-caret-right"></i>Home</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i>Ofertas e Serviços</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i>Nossa História</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i>Portfólio</a></li>
-                            <li><a href="#"><i class="fas fa-caret-right"></i>Contato</a></li>
+                            <li class="{{isset($current) && $current == 'home' ? 'active' : '' }}"><a href="{{route('home')}}"><i class="fas fa-caret-right"></i>Home</a></li>
+                            <li class="{{isset($current) && $current == 'services' ? 'active' : '' }}"><a href="{{route('grupo-servicos')}}"><i class="fas fa-caret-right"></i>Serviços</a></li>
+                            <li class="{{isset($current) && $current == 'aboutUs' ? 'active' : '' }}"><a href="{{url('nossa-historia')}}"><i class="fas fa-caret-right"></i>Nossa História</a></li>
+                            <li class="{{isset($current) && $current == 'meetUs' ? 'active' : '' }}"><a href="{{url('contato')}}"><i class="fas fa-caret-right"></i>Contato</a></li>
                         </ul>
                     </div>
                 </div>
@@ -59,13 +58,16 @@
 
     <script>
 
+        //Ativa o tooltip para as páginas
+        $('[data-toggle="tooltip"]').tooltip();
+
         window.addEventListener('scroll', function(){
 
             const nav = $("#bgNavbar");
 
             if(window.scrollY > 36){
 
-                console.log(nav);
+                //console.log(nav);
 
                 nav.addClass('nav-fixed');
 

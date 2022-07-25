@@ -9,9 +9,14 @@
         }
 
         #slogan {
+            white-space: nowrap;
             font-size: 48px;
             font-weight: 700;
             color: var(--color-primary-blue);
+        }
+
+        #slogan span {
+            color: var(--color-secondary-orange);
         }
 
         #presentation {
@@ -27,6 +32,40 @@
         #presentation #presentationText {
             max-width: 400px;
         }
+
+        #presentation #presentationText ul {
+                /* background: white; */
+    /* border: 1px solid var(--color-primary-blue); */
+           /*  padding-left: 36px; */
+            margin-top: 1.5rem;
+            list-style-type: none;
+          /*   border-radius: 24px; */
+        }
+
+        #presentation #presentationText ul li {
+            display: flex;
+        }
+
+        #presentation #presentationText ul li p {
+            line-height: 1.25;
+            margin-left: .5rem;
+            font-size: 25px;
+            color: var(--color-primary-blue);
+        }
+
+        #presentation #presentationText ul li ~ li {
+            margin-top: 0.75rem;
+        }
+
+        #presentation #presentationText ul li i {
+            padding-top: 0.4rem;
+            font-size: 1.2rem;
+            color: var(--color-secondary-orange);
+        }
+
+        /* #presentation #presentationText ul li::marker {
+            color: var(--color-secondary-orange);
+        } */
 
         #presentation #slogan {
             line-height: 1.1;
@@ -98,26 +137,26 @@
         }
 
         #services .custom-switch {
-            padding-left: 3.75rem;
+            padding-left: 3.25rem;
         }
 
         #services .custom-control-label {
-            font-size: 24px;
+            font-size: 1.4rem;
         }
 
         #services .custom-switch .custom-control-label::before {
-            left: -4.25rem;
+            left: -3.25rem;
             border-color: #F8AFA6;
-            width: 3.75rem;
-            height: 2rem;
-            border-radius: 1.5rem;
+            width: 2.75rem;
+            height: 1.5rem; /* 1.75rem */
+            border-radius: 1.5rem; /* Aumenta em relação ao height seria 1.25 */
         }
 
         #services .custom-switch .custom-control-label::after {
-            left: calc(-4.25rem + 2px);
+            left: calc(-3.25rem + 2px);
             background-color: #F8AFA6;
-            width: calc(2rem - 4px);
-            height: calc(2rem - 4px);
+            width: calc(1.5rem - 4px);
+            height: calc(1.5rem - 4px);
             border-radius: 1rem;
         }
 
@@ -127,11 +166,16 @@
 
         #services .custom-control-input:checked~.custom-control-label::after{
             background-color: #fff;
-            transform: translateX(1.75rem);
+            transform: translateX(1.25rem);
         }
 
         .custom-control-input:not(:disabled):active ~.custom-control-label::before{
             background-color: #fff !important;
+        }
+
+        #audienceOption {
+            user-select: none;
+            cursor: pointer;
         }
 
         /* .custom-control-input:not(:disabled):checked ~.custom-control-label::before{
@@ -318,9 +362,15 @@
         } */
 
         @media(max-width: 575px){
+
+            /* Adicionar verificação para inserir padding maior apenas no mobile, em relação ao main */
+
             #services {
                 grid-template-rows: auto repeat(3, 300px) auto auto;
                 gap: .5rem;
+            }
+            #slogan {
+                white-space: normal;
             }
         }
 
@@ -395,10 +445,17 @@
     <div class="container-md">
         <section id="presentation">
             <div id="presentationText">
-                <h1 id="slogan">Good skin reflects Your story and Your spirit.</h1>
-                <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-                <button class="btn btn-sm" id="presentation_cta">Contato</button>
+                <h1 id="slogan">Cera <span>100%</span> natural</h1>
+                <ul>
+                    <li><i class="fas fa-check"></i><p>Produto à base de mel e própolis</p></li>
+                    <li><i class="fas fa-check"></i><p>Todos os tipos de depilação masculina e feminina</p></li>
+                    <li><i class="fas fa-check"></i><p>Profissionais experientes prontas para cuidar da sua pele</p></li>
+                    <li><i class="fas fa-check"></i><p>Depilação sem desconforto</p></li>
+                    <li><i class="fas fa-check"></i><p>Atendimento sem hora marcada</p></li>
+                </ul>
+              {{--   <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p> --}}
+               {{--  <button class="btn btn-sm" id="presentation_cta">Contato</button> --}}
             </div>
             <div class="presentation-pics">
                 <div id="carouselPresentation" class="carousel slide carousel-fade h-100" data-ride="carousel">
@@ -478,7 +535,8 @@
                     {{-- <label for="audience">F</label> --}}
                         <div class="custom-control custom-switch" id="changeAudience">
                             <input type="checkbox" class="custom-control-input" id="audience">
-                            <label class="custom-control-label" for="audience" id="audienceOption">Feminino</label>
+                            <label class="custom-control-label" for="audience" id="audienceOption" data-toggle="tooltip"
+                            title="Clique para alternar o público">Feminino</label>
                         </div>
                     {{-- <label class="custom-control-label" for="audience">M</label> --}}
                 </div>
@@ -517,7 +575,7 @@
                     </div>
                 </div>
             </div>
-            <a href="#" class="">
+            <a href="{{route('grupo-servicos')}}" class="">
                 <div id="toAllServices">
                     <div class="d-flex align-items-center">
                         <p>Veja todos os serviços</p>
