@@ -49,7 +49,7 @@
         #presentation #presentationText ul li p {
             line-height: 1.25;
             margin-left: .5rem;
-            font-size: 25px;
+            font-size: 1.5rem;
             color: var(--color-primary-blue);
         }
 
@@ -81,14 +81,20 @@
             width: 100%;
         }
 
-        #presentation_cta {
-            background: var(--color-secondary-orange);
+        #contact_cta {
+            background: var(--color-primary-blue);
             color: #fff;
             width: 155px;
             border-radius: 16px;
-            height: 45px;
-            box-shadow: 0px 0px 11px rgba(255, 103, 45, 0.4);
+            padding: 8px;
+            transition: .3s all;
+            /* height: 45px; */
+           /*  box-shadow: 0px 0px 11px rgba(45, 111, 255, 0.4); */
             /* border-radius:  */
+        }
+
+        #contact_cta:hover {
+           opacity: .8;
         }
 
         .presentation-pics img {
@@ -318,7 +324,8 @@
 
         #aboutUs {
             /* 130px + 30px do top da img absolute */
-            margin-bottom: calc(86px + 30px);
+            /* margin-bottom: calc(86px + 30px); */
+            margin-bottom: 85px;
         }
 
         #aboutUs a p {
@@ -329,9 +336,13 @@
             text-decoration-color: var(--color-text-light);
         }
 
-        #findUs {
-            margin-bottom: 85px;
+        #aboutUsText {
+            text-align: justify;
         }
+
+        /* #findUs {
+            margin-bottom: 85px;
+        } */
 
         #findUs i {
             margin-right: .5rem;
@@ -391,7 +402,7 @@
 
             .presentation-pics {
                 height: 405px !important;
-                margin-top: 3rem;
+               /*  margin-top: 3rem; */
                 margin-bottom: 1.5rem;
             }
 
@@ -499,7 +510,7 @@
                     {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
                     <div class="d-flex flex-column flex-sm-row align-items-sm-end justify-content-sm-between">
                         <h3 class="title-section">Promoções</h3>
-                        <small id="obs"><b>Obs:</b> As promoções são válidas de de Segunda a Quarta-feira</small>
+                        <small id="obs" class="ml-sm-3"><b>Obs:</b> As promoções são válidas de de <b>Segunda a Quarta-feira</b> para o público <b>Feminino</b></small>
                     </div>
                     <div class="position-relative px-5">
                         <div id="carouselOffers" class="swiper my-swiper">
@@ -587,18 +598,33 @@
         <div id="aboutUs">
             <div class="row flex-column-reverse flex-xl-row mt-2">
                 <div class="col-12 col-xl-4">
-                    <h3 class="title-section d-none d-xl-block">Conheça a<span>Nossa História</span></h3>
-                    <p class="mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged...</p>
-                    <a href="#"><p>Ler mais<i class="fas fa-arrow-right ml-2"></i></p></a>
+                    <h3 class="title-section d-none d-xl-inline-block">Sobre Nós</h3>
+                    <div class="" id="aboutUsText">
+                        <p>A Casa Especializada em Depilação está <b>há mais de 30 anos no mercado</b> cuidando da pele das nossas clientes por meio de produtos naturais.
+                        A cera que utilizamos à base de mel e própolis não causa ardor e nem desconforto simplificando o processo de depilação.</p>
+                        <p class="mt-2">Realizamos todos os tipos de depilação <a href="{{route('grupo-servicos')}}">facial, corporal e íntima</a> para o público <b>Feminino e Masculino</b>.
+                        <p class="mt-2 mb-3">Atualmente possuimos uma unidade localizada em <b>Taguatinga Sul</b> e outra em <b>Taguatinga Norte</b> onde realizamos <b>atendimento sem hora marcada</b>:</p>
+                        <ul class="pl-3">
+                            <li>Segunda à Sexta - 08:00 às 18:00</li>
+                            <li>Sábado - 08:00 às 15:00</li>
+                            {{-- <span style="text-decoration: underline"></span> --}}
+                        </ul>
+                        <p class="mt-4 mb-3" style="font-style: italic">Para dúvidas, reclamações e sugestões acesse a nossa página de contato: </p>
+                        <div class="d-flex">
+                            <a href="{{url('contato')}}" class="btn btn-sm" id="contact_cta">Contato</a>
+                        </div>
+                    </div>
+                    {{-- <a href="#"><p>Ler mais<i class="fas fa-arrow-right ml-2"></i></p></a> --}}
                 </div>
                 <div class="col-12 col-xl-auto mb-4 mb-xl-0 ml-xl-auto">
-                    <h3 class="title-section d-inline-block d-xl-none">Conheça a<span>Nossa História</span></h3>
+                    <h3 class="title-section d-inline-block d-xl-none">Sobre Nós</h3>
                     @component('components.picture')
                     @endcomponent
                 </div>
             </div>
         </div>
         <div id="findUs">
+            <h3 class="title-section">Localização</h3>
             <div class="row">
                 <div class="col-12 col-lg-6 mb-4 mb-lg-0">
                     <p><i class="fas fa-map-marker-alt"></i> Loja 3/4 - Taguatinga Norte</p>

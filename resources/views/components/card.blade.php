@@ -15,10 +15,12 @@
 
     <div class="card-footer">
         @if(!isset($cardType) || $cardType == "offers")
-            <div class="d-flex align-items-center">
-                <p>R$ {{$cardPrice}}</p>
+            <div class="">
                 @if(isset($cardOldPrice))
-                    <small class="old-price">R$ {{$cardOldPrice}}</small>
+                    <small class="old-price">De: R$ {{$cardOldPrice}}</small>
+                    <p class="new-price">Por: R$ {{$cardPrice}}</p>
+                @else
+                    <p>R$ {{$cardPrice}}</p>
                 @endif
             </div>
             <i class="fas fa-arrow-right"></i>

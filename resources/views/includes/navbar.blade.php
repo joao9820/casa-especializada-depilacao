@@ -13,11 +13,8 @@
                 <li class="nav-item {{isset($current) && $current == 'services' ? 'active' : '' }}">
                     <a href="{{route('grupo-servicos')}}" class="nav-link">Serviços</a>
                 </li>
-                <li class="nav-item {{isset($current) && $current == 'aboutUs' ? 'active' : '' }}">
+                {{-- <li class="nav-item {{isset($current) && $current == 'aboutUs' ? 'active' : '' }}">
                     <a href="{{url('nossa-historia')}}" class="nav-link">Nossa História</a>
-                </li>
-              {{--   <li class="nav-item">
-                    <a href="#" class="nav-link">Portfólio</a>
                 </li> --}}
                 <li class="nav-item {{isset($current) && $current == 'meetUs' ? 'active' : '' }}">
                     <a href="{{route('contato')}}" class="nav-link">Contato</a>

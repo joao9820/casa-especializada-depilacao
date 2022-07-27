@@ -154,9 +154,14 @@
 }
 
 .card-footer .old-price {
-    text-decoration: line-through;
+    /* text-decoration: line-through; */
+    color: var(--color-background-md-orange) !important;
     font-size: 85%;
-    margin-left: .5rem;
+    /* margin-left: .5rem; */
+}
+
+.card-footer .new-price {
+    font-size: 18px;
 }
 
 .card-footer p, .card-footer .old-price, .card-footer .btn-outline i {

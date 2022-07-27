@@ -219,11 +219,11 @@
             </div>
             @endforeach
         </div>
-        <hr class="divider">
+        {{-- <hr class="divider">
         <div class="recently">
             <h4>Recentes</h4>
             <div class="card-deck d-flex flex-column align-items-center flex-lg-row">
-                {{-- Não é possível aninhar tags a, portanto quando tiver um externo, não poderá haver um link dentro do card --}}
+                Não é possível aninhar tags a, portanto quando tiver um externo, não poderá haver um link dentro do card
                 @for($i=0;$i<3;$i++)
 
                         @component('components.card')
@@ -238,6 +238,6 @@
 
                 @endfor
             </div>
-        </div>
+        </div> --}}
     </div>
 @endsection

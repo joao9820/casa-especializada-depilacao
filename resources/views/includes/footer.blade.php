@@ -27,7 +27,7 @@
                         <ul>
                             <li class="{{isset($current) && $current == 'home' ? 'active' : '' }}"><a href="{{route('home')}}"><i class="fas fa-caret-right"></i>Home</a></li>
                             <li class="{{isset($current) && $current == 'services' ? 'active' : '' }}"><a href="{{route('grupo-servicos')}}"><i class="fas fa-caret-right"></i>Serviços</a></li>
-                            <li class="{{isset($current) && $current == 'aboutUs' ? 'active' : '' }}"><a href="{{url('nossa-historia')}}"><i class="fas fa-caret-right"></i>Nossa História</a></li>
+                            {{-- <li class="{{isset($current) && $current == 'aboutUs' ? 'active' : '' }}"><a href="{{url('nossa-historia')}}"><i class="fas fa-caret-right"></i>Nossa História</a></li> --}}
                             <li class="{{isset($current) && $current == 'meetUs' ? 'active' : '' }}"><a href="{{url('contato')}}"><i class="fas fa-caret-right"></i>Contato</a></li>
                         </ul>
                     </div>
