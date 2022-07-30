@@ -383,5 +383,49 @@ h3.title-section::after {
     transition: width .3s;
 }
 
+#btn-whatsapp {
+    height: 50px;
+    width: 50px;
+    padding: 1.7rem;
+    opacity: .8;
+    transition: .3s opacity;
+    background: radial-gradient(#14c226, #2eb644);
+    /* background:#2eb644; */
+    box-shadow: 2px 2px 6px 1px rgb(11 20 26 / 15%);
+    cursor:pointer;
+}
+
+#gp-whatsapp {
+    position: fixed;
+    left: 24px;
+    bottom: 24px;
+    z-index: 99;
+}
+
+#btn-whatsapp:hover, .show #btn-whatsapp ,.gp-whatsapp-links .link-whatsapp:hover {
+    opacity: 1;
+}
+
+#btn-whatsapp:hover, #btn-whatsapp:focus{
+    box-shadow: 0 0 0 0.2rem #a4dda973;
+}
+
+.gp-whatsapp-links .link-whatsapp {
+    padding: 5px 10px;
+    color: #fff;
+    text-decoration: none;
+    background: radial-gradient(#14c226, #2eb644);
+    border-radius: 1rem;
+    /* width: 94px; */
+    opacity: .8;
+}
+
+#btn-whatsapp ~ .dropdown-menu {
+    background: none;
+    border: none;
+}
+
+
+
 
 

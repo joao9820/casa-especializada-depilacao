@@ -3,6 +3,19 @@
 
 @section('style')
     <style>
+
+        .alert-danger * {
+            color: #721c24;
+        }
+
+        .alert-success * {
+            color: #155724;
+        }
+
+        .alert-val-errors {
+            padding-left: 1.85rem;
+        }
+
         .picture-area {
             height: 555px;
             width: 545px;
@@ -110,7 +123,7 @@
             flex-direction: column;
             justify-content: space-between;
             margin-right: 85px;
-            height: calc(555px + 40px);
+            min-height: calc(555px + 40px);
         }
 
         .localization-maps {
@@ -194,23 +207,49 @@
                     <h3 class="title-section">Contate-nos</h3>
                     <p>Sinta-se livre para contatar-nos a qualquer hora. Retornaremos o mais breve possível!</p>
                 </div>
-                <form method="POST" class="form-email">
+
+                @if(Session::has('msg'))
+                    @php
+                        $msg = Session::get('msg');
+                    @endphp
+                    <div class="alert alert-{{$msg['status']}}">
+                        <h5>{{$msg['title']}}</h5>
+                        <div class="mt-3">
+                            {{$msg['desc']}}
+                        </div>
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-val-errors alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
+                <form method="POST" action={{route('enviar-email')}} class="form-email" id="sendEmail">
                     @csrf
                     <div class="form-group">
-                        <input class="form-control" type="text" name="name" placeholder="Nome" />
+                        <input class="form-control" type="text" name="name" placeholder="Nome" value="{{old('name')}}" />
+                    </div>
+                    {{-- @if($erros->any() && array_key_exists())
+                    <div class="invalid-feedback">
+                        Please select a valid state.
+                    </div> --}}
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="phone" id="phone" placeholder="Celular" value="{{old('phone')}}" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="text" name="phone" placeholder="Telefone" />
+                        <input class="form-control" type="email" name="email" placeholder="E-mail" value="{{old('email')}}" />
                     </div>
                     <div class="form-group">
-                        <input class="form-control" type="email" name="email" placeholder="E-mail" />
+                        <input class="form-control" type="text" name="subject" placeholder="Assunto" value="{{old('subject')}}" />
                     </div>
-                    <div class="form-group">
-                        <input class="form-control" type="text" name="subject" placeholder="Assunto" />
-                    </div>
-                    <div class="form-group"><textarea rows="3" name="text" placeholder="Mensagem" class="form-control"></textarea></div>
+                    <div class="form-group"><textarea rows="3" name="msg" placeholder="Mensagem" class="form-control">{{old('msg')}}</textarea></div>
+                    <button type="submit" class="btn send-email">Enviar</button>
                 </form>
-                <button type="submit" class="btn send-email">Enviar</button>
             </div>
             <div class="contact-area">
                 <div class="picture-area">
@@ -259,4 +298,23 @@
 
         </div>
     </div>
+@endsection
+
+@section('script')
+
+    <script src="{{asset('js/mask.js')}}"></script>
+    <script>
+        window.onload = function(){
+
+            $('#sendEmail').on('submit', function() {
+                $(this).find('button[type="submit"]').prop('disabled', true).text('Enviando...');
+            });
+
+            $("#phone").on('keydown', function(){
+                this.value = phoneMask(this.value);
+            });
+
+        }
+    </script>
+
 @endsection

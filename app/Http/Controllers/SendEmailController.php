@@ -4,22 +4,39 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Mail;
+use \App\Mail\ContactStore;
+use Exception;
 
 class SendEmailController extends Controller
 {
+
+
     public function store(Request $request){
 
-
-        $validation = Validator::make($request->all(), [
+       $request->validate([
             'name' => 'required|string',
             'phone' => 'nullable|string',
             'email' => 'required|email',
             'subject' => 'required|string',
-            'text' => 'required|string',
+            'msg' => 'required|string',
         ]);
 
-        //if($validation->fails())
+        try{
 
+            Mail::send(new ContactStore($request->input('name'), $request->input('email'),
+            $request->input('subject'), $request->input('msg'), $request->input('phone')));
+
+            $request->session()->flash('msg', ['status' => 'success', 'title' => 'Mensagem enviada com sucesso!',
+            'desc' => 'Obrigado pelo contato, responderemos assim que possível.']);
+
+        }catch(\Exception $e){
+
+            $request->session()->flash('msg', ['status' => 'danger', 'title' => 'Mensagem não enviada!', 'desc' => 'Houve um erro interno, tente novamente mais tarde.']);
+
+        }
+
+        return redirect('contato');
 
     }
 }

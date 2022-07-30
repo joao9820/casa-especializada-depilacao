@@ -48,6 +48,24 @@
         </div>
     </footer>
 
+        <div class="d-flex dropright" id="gp-whatsapp">
+            <button class="btn d-flex align-items-center justify-content-center rounded-circle grad {{isset($current) && $current == 'home' ? 'wow fadeIn rollIn' : ''}}"
+            data-wow-delay="1s" type="button" id="btn-whatsapp"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+            >
+                <i class="fab fa-whatsapp text-light" style="font-size: 2rem;"></i>
+            </button>
+            <div class="ml-2 gp-whatsapp-links dropdown-menu">
+                <div>
+                    <a href="https://api.whatsapp.com/send?phone=5561999347852&text=Olá!%20preciso%20entrar%20em%20contato" target="_blank" class="link-whatsapp">Tag. Norte</a>
+                </div>
+                <div class="mt-2">
+                    <a href="https://api.whatsapp.com/send?phone=5561993159867&text=Olá!%20preciso%20entrar%20em%20contato" target="_blank" class="link-whatsapp">Tag. Sul</a>
+                </div>
+            </div>
+        </div>
+
+
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js" integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous"></script>

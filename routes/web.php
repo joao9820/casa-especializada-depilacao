@@ -23,6 +23,6 @@ Route::get('/contato', 'MeetUsController@index')->name('contato');
 
 Route::get('/servicos', 'ServiceGroupController@index')->name('grupo-servicos');
 Route::get('/servicos/{id}', 'ServiceGroupController@show')->name('info-servico');
-
+Route::post('/enviar-email', 'SendEmailController@store')->name('enviar-email');
 
 
