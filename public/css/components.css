@@ -2,7 +2,7 @@
     max-height: 320px;
     max-width: 256px;
     border-radius: 16px;
-    border-color: transparent;
+    border-color: var(--color-background-md-orange);
 }
 
 .card-services-md {

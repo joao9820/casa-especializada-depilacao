@@ -26,9 +26,13 @@ class HomeController extends Controller
 
         /* dd($promotions); */
 
-        $promotions->each(function($promo) {
-            $promo->old_price = $promo->services->sum('price_number');
-        });
+        if($promotions->isNotEmpty()){
+            $promotions->each(function($promo) {
+                $promo->old_price = $promo->services->sum('price_number');
+            });
+        }
+
+
 
         //dd($promotions);
 

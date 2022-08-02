@@ -23,12 +23,22 @@ class ServiceGroupController extends Controller
 
         $promotions = $this->promotionRepository->getAllActivitiesPromotions();
 
+        if($promotions->isNotEmpty()){
+            $promotions->each(function($promo) {
+                $promo->old_price = $promo->services->sum('price_number');
+            });
+        }
+
         return view('services', compact('serviceGroups', 'promotions'));
     }
 
     public function show($id){
 
         $serviceGroup = $this->serviceGroupRepository->find($id);
+
+        if(!$serviceGroup){
+            return redirect('/');
+        }
 
         /* $serviceGroup->name .= $serviceGroup->audience == 'F' ? ' Fem.' : ' Masc.'; */
 

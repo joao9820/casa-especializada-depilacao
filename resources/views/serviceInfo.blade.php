@@ -61,9 +61,9 @@
         }
 
         .divider {
-            border-width: 2px;
-            margin-top: 60px;
-            margin-bottom: 90px;
+            border-width: 4px;
+            margin: .2rem 0;
+            border-top-color: var(--color-secondary-orange);
         }
 
         .recently h4 {
@@ -143,6 +143,33 @@
             font-weight: 600;
         }
 
+        .total-promotion .promotion {
+            font-size: 20px;
+            color: var(--color-secondary-orange);
+        }
+
+        .total-promotion .promotion hr:not(.divider) {
+            border-top: 2px solid var(--color-secondary-orange);
+        }
+
+        .total-promotion {
+            border-bottom-width: 3px;
+            border-right-width: 3px;
+            border-top-width: 1px;
+            border-left-width: 1px;
+            border-style: solid;
+            border-color: var(--color-background-md-orange);
+        }
+
+        .total-promotion {
+            background: blanchedalmond;
+        }
+
+        .total-promotion p {
+            color: var(--color-primary-blue);
+            font-weight: 600;
+        }
+
     </style>
 @endsection
 
@@ -151,14 +178,20 @@
         {{-- Adicionar botão para voltar --}}
         <div class="d-flex align-items-center mb-5">
             <a href={{isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : route('grupo-servicos')}} class="btn btn-sm rounded-circle btn-return"><i class="fas fa-arrow-left"></i></a>
-            <h3 class="title-section mb-0">{{$serviceGroup->name . ' ' . $serviceGroup->audience}}</h3>
+            @if(!$serviceGroup->isPromotion)
+                <h3 class="title-section mb-0">{{$serviceGroup->name . ' ' . $serviceGroup->audience}}</h3>
+            @else
+                <h3 class="title-section-simple mb-0">Promoção: {{$serviceGroup->name}}</h3>
+            @endif
         </div>
+
         <div class="d-flex justify-content-center w-100">
             <div class="moldure w-100">
-                <img src="{{asset($serviceGroup->img)}}" alt="Imagem do serviço" id="imgService">
+                <img src="{{$serviceGroup->img ? asset($serviceGroup->img) : asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService">
                 <div class="moldure-shadow"></div>
             </div>
         </div>
+
         {{-- <div class="description">
             <p class="topic">Lorem Ipsum</p>
             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.Lorem Ipsum is simply dummy text of the printing and typesetting industry.
@@ -203,9 +236,9 @@
             </table>
 
         </div> --}}
-        <div class="services-price">
+        <div class="services-price mb-3">
            @foreach($serviceGroup->services as $service)
-            <div class="mb-3">
+            <div>
                 <div class="d-flex justify-content-between">
                     <p class="service-name">
                         {{$service->name}}
@@ -218,7 +251,22 @@
                 <hr>
             </div>
             @endforeach
+            @if($serviceGroup->isPromotion)
+                <p class="price text-right">
+                    TOTAL: R$ {{$serviceGroup->old_price}}
+                </p>
+            @endif
         </div>
+
+        @if($serviceGroup->isPromotion)
+            <div class="d-flex flex-row-reverse">
+                <div class="total-promotion p-2">
+                    <p class="price promotion text-right">
+                        PROMOÇÃO: R$ {{$serviceGroup->new_price}}
+                    </p>
+                </div>
+            </div>
+        @endif
         {{-- <hr class="divider">
         <div class="recently">
             <h4>Recentes</h4>

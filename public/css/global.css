@@ -356,7 +356,7 @@ h4.title-section {
     margin-bottom: 2.5rem;
 }
 
-h3.title-section {
+h3.title-section, h3.title-section-simple {
     position: relative;
     display: inline-block;
     color: var(--color-primary-blue);
@@ -365,7 +365,7 @@ h3.title-section {
     margin-bottom: 2.5rem;
 }
 
-h3.title-section span {
+h3.title-section span, h3.title-section-simple span {
     display: block;
     color: var(--color-secondary-orange);
 }

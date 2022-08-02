@@ -517,7 +517,7 @@
                             <div class="swiper-wrapper">
                                 @foreach($promotions as $promo)
                                     <div class="swiper-slide d-flex justify-content-center">
-                                        <a href="#">
+                                        <a href="{{route('info-promocao', ['id' => $promo->id])}}">
                                             @component('components.card')
                                                 {{-- @slot('cardImg', $promo->services->first()->img) --}}
                                                 @slot('cardTitle', $promo->name)
