@@ -4,7 +4,7 @@
     </div> --}}
     @if(isset($cardImg))
         <div class="card-img">
-            <img src="{{isset($cardImg) ? secure_asset($cardImg) : secure_asset('assets/images/presentation-1.png')}}">
+            <img src="{{isset($cardImg) ? asset($cardImg) : asset('assets/images/presentation-1.png')}}">
         </div>
     @endif
 

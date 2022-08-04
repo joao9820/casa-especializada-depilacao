@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <link rel="shortcut icon" type="image/png" href="{{secure_asset('assets/images/favicon.png')}}">
+        <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
         {{-- Swiper --}}
@@ -25,8 +25,8 @@
         {{-- Wow JS --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
 
-        <link rel="stylesheet" href="{{ secure_asset('css/global.css') }}">
-        <link rel="stylesheet" href="{{ secure_asset('css/components.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/global.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/components.css') }}">
 
         <title>
             @yield('title')

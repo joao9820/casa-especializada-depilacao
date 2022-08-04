@@ -187,7 +187,7 @@
 
         <div class="d-flex justify-content-center w-100">
             <div class="moldure w-100">
-                <img src="{{$serviceGroup->img ? secure_asset($serviceGroup->img) : secure_asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService">
+                <img src="{{$serviceGroup->img ? asset($serviceGroup->img) : asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService">
                 <div class="moldure-shadow"></div>
             </div>
         </div>

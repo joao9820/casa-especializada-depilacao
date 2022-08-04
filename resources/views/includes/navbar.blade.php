@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-light align-items-center align-items-md-center" id="navbar">
-    {{-- <img id="logomarca" src="{{secure_asset('assets/images/logo.png')}}" alt="Logo Marca" /> --}}
+    {{-- <img id="logomarca" src="{{asset('assets/images/logo.png')}}" alt="Logo Marca" /> --}}
     <a href={{route('home')}} id="logoLink"><h2 id="navLogo">CASA ESPECIALIZADA EM DEPILAÇÃO</h2></a>
     <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarDropdown" aria-controls="navbarDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <i class="fas fa-bars text-light"></i>

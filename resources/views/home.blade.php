@@ -477,18 +477,18 @@
                     </ol>
                     <div class="carousel-inner h-100">
                         <div class="carousel-item">
-                            <img id="presentationPic1" class="carousel-pics" src="{{secure_asset('assets/images/presentation-1.png')}}">
+                            <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
                         </div>
                         <div class="carousel-item">
-                            <img id="presentationPic2" class="carousel-pics" src="{{secure_asset('assets/images/presentation-2.png')}}">
+                            <img id="presentationPic2" class="carousel-pics" src="{{asset('assets/images/presentation-2.png')}}">
                         </div>
                         <div class="carousel-item">
-                            <img id="presentationPic3" class="carousel-pics" src="{{secure_asset('assets/images/presentation-3.png')}}">
+                            <img id="presentationPic3" class="carousel-pics" src="{{asset('assets/images/presentation-3.png')}}">
                         </div>
                     </div>
                     <div id="bgPresentation">
-                        <img src="{{secure_asset('assets/images/bg-presentation.png')}}">
-                        <img id="vectorsPresentation" src="{{secure_asset('assets/images/vectors-presentation.svg')}}">
+                        <img src="{{asset('assets/images/bg-presentation.png')}}">
+                        <img id="vectorsPresentation" src="{{asset('assets/images/vectors-presentation.svg')}}">
                     </div>
                     {{-- <div class="d-lg-none">
                         <button class="carousel-control-prev" type="button" data-target="#carouselPresentation" data-slide="prev">
@@ -507,7 +507,7 @@
         @if($promotions->isNotEmpty())
             <section id="featuredOffers">
                 <div id="featuredOffersBadge">
-                    {{-- <img src="{{secure_asset('assets/images/details-offers.svg')}}"> --}}
+                    {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
                     <div class="d-flex flex-column flex-sm-row align-items-sm-end justify-content-sm-between">
                         <h3 class="title-section">Promoções</h3>
                         <small id="obs" class="ml-sm-3"><b>Obs:</b> As promoções são válidas de de <b>Segunda a Quarta-feira</b> para o público <b>Feminino</b></small>
@@ -555,7 +555,7 @@
             @for($i=0; $i < 3; $i++)
                 <a href="{{route('info-servico', ['id' => $serviceGroupsFemale[$i]['id']])}}" class="card-services-female">
                     <div class="card-services card-services-img shadow-sm">
-                        <img src="{{secure_asset($serviceGroupsFemale[$i]['img'])}}">
+                        <img src="{{asset($serviceGroupsFemale[$i]['img'])}}">
                         <div class="text-services">
                             <p>{{$serviceGroupsFemale[$i]['name']}}</p>
                         </div>
@@ -566,7 +566,7 @@
             @for($i=0; $i < 3; $i++)
                 <a href="{{route('info-servico', ['id' => $serviceGroupsMale[$i]['id']])}}" class="card-services-male">
                     <div class="card-services card-services-img shadow-sm">
-                        <img src="{{secure_asset($serviceGroupsMale[$i]['img'])}}">
+                        <img src="{{asset($serviceGroupsMale[$i]['img'])}}">
                         <div class="text-services">
                             <p>{{$serviceGroupsMale[$i]['name']}}</p>
                         </div>
@@ -641,7 +641,7 @@
 
 @section('script')
 
-<script src="{{secure_asset('js/swiper-offers.js')}}"></script>
+<script src="{{asset('js/swiper-offers.js')}}"></script>
 
     <script>
         window.onload = function(){
