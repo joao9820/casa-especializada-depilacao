@@ -58,7 +58,7 @@
             @if($promotions->isNotEmpty())
             <div id="featuredOffers">
                 <div id="featuredOffersBadge">
-                    {{-- <img src="{{asset('assets/images/details-offers.svg')}}"> --}}
+                    {{-- <img src="{{secure_asset('assets/images/details-offers.svg')}}"> --}}
 
                     <h3 class="title-section">Promoções{{-- <span>Imperdiveis</span> --}}</h3>
                     <div class="position-relative px-5">
@@ -133,5 +133,5 @@
 @endsection
 
 @section('script')
-    <script src="{{asset('js/swiper-offers.js')}}"></script>
+    <script src="{{secure_asset('js/swiper-offers.js')}}"></script>
 @endsection
