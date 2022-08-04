@@ -281,7 +281,7 @@
                             </div>
                         </div>
                     </div>
-                    <img src="{{secure_asset('assets/images/vectors-meet-us.png')}}">
+                    <img src="{{asset('assets/images/vectors-meet-us.png')}}">
                 </div>
             </div>
         </div>
@@ -302,7 +302,7 @@
 
 @section('script')
 
-    <script src="{{secure_asset('js/mask.js')}}"></script>
+    <script src="{{asset('js/mask.js')}}"></script>
     <script>
         window.onload = function(){
 

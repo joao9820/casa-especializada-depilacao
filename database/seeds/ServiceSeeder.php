@@ -15,7 +15,7 @@ class ServiceSeeder extends Seeder
     {
 
 
-        $path = !App::environment('production') ? env('APP_URL') . ':8000/services.json' : secure_asset('services.json');
+        $path = !App::environment('production') ? env('APP_URL') . ':8000/services.json' : asset('services.json');
 
         $data = file_get_contents($path);
 
