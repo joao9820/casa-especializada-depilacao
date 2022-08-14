@@ -34,9 +34,9 @@ class ServiceGroupController extends Controller
         return view('services', compact('serviceGroups', 'promotions'));
     }
 
-    public function show($id){
+    public function show($slug){
 
-        $serviceGroup = $this->serviceGroupRepository->find($id);
+        $serviceGroup = $this->serviceGroupRepository->where('slug', $slug)->first();
 
         if(!$serviceGroup){
             return redirect('/');

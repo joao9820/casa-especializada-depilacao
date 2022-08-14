@@ -15,9 +15,9 @@ class PromotionRepository extends BaseRepository {
         return $this->model->with('services')->where('active', 1)->get();
     }
 
-    public function findActivitiesPromotion($id){
+    public function findActivitiesPromotion($slug){
 
-        $promotion = $this->model->where([['id',  $id],['active', 1]])->first();
+        $promotion = $this->model->where([['slug',  $slug],['active', 1]])->first();
 
         if(!$promotion)
             return;

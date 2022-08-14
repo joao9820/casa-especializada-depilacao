@@ -2,6 +2,7 @@
 
 use App\ServiceGroup;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class ServiceGroupSeeder extends Seeder
 {
@@ -39,10 +40,13 @@ class ServiceGroupSeeder extends Seeder
 
             $serviceGroup = new ServiceGroup();
 
+            $audience = $group['audience'] == 'M' ? 'masc.' : 'fem.';
+
             $serviceGroup->id = $group['id'];
             $serviceGroup->name = $group['name'];
             $serviceGroup->audience = $group['audience'];
             $serviceGroup->img = $group['img'];
+            $serviceGroup->slug = Str::of($group['name'] . ' ' . $audience)->slug('-', 'pt-BR');
 
             $serviceGroup->save();
 
