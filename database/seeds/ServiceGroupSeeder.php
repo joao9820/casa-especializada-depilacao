@@ -40,13 +40,13 @@ class ServiceGroupSeeder extends Seeder
 
             $serviceGroup = new ServiceGroup();
 
-            $audience = $group['audience'] == 'M' ? 'masc.' : 'fem.';
+            $audience = $group['audience'] == 'M' ? 'masculino' : 'feminino';
 
             $serviceGroup->id = $group['id'];
             $serviceGroup->name = $group['name'];
             $serviceGroup->audience = $group['audience'];
             $serviceGroup->img = $group['img'];
-            $serviceGroup->slug = Str::of($group['name'] . ' ' . $audience)->slug('-', 'pt-BR');
+            $serviceGroup->slug = Str::of($group['name'] . '-' . $audience)->slug('-', 'pt-BR');
 
             $serviceGroup->save();
 
