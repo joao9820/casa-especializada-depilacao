@@ -19,7 +19,9 @@ class ServiceGroupController extends Controller
 
     public function index()
     {
-        $serviceGroups = $this->serviceGroupRepository->with('services')->get();
+        $serviceGroups = $this->serviceGroupRepository->with(['services' => function($query){
+            return $query->orderBy('name');
+        }])->get();
 
         $promotions = $this->promotionRepository->getAllActivitiesPromotions();
 
@@ -32,9 +34,9 @@ class ServiceGroupController extends Controller
         return view('services', compact('serviceGroups', 'promotions'));
     }
 
-    public function show($id){
+    public function show($slug){
 
-        $serviceGroup = $this->serviceGroupRepository->find($id);
+        $serviceGroup = $this->serviceGroupRepository->where('slug', $slug)->first();
 
         if(!$serviceGroup){
             return redirect('/');
@@ -42,7 +44,9 @@ class ServiceGroupController extends Controller
 
         /* $serviceGroup->name .= $serviceGroup->audience == 'F' ? ' Fem.' : ' Masc.'; */
 
-        $serviceGroup->load('services');
+        $serviceGroup->load(['services' => function($query){
+            return $query->orderBy('name');
+        }]);
 
         //dd($serviceGroup);
 

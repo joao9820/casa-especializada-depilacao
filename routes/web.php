@@ -22,8 +22,8 @@ Route::get('/nossa-historia', function () {
 Route::get('/contato', 'MeetUsController@index')->name('contato');
 
 Route::get('/servicos', 'ServiceGroupController@index')->name('grupo-servicos');
-Route::get('/servicos/{id}', 'ServiceGroupController@show')->name('info-servico');
-Route::get('/promocoes/{id}', 'PromotionController@show')->name('info-promocao');
+Route::get('/servicos/{slug}', 'ServiceGroupController@show')->name('info-servico');
+Route::get('/promocoes/{slug}', 'PromotionController@show')->name('info-promocao');
 Route::post('/enviar-email', 'SendEmailController@store')->name('enviar-email');
 
 

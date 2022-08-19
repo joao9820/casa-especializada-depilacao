@@ -3,6 +3,7 @@
 use App\Promotion;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class PromotionSeeder extends Seeder
 {
@@ -25,7 +26,7 @@ class PromotionSeeder extends Seeder
                 ]
             ],
             [
-                "id" => 3, "name" => 'Axilas + Virilha Simples + Perna Completa', "new_price" => 89.90, "active" => 1,
+                "id" => 3, "name" => 'Axilas + Virilha Simples + Perna Completa', "new_price" => 89.90, "active" => 0,
                 "services" => [
                     26, 47, 38
                 ]
@@ -44,6 +45,7 @@ class PromotionSeeder extends Seeder
                 $promotion->name = $promo['name'];
                 $promotion->new_price  = $promo['new_price'];
                 $promotion->active = $promo['active'];
+                $promotion->slug =  Str::of($promo['name'])->slug('-', 'pt-BR');
 
                 $promotion->save();
 

@@ -16,9 +16,9 @@ class PromotionController extends Controller
         $this->promotionRepository = $promotionRepository;
     }
 
-    public function show($id){
+    public function show($slug){
 
-        $serviceGroup = $this->promotionRepository->findActivitiesPromotion($id);
+        $serviceGroup = $this->promotionRepository->findActivitiesPromotion($slug);
 
         if(!$serviceGroup){
             return redirect('/');

@@ -66,7 +66,7 @@
                             <div class="swiper-wrapper">
                                 @foreach($promotions as $promo)
                                     <div class="swiper-slide d-flex justify-content-center">
-                                        <a href="{{route('info-promocao', ['id' => $promo->id])}}">
+                                        <a href="{{route('info-promocao', ['slug' => $promo->slug])}}">
                                             @component('components.card')
                                                 {{-- @slot('cardImg', $promo->services->first()->img) --}}
                                                 @slot('cardTitle', $promo->name)
@@ -95,7 +95,7 @@
                 {{-- É possível listar na descrição, todos os serviços que o grupo contém --}}
                 @foreach($serviceGroups as $servGroup)
 
-                    <a href={{route("info-servico", ['id' => $servGroup->id])}}>
+                    <a href={{route("info-servico", ['slug' => $servGroup->slug])}}>
                         @component('components.card')
                             @slot('cardType', 'services-lg')
                             @slot('cardImg', $servGroup->img)

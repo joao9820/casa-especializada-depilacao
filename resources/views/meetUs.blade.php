@@ -1,5 +1,5 @@
 @extends('layout.site', ['current' => 'meetUs'])
-@section('title', 'Contate-nos')
+@section('title', 'Contato')
 
 @section('style')
     <style>

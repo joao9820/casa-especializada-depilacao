@@ -517,7 +517,7 @@
                             <div class="swiper-wrapper">
                                 @foreach($promotions as $promo)
                                     <div class="swiper-slide d-flex justify-content-center">
-                                        <a href="{{route('info-promocao', ['id' => $promo->id])}}">
+                                        <a href="{{route('info-promocao', ['slug' => $promo->slug])}}">
                                             @component('components.card')
                                                 {{-- @slot('cardImg', $promo->services->first()->img) --}}
                                                 @slot('cardTitle', $promo->name)
@@ -553,7 +553,7 @@
                 </div>
             </div>
             @for($i=0; $i < 3; $i++)
-                <a href="{{route('info-servico', ['id' => $serviceGroupsFemale[$i]['id']])}}" class="card-services-female">
+                <a href="{{route('info-servico', ['slug' => $serviceGroupsFemale[$i]['slug']])}}" class="card-services-female">
                     <div class="card-services card-services-img shadow-sm">
                         <img src="{{asset($serviceGroupsFemale[$i]['img'])}}">
                         <div class="text-services">
@@ -564,7 +564,7 @@
             @endfor
 
             @for($i=0; $i < 3; $i++)
-                <a href="{{route('info-servico', ['id' => $serviceGroupsMale[$i]['id']])}}" class="card-services-male">
+                <a href="{{route('info-servico', ['slug' => $serviceGroupsMale[$i]['slug']])}}" class="card-services-male">
                     <div class="card-services card-services-img shadow-sm">
                         <img src="{{asset($serviceGroupsMale[$i]['img'])}}">
                         <div class="text-services">
