@@ -259,9 +259,10 @@
                         <p class="info-title">Informações</p>
                         <div class="media-social">
 
-                                <p class="mb-3"><i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com</p>
+                                <p class="mb-3"><i class="fas fa-envelope mr-2"></i>casadepilacao@casaespdepilacao.com.br</p>
 
-                                <p><i class="fab fa-instagram mr-2"></i>@casaespecializadadeplicao</p>
+                                <p><i class="fab fa-facebook mr-2"></i>Casa Especializada em Depilação</p>
+                                {{-- <p><i class="fab fa-instagram mr-2"></i>@casaespecializadadeplicao</p> --}}
 
                         </div>
                         <div class="d-sm-flex justify-content-sm-between d-lg-block group-localization">
