@@ -32,6 +32,8 @@ class SendEmailController extends Controller
 
         }catch(\Exception $e){
 
+            //dd($e);
+
             $request->session()->flash('msg', ['status' => 'danger', 'title' => 'Mensagem não enviada!', 'desc' => 'Houve um erro interno, tente novamente mais tarde.']);
 
         }

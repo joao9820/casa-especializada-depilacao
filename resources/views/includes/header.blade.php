@@ -45,12 +45,15 @@
         <div id="headerContact" class="d-none d-md-block">
             <div class="container-md" id="containerNav">
                 <div id="contactInfo" class="d-flex flex-column justify-content-center align-items-sm-center flex-sm-row mx-auto">
-                    <div>
-                        <i class="fas fa-envelope mr-2"></i>casaespecializadadeplicacao@gmail.com
+                    <div title="E-mail" data-toggle="tooltip">
+                        <i class="fas fa-envelope mr-2"></i>casadepilacao@casaespdepilacao.com.br
                     </div>
-                    <div>
+                    <div class=" ml-sm-4" title="Facebook" data-toggle="tooltip">
+                        <i class="fab fa-facebook mr-2"></i>Casa Especializada em Depilação
+                    </div>
+                    {{-- <div>
                         <i class="fab fa-instagram ml-sm-4 mr-2"></i>@casaespecializadadeplicao
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>

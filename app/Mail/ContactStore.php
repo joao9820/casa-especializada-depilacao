@@ -38,6 +38,6 @@ class ContactStore extends Mailable
      */
     public function build()
     {
-        return $this->to('casaespecializadadepilacao@gmai.com')->subject($this->_subject)->html($this->_msg);
+        return $this->to('casadepilacao@casaespdepilacao.com.br')->subject($this->_subject)->html($this->_msg);
     }
 }

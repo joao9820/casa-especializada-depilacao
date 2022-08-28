@@ -35,11 +35,11 @@
                 <div class="info-social">
                     <p class="subtitle">Social</p>
                     <div class="info-items">
-                        <div>
+                       {{--  <div>
                             <img src="{{asset('assets/icons/instagram.png')}}"><p>@casaespecializadaemdepilacao</p>
-                        </div>
+                        </div> --}}
                         <div>
-                            <img src="{{asset('assets/icons/facebook.png')}}"><p>Casa de Depilação</p>
+                            <img src="{{asset('assets/icons/facebook.png')}}"><p>Casa Especializada em Depilação</p>
                         </div>
                     </div>
                 </div>
