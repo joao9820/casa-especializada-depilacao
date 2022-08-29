@@ -4,8 +4,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
+		<meta name="robots" content="index,follow,max-snippet:-1">
         <meta name="description"
-            content="Este é um site institucional com o objetivo de divulgar as ofertas, serviços, informações de contato e redes sociais da Casa Especializada em Depilação a fim de que o público conheça a loja e visite uma das nossas unidades" >
+            content="Há mais de 30 anos no mercado cuidando da pele dos nossos clientes por meio de produtos naturais. Realizamos todos os tipos de depilação masculina e feminina. Conheça a loja e visite já uma de nossas unidades" >
         <meta name="keywords" content="depilação, casa especializada em depilação, depilação feminina, depilação masculina, depilação íntima, todos os tipos de depilação, depilação em taguatinga" >
 
         <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
