@@ -1,5 +1,5 @@
 @extends('layout.site', ['current' => 'home'])
-@section('title', 'Página Inicial')
+@section('title', 'Casa Especializada em Depilação')
 
 @section('style')
     <style>
