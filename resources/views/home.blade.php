@@ -600,7 +600,7 @@
                 <div class="col-12 col-xl-4">
                     <h3 class="title-section d-none d-xl-inline-block">Sobre Nós</h3>
                     <div class="" id="aboutUsText">
-                        <p>A Casa Especializada em Depilação está <b>há mais de 30 anos no mercado</b> cuidando da pele das nossas clientes por meio de produtos naturais.
+                        <p><b>Há mais de 30 anos no mercado</b> cuidando da pele dos nossos clientes por meio de produtos naturais.
                         A cera que utilizamos à base de mel e própolis não causa ardor e nem desconforto simplificando o processo de depilação.</p>
                         <p class="mt-2">Realizamos todos os tipos de depilação <a href="{{route('grupo-servicos')}}">facial, corporal e íntima</a> para o público <b>Feminino e Masculino</b>.
                         <p class="mt-2 mb-3">Atualmente possuimos uma unidade localizada em <b>Taguatinga Sul</b> e outra em <b>Taguatinga Norte</b> onde realizamos <b>atendimento sem hora marcada</b>:</p>
