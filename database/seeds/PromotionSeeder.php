@@ -22,7 +22,7 @@ class PromotionSeeder extends Seeder
             ],
             [
                 "id" => 2, "name" => 'Buço + Axilas + Virilha Completa', "new_price" => 77.90, "active" => 1, "services" => [
-                    10, 26, 48
+                    10, 26, 49
                 ]
             ],
             [
