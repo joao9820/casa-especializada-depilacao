@@ -1,5 +1,5 @@
 @extends('layout.site', ['current' => 'services'])
-@section('title', 'Detalhes do Serviço')
+@section('title', $serviceGroup->name . ' ' . $serviceGroup->audience)
 
 @section('style')
     <style>
@@ -39,7 +39,7 @@
         #imgService {
             object-fit: cover;
             /* Talvez, salvar a referência do melhor angulo da imagem, left, top, center, bottom, junto da imagem no BD */
-            object-position: top center;
+            /* object-position: top center; */
         }
 
         .description p {
@@ -187,7 +187,8 @@
 
         <div class="d-flex justify-content-center w-100">
             <div class="moldure w-100">
-                <img src="{{$serviceGroup->img ? asset($serviceGroup->img) : asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService">
+                <img src="{{$serviceGroup->img ? asset($serviceGroup->img) : asset('assets/images/presentation-1.png')}}" alt="Imagem do serviço" id="imgService"
+                style="object-position: {{$serviceGroup->img_position}}">
                 <div class="moldure-shadow"></div>
             </div>
         </div>

@@ -5,6 +5,13 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 		<meta name="robots" content="index,follow,max-snippet:-1">
+
+        @hasSection ('title')
+            <title>Casa Especializada em Depilação - @yield('title')</title>
+        @else
+            <title>Casa Especializada em Depilação</title>
+        @endif
+
         <meta name="description"
             content="Há mais de 30 anos no mercado cuidando da pele dos nossos clientes por meio de produtos naturais. Realizamos todos os tipos de depilação feminina/masculina. Conheça a loja e visite já uma de nossas unidades" >
         <meta name="keywords" content="depilação,casa de depilação,casa especializada em depilação,depilação feminina,depilação masculina,depilação íntima,todos os tipos de depilação,depilação em taguatinga" >
@@ -32,7 +39,7 @@
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components.css') }}">
 
-        <title>@yield('title')</title>
+
 
         @hasSection('style')
 		    @yield('style')
