@@ -12,6 +12,6 @@ class ServiceGroup extends Model
 
     public function getAudienceAttribute()
     {
-        return $this->attributes['audience'] == 'F' ? 'Fem.' : 'Masc.';
+        return $this->attributes['audience'] == 'F' ? 'Feminina' : 'Masculina';
     }
 }
