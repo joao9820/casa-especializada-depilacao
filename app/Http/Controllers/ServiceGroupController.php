@@ -39,7 +39,9 @@ class ServiceGroupController extends Controller
         $serviceGroup = $this->serviceGroupRepository->where('slug', $slug)->first();
 
         if(!$serviceGroup){
-            return redirect('/');
+            //return redirect('/');
+            //Necessário para parar de indexar urls desatualizadas no google search
+            abort(404);
         }
 
         /* $serviceGroup->name .= $serviceGroup->audience == 'F' ? ' Fem.' : ' Masc.'; */
