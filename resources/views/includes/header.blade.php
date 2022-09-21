@@ -35,6 +35,16 @@
 
         {{-- Wow JS --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+		
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-8C4NFRB9CZ"></script>
+		<script>
+		  window.dataLayer = window.dataLayer || [];
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+
+		  gtag('config', 'G-8C4NFRB9CZ');
+		</script>
 
         <link rel="stylesheet" href="{{ asset('css/global.css') }}">
         <link rel="stylesheet" href="{{ asset('css/components.css') }}">
