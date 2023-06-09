@@ -38,6 +38,14 @@ class ServiceGroupController extends Controller
 
         $serviceGroup = $this->serviceGroupRepository->where('slug', $slug)->first();
 
+        /* Valor e porcentagem de desconto */
+        $off = collect([
+            60 => 0.05,
+            61 => 0.1
+        ]);
+
+        ;
+
         if(!$serviceGroup){
             //return redirect('/');
             //Necessário para parar de indexar urls desatualizadas no google search
@@ -50,6 +58,23 @@ class ServiceGroupController extends Controller
             return $query->orderBy('name');
         }]);
 
+        if($serviceGroup->services->isNotEmpty() && $off){
+            $serviceGroup->services->map(function($serv) use ($off){
+
+                $price = $serv->price_number;
+
+                //dd($price);
+
+                $price_off = $off->first(function($value, $key) use ($price){
+                    return $price <= $key;
+                });
+
+                $serv->price_off =  $price - ($price * $price_off);
+
+            });
+        }
+
+        //dd($serviceGroup->services);
         //dd($serviceGroup);
 
         //$serviceGroup->services = $serviceGroup->services->sortBy('name');
