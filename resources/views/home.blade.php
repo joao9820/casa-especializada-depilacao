@@ -528,10 +528,11 @@
                         <li data-target="#carouselPresentation" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselPresentation" data-slide-to="1"></li>
                         <li data-target="#carouselPresentation" data-slide-to="2"></li>
+                        <li data-target="#carouselPresentation" data-slide-to="3"></li>
                     </ol>
                     <div class="carousel-inner h-100">
                         <div class="carousel-item">
-                            <img id="presentationPicNamorados" class="carousel-pics" src="{{asset('assets/images/dia-dos-namorados2.jpg')}}">
+                            <img id="presentationPicNamorados" class="carousel-pics" src="{{asset('assets/images/dia-dos-namorados2.jpg')}}" alt="Dia dos namorados">
                         </div>
                         <div class="carousel-item">
                             <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
