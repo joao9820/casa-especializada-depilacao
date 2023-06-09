@@ -25,6 +25,9 @@
         {{-- Fonts Google --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link href="https://fonts.googleapis.com/css2?family=Rochester&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Fleur+De+Leah&display=swap" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css2?family=Archivo&family=Roboto&display=swap" rel="stylesheet">
 
         {{-- Animate CSS --}}
@@ -35,7 +38,7 @@
 
         {{-- Wow JS --}}
         <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
-		
+
 		<!-- Google tag (gtag.js) -->
 		<script async src="https://www.googletagmanager.com/gtag/js?id=G-8C4NFRB9CZ"></script>
 		<script>

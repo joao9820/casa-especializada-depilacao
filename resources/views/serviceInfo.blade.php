@@ -112,8 +112,12 @@
             padding-right: 0.4rem;
         }
 
-        .services-price p.price {
+        .services-price p.price, .services-price p.price-off {
             padding-left: 0.4rem;
+        }
+
+        .services-price p.price-off {
+            text-decoration: line-through;
         }
 
         .btn-return {
@@ -245,9 +249,22 @@
                         {{$service->name}}
                     </p>
                     {{-- <span>...........................................</span> --}}
-                    <p class="price">
-                        R$ {{$service->price}}
-                    </p>
+                    @if(!$service->price_off)
+                        <p class="price">
+                            R$ {{$service->price}}
+                        </p>
+                    @else
+                        <div class="d-flex">
+                            <p class="price">De</p>
+                            <p class="price-off">
+                                 R$ {{$service->price}}
+                            </p>
+                            <p class="price">
+                                por R$ {{$service->price_off}}
+                            </p>
+                        </div>
+                    @endif
+
                 </div>
                 <hr>
             </div>

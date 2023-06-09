@@ -5,7 +5,38 @@
     <style>
 
         body main {
-            padding: 3rem 0;
+            /* padding: 3rem 0; */
+            /* Apenas com o banner */
+            padding: 1rem;
+        }
+
+        .banner-special {
+            position: relative;
+            margin-bottom: 1rem;
+        }
+
+        .banner-special img {
+            height: 250px;
+            width: 100%;
+        }
+
+        .banner-special-text {
+            text-align: center;
+            position: absolute;
+            /* max-height: 250px; */
+            /* margin-bottom: 0.6rem; */
+            /* max-width: 300px; */
+        }
+
+        .banner-special-text h1 {
+            color: #fff!important;
+            font-family: 'Rochester';
+        }
+
+        .banner-special-text h1 span {
+            font-family: 'Fleur De Leah';
+            font-size: 2.5rem;
+            color: #fff;
         }
 
         #slogan {
@@ -116,6 +147,12 @@
 
         #vectorsPresentation {
             right: 32px;
+        }
+
+        #bannerPresentation {
+            top: unset;
+            bottom: 0;
+            left: 0;
         }
 
         #featuredOffers {
@@ -375,13 +412,23 @@
         @media(max-width: 575px){
 
             /* Adicionar verificação para inserir padding maior apenas no mobile, em relação ao main */
-
+            .banner-special-text h1, .banner-special-text h1 span {
+                font-size: 1.25rem !important;
+                line-height: 1 !important;
+            }
             #services {
                 grid-template-rows: auto repeat(3, 300px) auto auto;
                 gap: .5rem;
             }
             #slogan {
                 white-space: normal;
+            }
+        }
+
+        @media (max-width: 800px){
+            .banner-special-text h1, .banner-special-text h1 span {
+                font-size: 1.50rem;
+                line-height: 1;
             }
         }
 
@@ -453,6 +500,13 @@
 @endsection
 
 @section('content')
+    <div class="d-flex justify-content-center align-items-center banner-special">
+        <img src="{{'assets/images/banner-dia-dos-namorados.webp'}}" alt="banner dia dos namorados">
+        <div class="banner-special-text">
+            <h1>Dia dos Namorados</h1>
+            <h1>Descontos imperdíveis de até 10<span>%</span></h1>
+        </div>
+    </div>
     <div class="container-md">
         <section id="presentation">
             <div id="presentationText">
@@ -477,6 +531,9 @@
                     </ol>
                     <div class="carousel-inner h-100">
                         <div class="carousel-item">
+                            <img id="presentationPicNamorados" class="carousel-pics" src="{{asset('assets/images/dia-dos-namorados2.jpg')}}">
+                        </div>
+                        <div class="carousel-item">
                             <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
                         </div>
                         <div class="carousel-item">
@@ -489,6 +546,7 @@
                     <div id="bgPresentation">
                         <img src="{{asset('assets/images/bg-presentation.png')}}">
                         <img id="vectorsPresentation" src="{{asset('assets/images/vectors-presentation.svg')}}">
+                        {{-- <img id="bannerPresentation" src="{{asset('assets/images/banner-dia-dos-namorados-lg.png')}}"> --}}
                     </div>
                     {{-- <div class="d-lg-none">
                         <button class="carousel-control-prev" type="button" data-target="#carouselPresentation" data-slide="prev">
@@ -503,7 +561,6 @@
                 </div>
             </div>
         </section>
-
         @if($promotions->isNotEmpty())
             <section id="featuredOffers">
                 <div id="featuredOffersBadge">
