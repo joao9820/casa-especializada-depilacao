@@ -7,13 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 class Service extends Model
 {
 
-
-    const PRICE_OFF = [
+    /* const PRICE_OFF = [
         60 => 0.10,
         0 => 0.05,
-    ];
+    ]; */
 
-    /* const PRICE_OFF = 0; */
+    const PRICE_OFF = [];
 
     private $append = [
         'price_number',

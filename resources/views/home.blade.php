@@ -500,13 +500,6 @@
 @endsection
 
 @section('content')
-    <div class="d-flex justify-content-center align-items-center banner-special">
-        <img src="{{'assets/images/banner-dia-dos-namorados.webp'}}" alt="banner dia dos namorados">
-        <div class="banner-special-text">
-            <h1>Dia dos Namorados</h1>
-            <h1>Descontos imperdíveis de até 10<span>%</span></h1>
-        </div>
-    </div>
     <div class="container-md">
         <section id="presentation">
             <div id="presentationText">
@@ -528,12 +521,8 @@
                         <li data-target="#carouselPresentation" data-slide-to="0" class="active"></li>
                         <li data-target="#carouselPresentation" data-slide-to="1"></li>
                         <li data-target="#carouselPresentation" data-slide-to="2"></li>
-                        <li data-target="#carouselPresentation" data-slide-to="3"></li>
                     </ol>
                     <div class="carousel-inner h-100">
-                        <div class="carousel-item">
-                            <img id="presentationPicNamorados" class="carousel-pics" src="{{asset('assets/images/dia-dos-namorados2.jpg')}}" alt="Dia dos namorados">
-                        </div>
                         <div class="carousel-item">
                             <img id="presentationPic1" class="carousel-pics" src="{{asset('assets/images/presentation-1.png')}}">
                         </div>
@@ -547,7 +536,6 @@
                     <div id="bgPresentation">
                         <img src="{{asset('assets/images/bg-presentation.png')}}">
                         <img id="vectorsPresentation" src="{{asset('assets/images/vectors-presentation.svg')}}">
-                        {{-- <img id="bannerPresentation" src="{{asset('assets/images/banner-dia-dos-namorados-lg.png')}}"> --}}
                     </div>
                     {{-- <div class="d-lg-none">
                         <button class="carousel-control-prev" type="button" data-target="#carouselPresentation" data-slide="prev">
