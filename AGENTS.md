@@ -29,6 +29,8 @@ php artisan serve              # http://localhost:8000
 vendor/bin/phpunit             # testes (hoje só há os exemplos padrão)
 ```
 
+**Com Docker** (`docker-compose.yml`): o serviço `app` roda PHP CLI com `artisan serve` em `localhost:8000`, sem Apache, e o `db` roda MySQL 5.7, compatível com o Percona 5.7 do servidor. Em host ARM ele roda emulado como amd64. Os comandos acima rodam com o prefixo `docker compose exec app`. Para trocar a versão do PHP, use `PHP_VERSION=7.4 docker compose up -d --build`; o padrão é `8.1`.
+
 O CSS e o JS do site **não passam por build**. Os arquivos em `public/css` e `public/js` são escritos à mão e servidos diretamente. O `webpack.mix.js` e o `resources/sass`/`resources/js` são resquícios do skeleton e não são usados pelas páginas.
 
 ## Convenções

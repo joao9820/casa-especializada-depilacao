@@ -66,15 +66,27 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
 - **`TrustProxies`** com `Request::HEADER_X_FORWARDED_ALL`: continua existindo no Symfony 5 (L8). Só é removido no L9.
 - **E-mail:** o L8 ainda usa o SwiftMailer, então o `config/mail.php` e o `->html()` do Mailable não mudam.
 - **Views Blade, `@component`/`@slot`, migrations e accessors:** sem mudança.
-- **Banco de produção:** nenhuma migration nova. O schema não muda.
+- **Banco de produção:** nenhuma migration nova. O schema não muda. O servidor usa **Percona Server 5.7.44**, que é compatível com MySQL 5.7 e suportado pelo Laravel 8.
 
 ## 5. Plano de implementação
 
 Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
 
-### Fase 0: preparação do ambiente local
-1. Instalar o PHP 8.1 localmente (Laragon, XAMPP 8.1 ou Docker `php:8.1-cli`). Hoje a máquina tem PHP 7.2.11 x86, que não serve.
-2. Confirmar a versão exata do PHP 8.1 na hospedagem e as extensões disponíveis (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`).
+### Fase 0: preparação do ambiente local (Docker no Ubuntu)
+1. Clonar o repositório no Ubuntu. Se for WSL2, clonar dentro de `~/`, não em `/mnt/c`.
+2. Subir o ambiente com o `docker-compose.yml` da raiz:
+   - `app`: imagem `php:<versão>-cli` (`docker/php/Dockerfile`) com Composer, `unzip` e `pdo_mysql`. Não usa Apache: o site roda com `php artisan serve` na porta 8000.
+   - `db`: `mysql:5.7`, compatível com o servidor (Percona Server 5.7.44). Essa imagem só existe para amd64. No Ubuntu ARM ela roda emulada, e a emulação precisa ser habilitada uma vez com `docker run --privileged --rm tonistiigi/binfmt --install amd64`.
+   - A versão do PHP vem do build arg `PHP_VERSION`, com padrão `8.1`. Para a fase 1, use `PHP_VERSION=7.4`.
+3. Primeira execução:
+   ```bash
+   cp .env.example .env
+   PHP_VERSION=7.4 docker compose up -d --build
+   docker compose exec app composer install
+   docker compose exec app php artisan key:generate
+   docker compose exec app php artisan migrate --seed
+   ```
+4. Por ora, só as extensões mínimas para o site rodar. Conferir as extensões da hospedagem fica para a fase 5.
 
 ### Fase 1: rede de segurança (testes de caracterização, ainda no Laravel 7)
 3. Criar testes de feature que fixem o comportamento atual:
@@ -83,10 +95,10 @@ Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
    - `GET /promocoes/{slug-ativo}` retorna 200 e mostra "PROMOÇÃO: R$". Um slug inativo redireciona para `/`.
    - `POST /enviar-email` válido usa `Mail::fake()`, verifica o envio e redireciona com o flash `msg`. Um POST inválido gera erros de validação.
 4. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: SQLite `:memory:` (descomentar no `phpunit.xml`) ou um MySQL de teste.
-5. Rodar `vendor/bin/phpunit` no Laravel 7. Tudo verde antes de seguir.
+5. Rodar `docker compose exec app vendor/bin/phpunit` no Laravel 7, com o container em `PHP_VERSION=7.4`. Tudo verde antes de seguir.
 
 ### Fase 2: upgrade de dependências
-6. Aplicar os itens 1 a 5 da seção 4.1 e rodar `composer update` com o PHP 8.1.
+6. Recriar o container com o PHP 8.1 (`docker compose up -d --build`, sem `PHP_VERSION`). Aplicar os itens 1 a 5 da seção 4.1 e rodar `docker compose exec app composer update`.
 7. Apagar `bootstrap/cache/packages.php` e `services.php` e rodar `php artisan package:discover`.
 8. Aplicar o item 6 (UserFactory).
 
@@ -99,7 +111,7 @@ Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
 12. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
 
 ### Fase 5: deploy
-13. Na hospedagem: selecionar PHP 8.1, garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
+13. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
 14. Subir o código e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
 15. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
 16. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
@@ -121,7 +133,7 @@ Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
 | A hospedagem remove o PHP 8.1, já fora de suporte | Média, a médio prazo | Planejar a próxima etapa (seção 9). Esta spec já deixa testes que reduzem o custo dela |
 | Falta de patches de segurança no Laravel 8 | Baixa para este site (sem login, sem upload, um único formulário) | Manter o `APP_DEBUG=false`, validação e CSRF ativos. Fazer a etapa da seção 9 |
 | Extensão PHP ausente na hospedagem | Baixa | Checar na fase 0 |
-| Diferença entre o PHP local e o do servidor | Média | `config.platform.php` no `composer.json` |
+| Diferença entre o PHP local e o do servidor | Média | `config.platform.php` no `composer.json`. O Docker usa a mesma versão menor do PHP do servidor |
 | Testes em SQLite divergem do MySQL (enum, `after()`) | Baixa | Só os `up()` rodam nos testes. Se houver problema, usar um MySQL de teste |
 
 ## 8. Rollback
