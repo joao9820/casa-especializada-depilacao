@@ -46,6 +46,7 @@ O código da aplicação é pequeno: 6 controllers, 4 repositórios, 8 modelos, 
 | 3 | `composer.json` (dev) | `facade/ignition` `^2.17`, `nunomaduro/collision` `^5.10`, `phpunit/phpunit` `^9.5.10`, `mockery/mockery` `^1.4.4` | Versões mínimas compatíveis com PHP 8.1 e L8 |
 | 4 | `composer.json` | `config.platform.php`: `"8.1.0"` (ou a versão exata da hospedagem) | Garantir que o `composer.lock` seja resolvido para a versão do servidor, independentemente do PHP local |
 | 5 | `composer.lock` | Regenerar com `composer update` | Novas versões |
+| 5a | `composer.json` | `minimum-stability`: `dev` → `stable` | Com `dev`, o `composer update` escolheu os branches `8.x-dev` do framework e `1.x-dev` do `league/flysystem` (commits sem tag, posteriores à última versão), mesmo com `prefer-stable`. Em produção só entram versões com tag: `v8.83.29`, a última do Laravel 8, com a correção da CVE-2024-52301 |
 | 6 | `database/factories/UserFactory.php` | Remover (e tirar `database/factories` do `classmap`) **ou** converter para classe | O L8 removeu as factories em closure. O `User` não é usado em nenhum lugar |
 
 Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzlehttp/guzzle ^7.4` e `laravel/tinker ^2.5`. Todos já suportam L8 e PHP 8.1, e o `composer update` só sobe as versões menores.
