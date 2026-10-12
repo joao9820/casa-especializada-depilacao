@@ -127,6 +127,15 @@ class SiteTest extends TestCase
         });
     }
 
+    public function testContactEmailEscapesUserInput()
+    {
+        $html = (new ContactStore('<b>Maria</b>', 'maria@example.com', 'Assunto', '<script>alert(1)</script>', '61 9999'))->render();
+
+        $this->assertStringContainsString('De: &lt;b&gt;Maria&lt;/b&gt;', $html);
+        $this->assertStringContainsString('&lt;script&gt;alert(1)&lt;/script&gt;', $html);
+        $this->assertStringNotContainsString('<script>', $html);
+    }
+
     public function testContactFormValidatesInput()
     {
         Mail::fake();
