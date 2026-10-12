@@ -70,7 +70,13 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
 
 ## 5. Plano de implementação
 
-Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
+### Versionamento e repositório
+
+- **Mesmo repositório.** O upgrade não é uma reescrita: muda principalmente o `composer.json` e o lock. Um repositório novo perderia o histórico (preços, campanhas, decisões) e criaria dois lugares para manter.
+- **Branch:** `feature/upgrade-laravel-8`, criada a partir da `develop`. Cada fase é um commit.
+- **Fluxo:** `feature/upgrade-laravel-8` → merge na `develop` → merge na `main` → deploy → tag.
+- **Tags:** a `V2.0` (commit `d4bc42e`, a `main` atual) já marca o último estado em Laravel 7 / PHP 7.4, então não é preciso criar uma tag "antes". Depois do deploy, criar a **`V3.0`**. É uma versão maior porque mudam o framework e os requisitos do servidor.
+- **GitHub Release da `V3.0`** (opcional, recomendada): registrar os requisitos (PHP 8.1, Laravel 8, MySQL/Percona 5.7), os passos de deploy da fase 5 e o aviso de que voltar para a `V2.0` exige PHP 7.4.
 
 ### Fase 0: preparação do ambiente local (Docker no Ubuntu)
 1. Clonar o repositório no Ubuntu. Se for WSL2, clonar dentro de `~/`, não em `/mnt/c`.
@@ -89,33 +95,35 @@ Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
 4. Por ora, só as extensões mínimas para o site rodar. Conferir as extensões da hospedagem fica para a fase 5.
 
 ### Fase 1: rede de segurança (testes de caracterização, ainda no Laravel 7)
-3. Criar testes de feature que fixem o comportamento atual:
+5. Criar testes de feature que fixem o comportamento atual:
    - `GET /`, `/servicos`, `/contato` e `/nossa-historia` retornam 200.
    - `GET /servicos/{slug-valido}` retorna 200 e mostra o preço no formato `R$ 52,00`. `GET /servicos/inexistente` retorna 404.
    - `GET /promocoes/{slug-ativo}` retorna 200 e mostra "PROMOÇÃO: R$". Um slug inativo redireciona para `/`.
    - `POST /enviar-email` válido usa `Mail::fake()`, verifica o envio e redireciona com o flash `msg`. Um POST inválido gera erros de validação.
-4. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: SQLite `:memory:` (descomentar no `phpunit.xml`) ou um MySQL de teste.
-5. Rodar `docker compose exec app vendor/bin/phpunit` no Laravel 7, com o container em `PHP_VERSION=7.4`. Tudo verde antes de seguir.
+6. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: SQLite `:memory:` (descomentar no `phpunit.xml`) ou um MySQL de teste.
+7. Rodar `docker compose exec app vendor/bin/phpunit` no Laravel 7, com o container em `PHP_VERSION=7.4`. Tudo verde antes de seguir.
 
 ### Fase 2: upgrade de dependências
-6. Recriar o container com o PHP 8.1 (`docker compose up -d --build`, sem `PHP_VERSION`). Aplicar os itens 1 a 5 da seção 4.1 e rodar `docker compose exec app composer update`.
-7. Apagar `bootstrap/cache/packages.php` e `services.php` e rodar `php artisan package:discover`.
-8. Aplicar o item 6 (UserFactory).
+8. Recriar o container com o PHP 8.1 (`docker compose up -d --build`, sem `PHP_VERSION`). Aplicar os itens 1 a 5 da seção 4.1 e rodar `docker compose exec app composer update`.
+9. Apagar `bootstrap/cache/packages.php` e `services.php` e rodar `php artisan package:discover`.
+10. Aplicar o item 6 (UserFactory).
 
 ### Fase 3: ajustes recomendados
-9. Aplicar os itens 7 a 10 da seção 4.2.
+11. Aplicar os itens 7 a 10 da seção 4.2.
 
 ### Fase 4: validação
-10. Rodar `vendor/bin/phpunit` com o PHP 8.1. Os mesmos testes da fase 1 precisam passar.
-11. Fazer um teste manual com `php artisan serve`, página por página: home (switch F/M, carrossel), serviços, detalhe, promoção, contato (envio real para um SMTP de teste) e 404.
-12. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
+12. Rodar `vendor/bin/phpunit` com o PHP 8.1. Os mesmos testes da fase 1 precisam passar.
+13. Fazer um teste manual com `php artisan serve`, página por página: home (switch F/M, carrossel), serviços, detalhe, promoção, contato (envio real para um SMTP de teste) e 404.
+14. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
 
-### Fase 5: deploy
-13. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
-14. Subir o código e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
-15. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
-16. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
-17. Fazer smoke test em produção nas mesmas páginas da fase 4 e enviar um e-mail de contato real.
+### Fase 5: merge, deploy e tag
+15. Abrir um PR de `feature/upgrade-laravel-8` para a `develop`, revisar e fazer o merge. Depois, fazer o merge da `develop` na `main`.
+16. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
+17. Fazer o deploy da `main` e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
+18. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
+19. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
+20. Fazer smoke test em produção nas mesmas páginas da fase 4 e enviar um e-mail de contato real.
+21. Com o site validado em produção, criar a tag no commit implantado e enviá-la: `git tag -a V3.0 -m "Laravel 8 + PHP 8.1"` e `git push origin V3.0`. Se for o caso, publicar a GitHub Release (veja "Versionamento e repositório").
 
 ## 6. Critérios de aceite
 
@@ -125,6 +133,7 @@ Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
 - [ ] O formulário de contato entrega o e-mail.
 - [ ] O `laravel.log` fica sem `Deprecated` ou `ErrorException` após navegar pelo site todo.
 - [ ] O site está no ar na hospedagem nova com PHP 8.1.
+- [ ] A `main` contém o upgrade e a tag `V3.0` aponta para o commit implantado.
 
 ## 7. Riscos
 
@@ -132,13 +141,13 @@ Trabalhar na branch `upgrade/laravel-8`. Cada fase é um commit.
 |---|---|---|
 | A hospedagem remove o PHP 8.1, já fora de suporte | Média, a médio prazo | Planejar a próxima etapa (seção 9). Esta spec já deixa testes que reduzem o custo dela |
 | Falta de patches de segurança no Laravel 8 | Baixa para este site (sem login, sem upload, um único formulário) | Manter o `APP_DEBUG=false`, validação e CSRF ativos. Fazer a etapa da seção 9 |
-| Extensão PHP ausente na hospedagem | Baixa | Checar na fase 0 |
+| Extensão PHP ausente na hospedagem | Baixa | Checar na fase 5, antes do deploy |
 | Diferença entre o PHP local e o do servidor | Média | `config.platform.php` no `composer.json`. O Docker usa a mesma versão menor do PHP do servidor |
 | Testes em SQLite divergem do MySQL (enum, `after()`) | Baixa | Só os `up()` rodam nos testes. Se houver problema, usar um MySQL de teste |
 
 ## 8. Rollback
 
-O banco não muda, então o rollback consiste em reimplantar a tag anterior ao merge. Isso só funciona em um servidor com PHP 7.4, que a hospedagem nova não oferece, então a validação da fase 4 precisa ser completa **antes** do deploy.
+O banco não muda, então o rollback consiste em reimplantar a tag **`V2.0`** (`git checkout V2.0` e `composer install`). Isso só funciona em um servidor com PHP 7.4, que a hospedagem nova não oferece, então a validação da fase 4 precisa ser completa **antes** do deploy.
 
 ## 9. Próximos passos (fora desta spec)
 
