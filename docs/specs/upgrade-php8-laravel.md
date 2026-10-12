@@ -1,6 +1,6 @@
 # Spec: Upgrade para PHP 8.1 + Laravel 8
 
-- **Status:** proposta, aguardando aprovação antes da implementação
+- **Status:** em implementação (branch `feature/upgrade-laravel-8`)
 - **Data:** 2026-10-11
 - **Autor:** joao9820
 
@@ -88,7 +88,9 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
    ```bash
    cp .env.example .env
    PHP_VERSION=7.4 docker compose up -d --build
-   docker compose exec app composer install
+   # o app sai com erro até existir a vendor/; o install roda em um container avulso
+   PHP_VERSION=7.4 docker compose run --rm --no-deps app composer install
+   PHP_VERSION=7.4 docker compose up -d
    docker compose exec app php artisan key:generate
    docker compose exec app php artisan migrate --seed
    ```
@@ -100,7 +102,7 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
    - `GET /servicos/{slug-valido}` retorna 200 e mostra o preço no formato `R$ 52,00`. `GET /servicos/inexistente` retorna 404.
    - `GET /promocoes/{slug-ativo}` retorna 200 e mostra "PROMOÇÃO: R$". Um slug inativo redireciona para `/`.
    - `POST /enviar-email` válido usa `Mail::fake()`, verifica o envio e redireciona com o flash `msg`. Um POST inválido gera erros de validação.
-6. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: SQLite `:memory:` (descomentar no `phpunit.xml`) ou um MySQL de teste.
+6. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: MySQL de teste `casa_depilacao_testing`, criado por `docker/mysql/init` (o SQLite não serve, veja a seção 10).
 7. Rodar `docker compose exec app vendor/bin/phpunit` no Laravel 7, com o container em `PHP_VERSION=7.4`. Tudo verde antes de seguir.
 
 ### Fase 2: upgrade de dependências
@@ -152,3 +154,16 @@ O banco não muda, então o rollback consiste em reimplantar a tag **`V2.0`** (`
 ## 9. Próximos passos (fora desta spec)
 
 Quando houver disponibilidade, o caminho recomendado é **Laravel 13 + PHP 8.3** (com suporte até 2028), feito com um skeleton novo e o port do código. Isso exige: remover `fideloper/proxy` e `fruitcake/laravel-cors` (os dois passaram a ser nativos), adotar `Database\Seeders`, trocar o SwiftMailer pelo Symfony Mailer e migrar o `lang/`. Deve ganhar uma spec própria.
+
+## 10. Revisão de viabilidade (antes da implementação)
+
+O plano é viável. A revisão do código e do `composer.lock` (L7.30.6, Symfony 5.4, PHPUnit 8.5) confirmou a seção 4.3. Ajustes feitos no plano:
+
+| # | Achado | Ajuste |
+|---|---|---|
+| 1 | O SQLite não roda as migrations: `add_slug_column_*` adicionam coluna `NOT NULL` sem default, o que o SQLite recusa em `ALTER TABLE` | Testes em MySQL, banco `casa_depilacao_testing`, criado por `docker/mysql/init` na primeira subida do volume |
+| 2 | O `docker-compose.yml` define `DB_DATABASE` no ambiente, que tem prioridade sobre o `phpunit.xml`. O L7 lê `$_ENV` primeiro; o L8, `$_SERVER` | O `phpunit.xml` define `DB_DATABASE` nos dois (`<env force="true">` e `<server>`) |
+| 3 | No L8.83 as deprecations **não** viram exceção: vão para o canal `deprecations`, que é `null` por padrão. Sem ajuste, o critério "`laravel.log` sem Deprecated" passa sem verificar nada | Adicionar `'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null')` ao `config/logging.php` (fase 3) e usar `LOG_DEPRECATIONS_CHANNEL=single` na validação da fase 4 |
+| 4 | O `Procfile` usa o buildpack do Heroku, que escolhe o PHP pelo `require.php`. Com `^7.3\|^8.0`, ele instalaria o PHP mais novo, que o L8 não suporta | Não se aplica: a hospedagem é compartilhada (HostGator) e a versão do PHP é escolhida no painel. O `Procfile` é resquício e não é usado |
+| 5 | A imagem `php:7.4-cli` é baseada no Debian 11, cujo LTS acabou em ago/2026, e o `apt-get update` do Dockerfile falha | O `docker/php/Dockerfile` aponta o apt para o `archive.debian.org` quando a base é o Debian 11 (mesma solução já usada em outro projeto) |
+| 6 | Comportamentos atuais que os testes fixam sem corrigir (fora de escopo): promoção inativa redireciona para `/` em vez de 404, e o "De: R$" das promoções na home e em `/servicos` sai sem formatação (`126.9`) | Nenhum. Registrar para uma mudança futura |

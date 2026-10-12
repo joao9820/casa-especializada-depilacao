@@ -21,8 +21,11 @@
         <server name="APP_ENV" value="testing"/>
         <server name="BCRYPT_ROUNDS" value="4"/>
         <server name="CACHE_DRIVER" value="array"/>
-        <!-- <server name="DB_CONNECTION" value="sqlite"/> -->
-        <!-- <server name="DB_DATABASE" value=":memory:"/> -->
+        <!-- Banco de testes separado (docker/mysql/init). SQLite não serve: as migrations de slug
+             adicionam coluna NOT NULL sem default. Os dois formatos são necessários porque o
+             docker-compose define DB_DATABASE no ambiente: o Laravel 7 lê $_ENV primeiro e o 8 lê $_SERVER -->
+        <env name="DB_DATABASE" value="casa_depilacao_testing" force="true"/>
+        <server name="DB_DATABASE" value="casa_depilacao_testing"/>
         <server name="MAIL_MAILER" value="array"/>
         <server name="QUEUE_CONNECTION" value="sync"/>
         <server name="SESSION_DRIVER" value="array"/>
