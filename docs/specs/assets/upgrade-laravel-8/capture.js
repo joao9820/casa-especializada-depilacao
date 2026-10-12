@@ -2,7 +2,7 @@
 // Rodar pelo Playwright MCP: browser_run_code_unsafe com filename apontando para este arquivo
 // Trocar ROUND para 'after' na rodada do Laravel 8
 async (page) => {
-    const ROUND = 'before';
+    const ROUND = 'after';
     const dir = `/home/joao9820/projects/casa-especializada-depilacao/docs/specs/assets/upgrade-laravel-8/${ROUND}`;
     const pages = {
         'home': '/',
