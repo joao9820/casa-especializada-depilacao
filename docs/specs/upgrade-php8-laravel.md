@@ -115,23 +115,24 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
 
 ### Fase 4: validação
 12. Rodar `vendor/bin/phpunit` com o PHP 8.1. Os mesmos testes da fase 1 precisam passar.
-13. Fazer um teste manual com `php artisan serve`, página por página: home (switch F/M, carrossel), serviços, detalhe, promoção, contato (envio real para um SMTP de teste) e 404.
-14. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
+13. Tirar os prints `after/` e compará-los com os `before/` (seção 11). Nenhuma página pode ter diferença.
+14. Fazer um teste manual com `php artisan serve`, página por página: home (switch F/M, carrossel), serviços, detalhe, promoção, contato (envio real para um SMTP de teste) e 404.
+15. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
 
 ### Fase 5: merge, deploy e tag
-15. Abrir um PR de `feature/upgrade-laravel-8` para a `develop`, revisar e fazer o merge. Depois, fazer o merge da `develop` na `main`.
-16. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
-17. Fazer o deploy da `main` e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
-18. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
-19. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
-20. Fazer smoke test em produção nas mesmas páginas da fase 4 e enviar um e-mail de contato real.
-21. Com o site validado em produção, criar a tag no commit implantado e enviá-la: `git tag -a V3.0 -m "Laravel 8 + PHP 8.1"` e `git push origin V3.0`. Se for o caso, publicar a GitHub Release (veja "Versionamento e repositório").
+16. Abrir um PR de `feature/upgrade-laravel-8` para a `develop`, revisar e fazer o merge. Depois, fazer o merge da `develop` na `main`.
+17. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
+18. Fazer o deploy da `main` e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
+19. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
+20. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
+21. Fazer smoke test em produção nas mesmas páginas da fase 4 e enviar um e-mail de contato real.
+22. Com o site validado em produção, criar a tag no commit implantado e enviá-la: `git tag -a V3.0 -m "Laravel 8 + PHP 8.1"` e `git push origin V3.0`. Se for o caso, publicar a GitHub Release (veja "Versionamento e repositório").
 
 ## 6. Critérios de aceite
 
 - [ ] `composer.json` exige `laravel/framework ^8.83` e o lock foi resolvido para PHP 8.1.
 - [ ] Todos os testes de caracterização passam em PHP 8.1.
-- [ ] As páginas ficam visualmente idênticas às de antes (comparação manual ou por screenshot).
+- [ ] As páginas ficam visualmente idênticas às de antes: os prints `before/` e `after/` da seção 11 não têm diferença, em desktop e mobile.
 - [ ] O formulário de contato entrega o e-mail.
 - [ ] O `laravel.log` fica sem `Deprecated` ou `ErrorException` após navegar pelo site todo.
 - [ ] O site está no ar na hospedagem nova com PHP 8.1.
@@ -167,3 +168,28 @@ O plano é viável. A revisão do código e do `composer.lock` (L7.30.6, Symfony
 | 4 | O `Procfile` usa o buildpack do Heroku, que escolhe o PHP pelo `require.php`. Com `^7.3\|^8.0`, ele instalaria o PHP mais novo, que o L8 não suporta | Não se aplica: a hospedagem é compartilhada (HostGator) e a versão do PHP é escolhida no painel. O `Procfile` é resquício e não é usado |
 | 5 | A imagem `php:7.4-cli` é baseada no Debian 11, cujo LTS acabou em ago/2026, e o `apt-get update` do Dockerfile falha | O `docker/php/Dockerfile` aponta o apt para o `archive.debian.org` quando a base é o Debian 11 (mesma solução já usada em outro projeto) |
 | 6 | Comportamentos atuais que os testes fixam sem corrigir (fora de escopo): promoção inativa redireciona para `/` em vez de 404, e o "De: R$" das promoções na home e em `/servicos` sai sem formatação (`126.9`) | Nenhum. Registrar para uma mudança futura |
+
+## 11. Comparação visual (Playwright MCP)
+
+A comparação é feita pelo agente, com o **MCP do Playwright** (`@playwright/mcp` via `npx`, Chromium headless, Node 22 pelo nvm). Os prints ficam em `docs/specs/assets/upgrade-laravel-8/`:
+
+- `before/`: **Laravel 7 / PHP 7.4**, tirados antes da fase 2.
+- `after/`: **Laravel 8 / PHP 8.1**, tirados na fase 4.
+
+**Roteiro (igual nas duas rodadas):**
+
+- **Páginas:** `home`, `servicos`, `servico-detalhe` (`/servicos/corporal-feminina`), `promocao` (`/promocoes/axilas-12-pernas-virilha-simples`), `contato` e `nossa-historia`, em página inteira.
+- **Viewports:** desktop (1366×768) e mobile (390×844). Os arquivos se chamam `<página>-<viewport>.png`.
+- **Antes de cada print:** esperar a página carregar, mostrar os elementos do WOW.js (`.wow { visibility: visible }`) e pausar o carrossel da home no primeiro slide.
+- **Fora da comparação:** a página 404. O site não tem `resources/views/errors`, e a 404 padrão do Laravel 8 tem outro visual. O status 404 já é coberto pelo PHPUnit.
+- **Dados:** usa o banco de desenvolvimento (`db:seed`). Não rode `migrate:fresh` nem um novo seed entre as duas rodadas, para os dados continuarem iguais.
+
+**Script:** `docs/specs/assets/upgrade-laravel-8/capture.js`, executado pelo `browser_run_code_unsafe` do MCP (trocar `ROUND` para `after` na segunda rodada). O mobile é só o viewport de 390×844, sem emulação de toque nem escala, igual nas duas rodadas.
+
+**Rodada `before` (2026-10-12):** 12 prints, todos com status 200. Os mapas do Google em "Localização" (home) saem em branco no Chromium headless. É esperado e deve se repetir no `after`.
+
+**Comparação:** o agente compara cada par `before`/`after` e registra aqui o resultado por página. Qualquer diferença de layout, texto, preço ou imagem bloqueia o merge até ser explicada.
+
+**Ressalva:** o Swiper vem do unpkg sem versão fixa (`unpkg.com/swiper/swiper-bundle.min.js`). Se uma versão nova sair entre as duas rodadas, o carrossel de promoções pode mudar sem relação com o upgrade.
+
+**Configuração local do MCP:** o `.mcp.json` da raiz (fora do Git, via `.git/info/exclude`, porque tem caminhos absolutos da máquina) roda o `npx` pelo `~/.nvm/nvm-exec` com `NODE_VERSION=22` e grava os prints na pasta acima (`--output-dir`). Requisitos: `nvm install 22` e as bibliotecas do Chromium (`sudo env "PATH=$PATH" npx -y playwright install-deps chromium`).
