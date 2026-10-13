@@ -22,13 +22,13 @@ class ContactStore extends Mailable
     public function __construct($name, $email, $subject, $msg, $phone)
     {
         $this->_subject = $subject;
-        $this->_msg = "De: {$name}";
-        $this->_msg .= "<br/>E-mail: {$email}";
+        $this->_msg = 'De: ' . e($name);
+        $this->_msg .= '<br/>E-mail: ' . e($email);
 
         if($phone)
-            $this->_msg .= "<br/>Cel: {$phone}";
+            $this->_msg .= '<br/>Cel: ' . e($phone);
 
-        $this->_msg .= "<br/><br/>{$msg}";
+        $this->_msg .= '<br/><br/>' . e($msg);
     }
 
     /**

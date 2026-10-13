@@ -8,7 +8,8 @@ services:
         PHP_VERSION: ${PHP_VERSION:-8.1}
     image: casa-depilacao-php:${PHP_VERSION:-8.1}
     user: "${UID:-1000}:${GID:-1000}"
-    command: php artisan serve --host=0.0.0.0 --port=8000
+    # --no-reload: sem ele, o serve do Laravel 8 descarta as variáveis abaixo e usa só o .env
+    command: php artisan serve --host=0.0.0.0 --port=8000 --no-reload
     working_dir: /app
     volumes:
       - .:/app
@@ -39,6 +40,7 @@ services:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
+      - ./docker/mysql/init:/docker-entrypoint-initdb.d:ro
 
 volumes:
   db-data:

@@ -1,6 +1,6 @@
 # Spec: Upgrade para PHP 8.1 + Laravel 8
 
-- **Status:** proposta, aguardando aprovação antes da implementação
+- **Status:** em implementação (branch `feature/upgrade-laravel-8`)
 - **Data:** 2026-10-11
 - **Autor:** joao9820
 
@@ -46,6 +46,7 @@ O código da aplicação é pequeno: 6 controllers, 4 repositórios, 8 modelos, 
 | 3 | `composer.json` (dev) | `facade/ignition` `^2.17`, `nunomaduro/collision` `^5.10`, `phpunit/phpunit` `^9.5.10`, `mockery/mockery` `^1.4.4` | Versões mínimas compatíveis com PHP 8.1 e L8 |
 | 4 | `composer.json` | `config.platform.php`: `"8.1.0"` (ou a versão exata da hospedagem) | Garantir que o `composer.lock` seja resolvido para a versão do servidor, independentemente do PHP local |
 | 5 | `composer.lock` | Regenerar com `composer update` | Novas versões |
+| 5a | `composer.json` | `minimum-stability`: `dev` → `stable` | Com `dev`, o `composer update` escolheu os branches `8.x-dev` do framework e `1.x-dev` do `league/flysystem` (commits sem tag, posteriores à última versão), mesmo com `prefer-stable`. Em produção só entram versões com tag: `v8.83.29`, a última do Laravel 8, com a correção da CVE-2024-52301 |
 | 6 | `database/factories/UserFactory.php` | Remover (e tirar `database/factories` do `classmap`) **ou** converter para classe | O L8 removeu as factories em closure. O `User` não é usado em nenhum lugar |
 
 Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzlehttp/guzzle ^7.4` e `laravel/tinker ^2.5`. Todos já suportam L8 e PHP 8.1, e o `composer update` só sobe as versões menores.
@@ -88,7 +89,9 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
    ```bash
    cp .env.example .env
    PHP_VERSION=7.4 docker compose up -d --build
-   docker compose exec app composer install
+   # o app sai com erro até existir a vendor/; o install roda em um container avulso
+   PHP_VERSION=7.4 docker compose run --rm --no-deps app composer install
+   PHP_VERSION=7.4 docker compose up -d
    docker compose exec app php artisan key:generate
    docker compose exec app php artisan migrate --seed
    ```
@@ -100,7 +103,7 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
    - `GET /servicos/{slug-valido}` retorna 200 e mostra o preço no formato `R$ 52,00`. `GET /servicos/inexistente` retorna 404.
    - `GET /promocoes/{slug-ativo}` retorna 200 e mostra "PROMOÇÃO: R$". Um slug inativo redireciona para `/`.
    - `POST /enviar-email` válido usa `Mail::fake()`, verifica o envio e redireciona com o flash `msg`. Um POST inválido gera erros de validação.
-6. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: SQLite `:memory:` (descomentar no `phpunit.xml`) ou um MySQL de teste.
+6. Os dados são criados no próprio teste via modelos, com pelo menos 3 grupos por público. Banco: MySQL de teste `casa_depilacao_testing`, criado por `docker/mysql/init` (o SQLite não serve, veja a seção 10).
 7. Rodar `docker compose exec app vendor/bin/phpunit` no Laravel 7, com o container em `PHP_VERSION=7.4`. Tudo verde antes de seguir.
 
 ### Fase 2: upgrade de dependências
@@ -113,23 +116,24 @@ Ficam como estão: `fideloper/proxy ^4.4`, `fruitcake/laravel-cors ^2.0`, `guzzl
 
 ### Fase 4: validação
 12. Rodar `vendor/bin/phpunit` com o PHP 8.1. Os mesmos testes da fase 1 precisam passar.
-13. Fazer um teste manual com `php artisan serve`, página por página: home (switch F/M, carrossel), serviços, detalhe, promoção, contato (envio real para um SMTP de teste) e 404.
-14. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
+13. Tirar os prints `after/` e compará-los com os `before/` (seção 11). Nenhuma página pode ter diferença.
+14. Fazer um teste manual com `php artisan serve`, página por página: home (switch F/M, carrossel), serviços, detalhe, promoção, contato (envio real para um SMTP de teste) e 404.
+15. Conferir `storage/logs/laravel.log`, que não pode ter deprecations nem erros.
 
 ### Fase 5: merge, deploy e tag
-15. Abrir um PR de `feature/upgrade-laravel-8` para a `develop`, revisar e fazer o merge. Depois, fazer o merge da `develop` na `main`.
-16. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
-17. Fazer o deploy da `main` e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
-18. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
-19. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
-20. Fazer smoke test em produção nas mesmas páginas da fase 4 e enviar um e-mail de contato real.
-21. Com o site validado em produção, criar a tag no commit implantado e enviá-la: `git tag -a V3.0 -m "Laravel 8 + PHP 8.1"` e `git push origin V3.0`. Se for o caso, publicar a GitHub Release (veja "Versionamento e repositório").
+16. Abrir um PR de `feature/upgrade-laravel-8` para a `develop`, revisar e fazer o merge. Depois, fazer o merge da `develop` na `main`.
+17. Na hospedagem: selecionar PHP 8.1, conferir as extensões exigidas pelo Laravel 8 (`pdo_mysql`, `mbstring`, `openssl`, `tokenizer`, `xml`, `ctype`, `json`, `bcmath`, `fileinfo`), garantir que o document root seja `public/` e que exista o `public/.htaccess` padrão do Laravel (ele não está versionado).
+18. Fazer o deploy da `main` e rodar `composer install --no-dev --optimize-autoloader` (ou enviar a `vendor/` gerada localmente com o PHP 8.1).
+19. Revisar o `.env` (`APP_ENV=production`, `APP_DEBUG=false`, `APP_KEY`, `DB_*`, `MAIL_*`).
+20. Rodar `php artisan config:cache`, `route:cache` e `view:clear`.
+21. Fazer smoke test em produção nas mesmas páginas da fase 4 e enviar um e-mail de contato real.
+22. Com o site validado em produção, criar a tag no commit implantado e enviá-la: `git tag -a V3.0 -m "Laravel 8 + PHP 8.1"` e `git push origin V3.0`. Se for o caso, publicar a GitHub Release (veja "Versionamento e repositório").
 
 ## 6. Critérios de aceite
 
 - [ ] `composer.json` exige `laravel/framework ^8.83` e o lock foi resolvido para PHP 8.1.
 - [ ] Todos os testes de caracterização passam em PHP 8.1.
-- [ ] As páginas ficam visualmente idênticas às de antes (comparação manual ou por screenshot).
+- [ ] As páginas ficam visualmente idênticas às de antes: os prints `before/` e `after/` da seção 11 não têm diferença, em desktop e mobile.
 - [ ] O formulário de contato entrega o e-mail.
 - [ ] O `laravel.log` fica sem `Deprecated` ou `ErrorException` após navegar pelo site todo.
 - [ ] O site está no ar na hospedagem nova com PHP 8.1.
@@ -152,3 +156,41 @@ O banco não muda, então o rollback consiste em reimplantar a tag **`V2.0`** (`
 ## 9. Próximos passos (fora desta spec)
 
 Quando houver disponibilidade, o caminho recomendado é **Laravel 13 + PHP 8.3** (com suporte até 2028), feito com um skeleton novo e o port do código. Isso exige: remover `fideloper/proxy` e `fruitcake/laravel-cors` (os dois passaram a ser nativos), adotar `Database\Seeders`, trocar o SwiftMailer pelo Symfony Mailer e migrar o `lang/`. Deve ganhar uma spec própria.
+
+## 10. Revisão de viabilidade (antes da implementação)
+
+O plano é viável. A revisão do código e do `composer.lock` (L7.30.6, Symfony 5.4, PHPUnit 8.5) confirmou a seção 4.3. Ajustes feitos no plano:
+
+| # | Achado | Ajuste |
+|---|---|---|
+| 1 | O SQLite não roda as migrations: `add_slug_column_*` adicionam coluna `NOT NULL` sem default, o que o SQLite recusa em `ALTER TABLE` | Testes em MySQL, banco `casa_depilacao_testing`, criado por `docker/mysql/init` na primeira subida do volume |
+| 2 | O `docker-compose.yml` define `DB_DATABASE` no ambiente, que tem prioridade sobre o `phpunit.xml`. O L7 lê `$_ENV` primeiro; o L8, `$_SERVER` | O `phpunit.xml` define `DB_DATABASE` nos dois (`<env force="true">` e `<server>`) |
+| 3 | No L8.83 as deprecations **não** viram exceção: vão para o canal `deprecations`, que é `null` por padrão. Sem ajuste, o critério "`laravel.log` sem Deprecated" passa sem verificar nada | Adicionar `'deprecations' => env('LOG_DEPRECATIONS_CHANNEL', 'null')` ao `config/logging.php` (fase 3) e usar `LOG_DEPRECATIONS_CHANNEL=single` na validação da fase 4 |
+| 4 | O `Procfile` usa o buildpack do Heroku, que escolhe o PHP pelo `require.php`. Com `^7.3\|^8.0`, ele instalaria o PHP mais novo, que o L8 não suporta | Não se aplica: a hospedagem é compartilhada (HostGator) e a versão do PHP é escolhida no painel. O `Procfile` é resquício e não é usado |
+| 5 | A imagem `php:7.4-cli` é baseada no Debian 11, cujo LTS acabou em ago/2026, e o `apt-get update` do Dockerfile falha | O `docker/php/Dockerfile` aponta o apt para o `archive.debian.org` quando a base é o Debian 11 (mesma solução já usada em outro projeto) |
+| 6 | Comportamentos atuais que os testes fixam sem corrigir (fora de escopo): promoção inativa redireciona para `/` em vez de 404, e o "De: R$" das promoções na home e em `/servicos` sai sem formatação (`126.9`) | Nenhum. Registrar para uma mudança futura |
+
+## 11. Comparação visual (Playwright MCP)
+
+A comparação é feita pelo agente, com o **MCP do Playwright** (`@playwright/mcp` via `npx`, Chromium headless, Node 22 pelo nvm). Os prints ficam em `docs/specs/assets/upgrade-laravel-8/`:
+
+- `before/`: **Laravel 7 / PHP 7.4**, tirados antes da fase 2.
+- `after/`: **Laravel 8 / PHP 8.1**, tirados na fase 4.
+
+**Roteiro (igual nas duas rodadas):**
+
+- **Páginas:** `home`, `servicos`, `servico-detalhe` (`/servicos/corporal-feminina`), `promocao` (`/promocoes/axilas-12-pernas-virilha-simples`), `contato` e `nossa-historia`, em página inteira.
+- **Viewports:** desktop (1366×768) e mobile (390×844). Os arquivos se chamam `<página>-<viewport>.png`.
+- **Antes de cada print:** esperar a página carregar, mostrar os elementos do WOW.js (`.wow { visibility: visible }`) e pausar o carrossel da home no primeiro slide.
+- **Fora da comparação:** a página 404. O site não tem `resources/views/errors`, e a 404 padrão do Laravel 8 tem outro visual. O status 404 já é coberto pelo PHPUnit.
+- **Dados:** usa o banco de desenvolvimento (`db:seed`). Não rode `migrate:fresh` nem um novo seed entre as duas rodadas, para os dados continuarem iguais.
+
+**Script:** `docs/specs/assets/upgrade-laravel-8/capture.js`, executado pelo `browser_run_code_unsafe` do MCP (trocar `ROUND` para `after` na segunda rodada). O mobile é só o viewport de 390×844, sem emulação de toque nem escala, igual nas duas rodadas.
+
+**Rodada `before` (2026-10-12):** 12 prints, todos com status 200. Os mapas do Google em "Localização" (home) saem em branco no Chromium headless. É esperado e deve se repetir no `after`.
+
+**Comparação:** o agente compara cada par `before`/`after` e registra aqui o resultado por página. Qualquer diferença de layout, texto, preço ou imagem bloqueia o merge até ser explicada.
+
+**Ressalva:** o Swiper vem do unpkg sem versão fixa (`unpkg.com/swiper/swiper-bundle.min.js`). Se uma versão nova sair entre as duas rodadas, o carrossel de promoções pode mudar sem relação com o upgrade.
+
+**Configuração local do MCP:** o `.mcp.json` da raiz (fora do Git, via `.git/info/exclude`, porque tem caminhos absolutos da máquina) roda o `npx` pelo `~/.nvm/nvm-exec` com `NODE_VERSION=22` e grava os prints na pasta acima (`--output-dir`). Requisitos: `nvm install 22` e as bibliotecas do Chromium (`sudo env "PATH=$PATH" npx -y playwright install-deps chromium`).
