@@ -16,7 +16,7 @@
             content="Há mais de 30 anos no mercado cuidando da pele dos nossos clientes por meio de produtos naturais. Realizamos todos os tipos de depilação feminina/masculina. Conheça a loja e visite já uma de nossas unidades" >
         <meta name="keywords" content="depilação,casa de depilação,casa especializada em depilação,depilação feminina,depilação masculina,depilação íntima,todos os tipos de depilação,depilação em taguatinga" >
 
-        <link rel="shortcut icon" type="image/png" href="{{asset('assets/images/favicon.png')}}">
+        <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/favicon.ico') }}">
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 
         {{-- Swiper --}}

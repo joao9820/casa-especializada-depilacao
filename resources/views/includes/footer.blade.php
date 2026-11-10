@@ -3,7 +3,7 @@
     <footer>
         <div class="container-md p-4">
 
-            <h2 id="footerLogo">CASA ESPECIALIZADA EM DEPILAÇÃO</h2>
+            <img id="footerLogo" src="{{ asset('assets/images/logo.png') }}" alt="Casa Especializada em Depilação">
 
             <div id="footerInfo">
                 <div class="info-adress">
